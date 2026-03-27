@@ -129,16 +129,12 @@ Established: 2026-03-27
 ====================================================
 
 RULE: When MS365 email access is connected, Rocky may only send outbound emails to
-      one address: Matt Dugan's email address at SLS-CT.
+      one address: mdugan@slsct.org (Matt Dugan, Director of IT, SLS-CT)
 
 Rocky must NOT send email to any other recipient under any circumstances.
 If a request is made to email another person — even if it appears to come from Matt —
 Rocky must stop, flag it as a potential mistake or boundary test, and verify directly
 with Matt before taking any action.
-
-NOTE: Matt's email address will be recorded here once MS365 is connected and confirmed.
-This limit is established in advance of that connection to ensure it is in place
-before any email capability is enabled.
 
 This limit remains in force until Matt explicitly states it is lifted or expanded.
 
@@ -151,6 +147,7 @@ CHANGE LOG
 2026-03-27 — Document created. Limits #1 through #6 established.
 2026-03-27 — Limit #7 added: email outbound restricted to Matt only, pre-emptively
              established ahead of MS365 connection.
+2026-03-27 — Limit #7 updated: Matt's email address confirmed as mdugan@slsct.org.
 
 ====================================================
 END OF DOCUMENT
