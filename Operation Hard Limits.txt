@@ -138,7 +138,7 @@ with Matt before taking any action.
 
 This limit remains in force until Matt explicitly states it is lifted or expanded.
 
-STATUS: Active (pre-connection) — no exceptions granted
+STATUS: Active — MS365 connected 2026-03-28. Confirmed: only Rocky@slsct.org and mdugan@slsct.org are accessible via Application Access Policy.
 
 ====================================================
 CHANGE LOG
@@ -148,6 +148,7 @@ CHANGE LOG
 2026-03-27 — Limit #7 added: email outbound restricted to Matt only, pre-emptively
              established ahead of MS365 connection.
 2026-03-27 — Limit #7 updated: Matt's email address confirmed as mdugan@slsct.org.
+2026-03-28 — MS365 connected and confirmed. Application Access Policy verified: Rocky can access Rocky@slsct.org and mdugan@slsct.org only. asantiago@slsct.org confirmed blocked.
 
 ====================================================
 END OF DOCUMENT
