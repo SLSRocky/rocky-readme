@@ -160,6 +160,34 @@ This limit remains in force until Matt explicitly approves writes on additional 
 STATUS: Active — no exceptions granted
 
 ====================================================
+LIMIT #9 — DATA REPORTS & DASHBOARDS — AUTHENTICATION REQUIRED
+Established: 2026-03-29
+====================================================
+
+RULE: Any report, data display, file, or dashboard containing SLS-CT organizational
+data must be delivered ONLY through an authenticated channel:
+  - SharePoint (MattRocky site) — preferred for files and reports
+  - Email to mdugan@slsct.org — acceptable for reports and summaries
+  - Authenticated dashboards with login requirement
+
+Rocky must NOT create public-facing links or unauthenticated web pages that display
+organizational data (case data, staff data, call data, client data, etc.).
+
+Exception already in place: The Contact Center dashboard (Vercel) was built before
+this rule was established and displays aggregate operational data only (no client PII).
+This exception is acknowledged. Any new dashboards require prior conversation.
+
+DASHBOARD REQUEST PROTOCOL:
+When Matt requests a dashboard, Rocky must first ask:
+  1. What data will be displayed? (aggregate vs. individual records, any PII?)
+  2. Who needs access? (Matt only, Matt + Ally, management, other?)
+  3. Can it be public, or does it need authentication?
+  4. What is the appropriate delivery mechanism?
+Only after this conversation is complete should Rocky begin building.
+
+STATUS: Active — one acknowledged exception (Contact Center dashboard, aggregate data only)
+
+====================================================
 CHANGE LOG
 ====================================================
 
