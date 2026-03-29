@@ -1,0 +1,238 @@
+ROCKY AI ASSISTANT — SECURITY & DATA RISK DECISION LOG
+Statewide Legal Services of Connecticut (SLS-CT)
+=======================================================
+
+This document records all security decisions, data access configurations, risk
+assessments, and mitigations made during Rocky's setup and operation.
+
+Purpose: Audit trail for compliance review, IT governance, and risk assessment questions.
+Maintained by: Rocky (AI Assistant) and Matt Dugan (Director of IT)
+Last updated: 2026-03-29
+
+=======================================================
+SECTION 1 — GENERAL OPERATING PRINCIPLES
+=======================================================
+
+Rocky operates under a security-first, privacy-first, read-only-by-default posture.
+
+Core principles applied to all integrations:
+- Least privilege: request only the minimum permissions needed for the specific task
+- Explicit approval: write/modify actions require explicit authorization before execution
+- Credential hygiene: no secrets in code, commits, or chat logs; stored in encrypted config only
+- Data minimization: summaries and aggregates preferred over raw records
+- Audit trail: all connections, permissions, and decisions logged in this document
+
+Hard limits are documented separately in: Operation Hard Limits.txt
+
+=======================================================
+SECTION 2 — DISCORD
+=======================================================
+
+Date: 2026-03-26
+Decision: Primary communication channel between Matt and Rocky.
+
+Risk considered:
+- Sensitive data shared in Discord chat history
+- Credentials accidentally posted in channel
+
+Mitigations applied:
+- requireMention: false scoped to #chatwithrocky channel only (not tenant-wide)
+- Credentials posted in Discord are flagged for deletion immediately after Rocky saves them
+- SharePoint credential drop process established (2026-03-29) to avoid posting secrets in Discord
+- Reaction notifications disabled (no operational impact, reduces alert noise)
+- ackReactionScope: none (no emoji reactions from Rocky)
+
+Residual risk: LOW — channel is restricted to Matt's Discord server; chat history
+visible to anyone with access to the server.
+
+=======================================================
+SECTION 3 — GITHUB (SLSRocky)
+=======================================================
+
+Date: 2026-03-26
+Decision: Rocky has a dedicated GitHub account (SLSRocky) for storing code, documents,
+and session logs.
+
+Risk considered:
+- Public repos could expose sensitive organizational data
+- Credentials accidentally committed to repos
+
+Mitigations applied:
+- GitHub secret scanning enabled — blocks pushes containing detected credentials
+  (caught and blocked Twilio Account SID in first README commit attempt)
+- All repos containing sensitive data created as private
+- README.txt and Operation Hard Limits.txt intentionally public (contain no sensitive data)
+- TOOLS.md (contains credentials) stored only in local workspace, never committed to GitHub
+- Credential template established: reference only, never include actual values in committed files
+
+Residual risk: LOW — GitHub secret scanning provides automated protection.
+
+=======================================================
+SECTION 4 — ZOOM API (Contact Center + Reports)
+=======================================================
+
+Date: 2026-03-26
+App type: Server-to-Server OAuth (no user login required)
+
+Permissions granted (all read-only):
+- Reports: sign-in/out activity, operation logs, user reports, daily usage
+- Contact Center: engagements, queues, agents, recordings, skills, dispositions,
+  flows, teams, performance datasets, roles
+
+Risk considered:
+- API has read access to sensitive call data including client phone numbers,
+  call recordings, and agent activity
+- Call recordings contain protected client communications
+
+Mitigations applied:
+- All scopes are read-only — no ability to modify Zoom settings or data
+- Recording download URLs require valid API bearer token — not publicly accessible
+  without Rocky's credentials
+- Recording proxy built (Vercel) to allow Matt to download recordings without
+  exposing API credentials to the browser
+- Proxy password-protected; credentials stored server-side in Vercel encrypted env vars
+
+Decision on recording access delivery (2026-03-27):
+- Option considered: Post recording links in Discord
+- Risk identified: Discord links could be copied and shared outside the auth wall
+- Option considered: Zoom Team Chat delivery
+- Research finding: Zoom Team Chat does NOT support per-channel retention policies
+  (account-level only)
+- Decision: Post recording download links in a private Zoom Team Chat channel
+  restricted to Matt Dugan and Ally Stratos only
+- Rationale: Both users already have admin access to recordings via Zoom web portal;
+  the delivery channel restricts visibility without expanding access
+- Status: Pending — Zoom Team Chat scopes not yet added to Rocky's app
+
+Residual risk: MODERATE (pending) — recording links currently delivered via Discord.
+Will be reduced to LOW once Zoom Team Chat delivery is implemented.
+
+Zoom Phone scopes added: 2026-03-28
+- phone:read:list_call_logs:admin — read-only access to phone call logs
+- Purpose: look up calls by number/extension when Contact Center search returns no results
+
+=======================================================
+SECTION 5 — TWILIO (SMS)
+=======================================================
+
+Date: 2026-03-27
+Decision: Rocky has a dedicated phone number (+1 860-979-5961) for two-way SMS with Matt.
+
+Risk considered:
+- Rocky could text unauthorized numbers
+- Incoming SMS from unauthorized numbers could be processed
+- Messaging Service registration (A2P 10DLC) could be disrupted
+
+Mitigations applied:
+- Hard limit #1: Outbound SMS restricted to 860-944-4703 (Matt's cell) only in code and policy
+- Hard limit #2: Inbound SMS processing restricted to 860-944-4703 only; all others silently ignored
+- Hard limit #3: Twilio Messaging Service "Legal Services Messaging Service" must never be changed
+  (tied to A2P 10DLC registration)
+- Inbound SMS relay uses a Discord webhook (separate identity from Rocky bot) to avoid
+  self-loop issues with OpenClaw's bot message filtering
+- allowBots: "mentions" configured in OpenClaw to allow webhook-posted mentions to wake Rocky
+
+Residual risk: LOW — hard limits enforced at both code and policy levels.
+
+=======================================================
+SECTION 6 — VERCEL
+=======================================================
+
+Date: 2026-03-26
+Decision: Vercel Hobby plan used for hosting Rocky's web applications.
+
+Applications deployed:
+- zoom-dashboard: Live Contact Center dashboard (calls, queues, agents)
+- /api/sms-inbound: Twilio webhook receiver → Discord relay
+- /api/recording/[id]: Zoom recording proxy with password protection
+
+Risk considered:
+- Vercel Hobby plan is technically for personal/non-commercial use
+- Environment variables (Zoom credentials, recording password) stored in Vercel
+- Recording proxy exposed to internet
+
+Mitigations applied:
+- All credentials stored as encrypted environment variables in Vercel (never in code)
+- Recording proxy requires password parameter in URL
+- Deployment protection disabled to allow public access (required for Twilio webhook)
+- Noted: Vercel Pro plan ($20/month) available if commercial use policy becomes a concern
+
+Residual risk: LOW-MODERATE — recording proxy accessible to anyone with the URL + password.
+Will be reduced once Zoom Team Chat delivery replaces Discord for recording links.
+
+=======================================================
+SECTION 7 — MICROSOFT 365 (EMAIL, CALENDAR, SHAREPOINT)
+=======================================================
+
+Date: 2026-03-28 (email/calendar), 2026-03-29 (SharePoint)
+App type: Azure App Registration, Client Credentials flow (no user login)
+App name: Rocky AI Assistant
+App ID: 845c0e8f-5f38-455f-af05-6dcab3cf669e
+
+Risk considered:
+- Application permissions in Microsoft Graph are tenant-wide by default
+- Could potentially access any mailbox, calendar, or SharePoint site in the tenant
+- Client secret exposure could grant broad access
+
+Decision: Apply Application Access Policy BEFORE granting admin consent
+
+Mitigations applied — Email/Calendar:
+- Application Access Policy created via Exchange Online PowerShell BEFORE permissions activated
+- Policy restricts app to two mailboxes only: Rocky@slsct.org and mdugan@slsct.org
+- Security group created: rocky-ai-access@slsct.org (contains only the two accounts)
+- Group hidden from tenant address book
+- Confirmed: asantiago@slsct.org returns 403 Forbidden (AAP working correctly)
+- Permissions granted (Application type, not Delegated):
+  - Mail.Send — scoped to Rocky@slsct.org and mdugan@slsct.org via AAP
+  - Mail.Read — same scope
+  - Calendars.Read — same scope
+  - Calendars.ReadWrite — same scope (added 2026-03-29 for calendar event creation)
+  - User.Read.All — tenant-wide read of basic user profiles (read-only, low risk)
+- User.Read (Delegated) left in place — harmless, no effect in server-to-server flow
+- Client secret expiry: 2028-03-28 — calendar reminder set in mdugan@slsct.org
+
+Mitigations applied — SharePoint:
+- Sites.Selected permission used (NOT Sites.ReadWrite.All)
+  - Sites.Selected restricts app to only sites where explicit permission has been granted
+  - No access to any other SharePoint site in the tenant
+- Site-level permission granted via PowerShell (New-MgSitePermission) by tenant admin
+- Site: MattRocky (https://slsctorg.sharepoint.com/sites/MattRocky)
+  - Private M365 group (members must be explicitly added)
+  - Hidden from tenant address book
+  - Search indexing disabled (content not indexed in tenant search)
+  - External sharing: organization members only
+- Credential drop process established: Matt uploads credential files to SharePoint;
+  Rocky reads, saves to TOOLS.md, and deletes the file — credentials never in Discord
+
+Residual risk: LOW — multiple layers of restriction applied at both app and site level.
+
+=======================================================
+SECTION 8 — BRAVE SEARCH API
+=======================================================
+
+Date: 2026-03-26
+Decision: Used for web search capabilities.
+
+Risk: Minimal — read-only, no organizational data involved.
+Mitigations: API key stored in OpenClaw config (local, not shared).
+
+Residual risk: LOW
+
+=======================================================
+CHANGE LOG
+=======================================================
+
+2026-03-26 — Initial security framework established. GitHub, Discord, Zoom API connected.
+2026-03-27 — Twilio SMS connected. Hard limits #1-#6 established. Operation Hard Limits.txt created.
+             Recording proxy built. Risk assessment for recording delivery documented.
+2026-03-28 — MS365 connected. Application Access Policy applied before permissions granted.
+             AAP verified working. Hard limit #7 confirmed. Client secret expiry reminder set.
+             Zoom Phone read access added.
+2026-03-29 — SharePoint connected using Sites.Selected (site-specific only).
+             Site secured: private group, hidden from address book, search indexing disabled.
+             Credential drop process established via SharePoint to replace Discord for secrets.
+             Security & Data Risk Log created (this document).
+
+=======================================================
+END OF DOCUMENT
+=======================================================
