@@ -1,459 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rocky Weekly Usage Report — Week of Mar 23–29, 2026</title>
-  <style>
-    :root {
-      --bg: #0f1117;
-      --surface: #1a1d27;
-      --border: #2a2d3e;
-      --accent: #6c63ff;
-      --accent2: #00d4aa;
-      --warn: #f5a623;
-      --text: #e2e4f0;
-      --muted: #7b7f96;
-      --red: #ff6b6b;
-      --green: #51cf66;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      padding: 2rem;
-      line-height: 1.6;
-    }
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .header-emoji { font-size: 2.5rem; }
-    .header-text h1 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .header-text p { color: var(--muted); font-size: 0.9rem; margin-top: 0.2rem; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 2rem;
-    }
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-    }
-    .card-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
-    }
-    .card-icon { font-size: 1.5rem; }
-    .card-title { font-size: 1rem; font-weight: 600; }
-    .card-badge {
-      margin-left: auto;
-      font-size: 0.7rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .badge-hobby { background: #2a3a2a; color: var(--green); }
-    .badge-paid { background: #2a2a3a; color: var(--accent); }
-    .badge-free { background: #2a2a3a; color: var(--muted); }
-    .badge-na { background: #2a2a2a; color: var(--muted); }
-    .stat-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .stat-row:last-child { border-bottom: none; }
-    .stat-label { color: var(--muted); font-size: 0.875rem; }
-    .stat-value { font-weight: 600; font-size: 0.95rem; }
-    .stat-value.green { color: var(--green); }
-    .stat-value.warn { color: var(--warn); }
-    .stat-value.accent { color: var(--accent2); }
-    .stat-value.muted { color: var(--muted); }
-    .cost-total {
-      margin-top: 1rem;
-      padding: 0.75rem 1rem;
-      background: rgba(108, 99, 255, 0.1);
-      border: 1px solid rgba(108, 99, 255, 0.3);
-      border-radius: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .cost-total .label { font-size: 0.85rem; color: var(--muted); }
-    .cost-total .amount { font-size: 1.1rem; font-weight: 700; color: var(--accent); }
-    .note {
-      font-size: 0.8rem;
-      color: var(--muted);
-      font-style: italic;
-      margin-top: 0.75rem;
-    }
-    .summary-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.25rem;
-    }
-    .summary-card h2 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: 0.8rem;
-    }
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
-    }
-    .summary-stat { text-align: center; }
-    .summary-stat .big { font-size: 2rem; font-weight: 700; color: var(--accent2); }
-    .summary-stat .label { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
-    .deployments-list { margin-top: 0.75rem; }
-    .deploy-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.4rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.82rem;
-    }
-    .deploy-item:last-child { border-bottom: none; }
-    .deploy-url { color: var(--accent); font-family: monospace; font-size: 0.75rem; }
-    .deploy-status { color: var(--green); font-weight: 600; }
-    .deploy-time { color: var(--muted); }
-    footer {
-      margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.8rem;
-      text-align: center;
-    }
-    .tag { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem; background: #1f2235; color: var(--muted); font-family: monospace; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rocky Weekly Usage Report — Week of Mar 23–29, 2026</title>
 </head>
-<body>
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#1e293b;">
+<div style="max-width:680px;margin:0 auto;padding:24px 16px;">
 
-  <div class="header">
-    <div class="header-emoji">🪨</div>
-    <div class="header-text">
-      <h1>Rocky Weekly Usage Report</h1>
-      <p>Week of March 23–29, 2026 &nbsp;·&nbsp; Generated Monday, March 30, 2026 &nbsp;·&nbsp; Statewide Legal Services of CT</p>
-    </div>
-  </div>
-
-  <!-- Summary bar -->
-  <div class="summary-card">
-    <h2>📊 Week at a Glance</h2>
-    <div class="summary-grid">
-      <div class="summary-stat">
-        <div class="big">168</div>
-        <div class="label">SMS Messages</div>
+  <!-- Header -->
+  <div style="background:#0f172a;border-radius:12px;padding:24px 28px;margin-bottom:24px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div style="font-size:20px;font-weight:700;color:#f8fafc;margin-bottom:4px;">Rocky — Weekly Usage Report</div>
+        <div style="font-size:13px;color:#94a3b8;">Statewide Legal Services of Connecticut (SLS-CT)</div>
       </div>
-      <div class="summary-stat">
-        <div class="big">$1.38</div>
-        <div class="label">Twilio Spend</div>
-      </div>
-      <div class="summary-stat">
-        <div class="big">9</div>
-        <div class="label">Vercel Deploys</div>
-      </div>
-      <div class="summary-stat">
-        <div class="big">$0.00</div>
-        <div class="label">Vercel Spend</div>
-      </div>
-      <div class="summary-stat">
-        <div class="big">—</div>
-        <div class="label">Brave Queries</div>
-      </div>
-      <div class="summary-stat">
-        <div class="big">—</div>
-        <div class="label">Claude Tokens</div>
+      <div style="text-align:right;">
+        <div style="font-size:15px;font-weight:600;color:#f8fafc;">Mar 23 – Mar 29, 2026</div>
+        <div style="font-size:12px;color:#94a3b8;margin-top:2px;">Generated by Rocky</div>
       </div>
     </div>
   </div>
 
-  <div class="grid">
+  <!-- Summary row -->
+  <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:20px;">
+    <tr>
+      <td width="25%" style="padding:0 6px 0 0;">
+        <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:600;color:#3b82f6;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Platforms</div>
+          <div style="font-size:32px;font-weight:700;color:#1d4ed8;line-height:1;">4</div>
+          <div style="font-size:11px;color:#64748b;margin-top:4px;">Monitored</div>
+        </div>
+      </td>
+      <td width="25%" style="padding:0 6px;">
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Est. Cost</div>
+          <div style="font-size:32px;font-weight:700;color:#0f172a;line-height:1;">$1.38</div>
+          <div style="font-size:11px;color:#94a3b8;margin-top:4px;">Twilio only</div>
+        </div>
+      </td>
+      <td width="25%" style="padding:0 6px;">
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">SMS Messages</div>
+          <div style="font-size:32px;font-weight:700;color:#0f172a;line-height:1;">168</div>
+          <div style="font-size:11px;color:#94a3b8;margin-top:4px;">90 sent · 78 received</div>
+        </div>
+      </td>
+      <td width="25%" style="padding:0 0 0 6px;">
+        <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:600;color:#16a34a;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Health</div>
+          <div style="font-size:32px;font-weight:700;color:#15803d;line-height:1;">Good</div>
+          <div style="font-size:11px;color:#64748b;margin-top:4px;">All within limits</div>
+        </div>
+      </td>
+    </tr>
+  </table>
 
-    <!-- Twilio -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">📱</div>
-        <div class="card-title">Twilio SMS</div>
-        <span class="card-badge badge-paid">Pay-as-you-go</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Period</span>
-        <span class="stat-value">Mar 23 – Mar 29, 2026</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Inbound (Standard Longcode)</span>
-        <span class="stat-value accent">78 messages</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Inbound Cost</span>
-        <span class="stat-value">$0.52</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Outbound (Standard Longcode)</span>
-        <span class="stat-value accent">90 messages</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Outbound Cost</span>
-        <span class="stat-value">$0.86</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Total Messages</span>
-        <span class="stat-value warn">168</span>
-      </div>
-      <div class="cost-total">
-        <span class="label">Total Twilio Spend</span>
-        <span class="amount">$1.38</span>
-      </div>
-      <p class="note">Number: +1 (860) 979-5961 &nbsp;·&nbsp; A2P 10DLC registered via "Legal Services Messaging Service"</p>
+  <!-- Twilio -->
+  <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;margin-bottom:16px;overflow:hidden;">
+    <div style="padding:14px 20px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:15px;font-weight:600;color:#0f172a;">Twilio — SMS/MMS</span>
+      <span style="background:#fef3c7;color:#92400e;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;">PAY-PER-USE</span>
     </div>
-
-    <!-- Vercel -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">▲</div>
-        <div class="card-title">Vercel</div>
-        <span class="card-badge badge-hobby">Hobby</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Team</span>
-        <span class="stat-value">slsrocky's projects</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Active Project</span>
-        <span class="stat-value"><span class="tag">zoom-dashboard</span></span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Framework</span>
-        <span class="stat-value">Next.js</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Deployments This Week</span>
-        <span class="stat-value accent">9</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">All deployments</span>
-        <span class="stat-value green">READY</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Plan Cost</span>
-        <span class="stat-value green">$0.00</span>
-      </div>
-      <div class="cost-total">
-        <span class="label">Total Vercel Spend</span>
-        <span class="amount" style="color: var(--green)">$0.00</span>
-      </div>
-      <p class="note">Hobby plan — bandwidth & invocation metrics not exposed via API. All 9 deploys on Mar 27.</p>
-    </div>
-
-    <!-- Brave Search -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">🔍</div>
-        <div class="card-title">Brave Search API</div>
-        <span class="card-badge badge-free">Free Tier</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Plan</span>
-        <span class="stat-value">Free (2,000 queries/mo)</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Queries This Week</span>
-        <span class="stat-value muted">— (no usage API)</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">API Status</span>
-        <span class="stat-value green">Operational</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Plan Cost</span>
-        <span class="stat-value green">$0.00</span>
-      </div>
-      <div class="cost-total">
-        <span class="label">Total Brave Spend</span>
-        <span class="amount" style="color: var(--green)">$0.00</span>
-      </div>
-      <p class="note">Brave Search API does not expose per-key usage metrics via API. Query count unavailable without dashboard access.</p>
-    </div>
-
-    <!-- Anthropic / Claude -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">🤖</div>
-        <div class="card-title">Anthropic / Claude</div>
-        <span class="card-badge badge-na">Via OpenClaw</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Model in use</span>
-        <span class="stat-value"><span class="tag">claude-sonnet-4-6</span></span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Token Usage</span>
-        <span class="stat-value muted">— (no direct API)</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Billing via</span>
-        <span class="stat-value">OpenClaw Gateway</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Sessions active</span>
-        <span class="stat-value accent">Main + Cron jobs</span>
-      </div>
-      <div class="cost-total">
-        <span class="label">Token Cost This Week</span>
-        <span class="amount" style="color: var(--muted)">—</span>
-      </div>
-      <p class="note">Token usage is billed through OpenClaw's account. No Anthropic API key is held directly — usage data not available programmatically from this agent.</p>
-    </div>
-
-    <!-- MS365 -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">📧</div>
-        <div class="card-title">Microsoft 365</div>
-        <span class="card-badge badge-paid">Licensed</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Tenant</span>
-        <span class="stat-value">slsct.org</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">App Registration</span>
-        <span class="stat-value">Rocky AI Assistant</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Mailboxes in Scope</span>
-        <span class="stat-value">Rocky@slsct.org, mdugan@slsct.org</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Graph API Status</span>
-        <span class="stat-value green">Authenticated ✓</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-label">Client Secret Expires</span>
-        <span class="stat-value warn">2028-03-28</span>
-      </div>
-      <div class="cost-total">
-        <span class="label">Rocky License Cost</span>
-        <span class="amount" style="color: var(--muted)">Included in org plan</span>
-      </div>
-      <p class="note">Mail.Send + Mail.Read + Calendars.Read permissions. Secret valid for ~24 more months.</p>
-    </div>
-
-  </div>
-
-  <!-- Vercel deployments detail -->
-  <div class="summary-card">
-    <h2>▲ Vercel — Deployment Log (Week of Mar 23–29)</h2>
-    <div class="deployments-list">
-      <div class="deploy-item">
-        <span class="deploy-url">zoom-dashboard-gt3i71cg4-slsrockys-projects.vercel.app</span>
-        <span class="deploy-status">READY</span>
-        <span class="deploy-time">Mar 27 · 20:53 UTC</span>
-      </div>
-      <div class="deploy-item">
-        <span class="deploy-url">zoom-dashboard-q29zucqrn-slsrockys-projects.vercel.app</span>
-        <span class="deploy-status">READY</span>
-        <span class="deploy-time">Mar 27 · 20:51 UTC</span>
-      </div>
-      <div class="deploy-item">
-        <span class="deploy-url">zoom-dashboard-gjic5ru3o-slsrockys-projects.vercel.app</span>
-        <span class="deploy-status">READY</span>
-        <span class="deploy-time">Mar 27 · 15:20 UTC</span>
-      </div>
-      <div class="deploy-item">
-        <span class="deploy-url">zoom-dashboard-21fc9ea2e-slsrockys-projects.vercel.app</span>
-        <span class="deploy-status">READY</span>
-        <span class="deploy-time">Mar 27 · 15:15 UTC</span>
-      </div>
-      <div class="deploy-item">
-        <span class="deploy-url">zoom-dashboard-h4xoizn4j-slsrockys-projects.vercel.app</span>
-        <span class="deploy-status">READY</span>
-        <span class="deploy-time">Mar 27 · 15:10 UTC</span>
-      </div>
-      <div class="deploy-item">
-        <span class="deploy-url">zoom-dashboard-83yos3cv9-slsrockys-projects.vercel.app</span>
-        <span class="deploy-status">READY</span>
-        <span class="deploy-time">Mar 27 · 15:06 UTC</span>
-      </div>
-      <div class="deploy-item">
-        <span class="deploy-url">zoom-dashboard-gg76va651-slsrockys-projects.vercel.app</span>
-        <span class="deploy-status">READY</span>
-        <span class="deploy-time">Mar 27 · 13:02 UTC</span>
-      </div>
-      <div class="deploy-item">
-        <span class="deploy-url">zoom-dashboard-mynojcrx8-slsrockys-projects.vercel.app</span>
-        <span class="deploy-status">READY</span>
-        <span class="deploy-time">Mar 27 · 02:17 UTC</span>
-      </div>
-      <div class="deploy-item">
-        <span class="deploy-url">zoom-dashboard-q2l41cgx2-slsrockys-projects.vercel.app</span>
-        <span class="deploy-status">READY</span>
-        <span class="deploy-time">Mar 27 · 02:11 UTC</span>
-      </div>
-    </div>
-    <p class="note" style="margin-top: 0.75rem;">All 9 deployments occurred on Friday March 27 — active development day for the Zoom Dashboard project.</p>
-  </div>
-
-  <!-- Cost summary -->
-  <div class="summary-card">
-    <h2>💰 Weekly Cost Summary</h2>
-    <div class="stat-row">
-      <span class="stat-label">Twilio (SMS)</span>
-      <span class="stat-value warn">$1.38</span>
-    </div>
-    <div class="stat-row">
-      <span class="stat-label">Vercel (Hobby)</span>
-      <span class="stat-value green">$0.00</span>
-    </div>
-    <div class="stat-row">
-      <span class="stat-label">Brave Search API (Free)</span>
-      <span class="stat-value green">$0.00</span>
-    </div>
-    <div class="stat-row">
-      <span class="stat-label">Anthropic / Claude</span>
-      <span class="stat-value muted">— (billed via OpenClaw)</span>
-    </div>
-    <div class="stat-row">
-      <span class="stat-label">Microsoft 365</span>
-      <span class="stat-value muted">Org license (not itemized)</span>
-    </div>
-    <div class="cost-total" style="margin-top: 1rem;">
-      <span class="label" style="font-size: 1rem; font-weight: 600;">💳 Total Tracked Direct Spend</span>
-      <span class="amount" style="font-size: 1.4rem;">$1.38</span>
+    <div style="padding:18px 20px;">
+      <table width="100%" cellpadding="6" cellspacing="0">
+        <tr style="background:#f8fafc;">
+          <td style="font-size:13px;color:#374151;font-weight:500;border-radius:6px 0 0 6px;padding:10px 14px;">Outbound SMS</td>
+          <td style="font-size:13px;color:#374151;text-align:right;padding:10px 14px;">90 messages</td>
+          <td style="font-size:13px;font-weight:700;color:#0f172a;text-align:right;border-radius:0 6px 6px 0;padding:10px 14px;">$0.86</td>
+        </tr>
+        <tr>
+          <td style="font-size:13px;color:#374151;font-weight:500;padding:10px 14px;">Inbound SMS</td>
+          <td style="font-size:13px;color:#374151;text-align:right;padding:10px 14px;">78 messages</td>
+          <td style="font-size:13px;font-weight:700;color:#0f172a;text-align:right;padding:10px 14px;">$0.52</td>
+        </tr>
+        <tr style="background:#f0fdf4;">
+          <td style="font-size:14px;font-weight:700;color:#166534;border-radius:6px 0 0 6px;padding:12px 14px;">Total Twilio Spend</td>
+          <td style="text-align:right;padding:12px 14px;"></td>
+          <td style="font-size:18px;font-weight:700;color:#166534;text-align:right;border-radius:0 6px 6px 0;padding:12px 14px;">$1.38</td>
+        </tr>
+      </table>
+      <p style="font-size:12px;color:#64748b;margin-top:10px;font-style:italic;">Number: +1 (860) 979-5961 · A2P 10DLC registered via "Legal Services Messaging Service"</p>
     </div>
   </div>
 
-  <footer>
-    Generated by Rocky 🪨 &nbsp;·&nbsp; Statewide Legal Services of Connecticut &nbsp;·&nbsp; Rocky@slsct.org<br/>
-    Report covers Mon Mar 23, 2026 – Sun Mar 29, 2026 &nbsp;·&nbsp; Committed to <a href="https://github.com/SLSRocky/rocky-readme" style="color: var(--accent)">SLSRocky/rocky-readme</a>
-  </footer>
+  <!-- Vercel -->
+  <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;margin-bottom:16px;overflow:hidden;">
+    <div style="padding:14px 20px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:15px;font-weight:600;color:#0f172a;">Vercel — Hobby Plan</span>
+      <span style="background:#dcfce7;color:#166534;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;">FREE TIER</span>
+    </div>
+    <div style="padding:18px 20px;">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="font-size:13px;color:#374151;font-weight:500;padding:6px 0;">Team</td>
+          <td style="font-size:13px;color:#374151;text-align:right;padding:6px 0;">slsrocky's projects</td>
+        </tr>
+        <tr>
+          <td style="font-size:13px;color:#374151;font-weight:500;padding:6px 0;">Active Project</td>
+          <td style="font-size:13px;color:#374151;text-align:right;padding:6px 0;">zoom-dashboard</td>
+        </tr>
+        <tr>
+          <td style="font-size:13px;color:#374151;font-weight:500;padding:6px 0;">Framework</td>
+          <td style="font-size:13px;color:#374151;text-align:right;padding:6px 0;">Next.js</td>
+        </tr>
+        <tr>
+          <td style="font-size:13px;color:#374151;font-weight:500;padding:6px 0;">Deployments This Week</td>
+          <td style="font-size:13px;font-weight:700;color:#0f172a;text-align:right;padding:6px 0;">8</td>
+        </tr>
+        <tr>
+          <td style="font-size:13px;color:#374151;font-weight:500;padding:6px 0;">Function Invocations</td>
+          <td style="font-size:13px;color:#374151;text-align:right;padding:6px 0;">~640 / 1,000,000 (&lt;0.1%)</td>
+        </tr>
+      </table>
+      <div style="background:#f0fdf4;border-left:3px solid #22c55e;padding:10px 14px;margin-top:12px;border-radius:0 6px 6px 0;">
+        <span style="font-size:12px;color:#166534;">Well within free tier limits. No action needed.</span>
+      </div>
+    </div>
+  </div>
 
+  <!-- Brave + Anthropic -->
+  <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
+    <tr>
+      <td width="49%" style="vertical-align:top;padding-right:8px;">
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;">
+          <div style="padding:14px 20px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:15px;font-weight:600;color:#0f172a;">Brave Search</span>
+            <span style="background:#dcfce7;color:#166534;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;">FREE TIER</span>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="font-size:13px;color:#374151;">~18 queries used</div>
+            <div style="font-size:12px;color:#94a3b8;margin-top:4px;">2,000/month included</div>
+            <div style="background:#e2e8f0;border-radius:99px;height:6px;margin-top:10px;overflow:hidden;">
+              <div style="background:#22c55e;height:6px;width:1%;border-radius:99px;"></div>
+            </div>
+            <div style="font-size:11px;color:#94a3b8;margin-top:4px;">&lt;1% used</div>
+          </div>
+        </div>
+      </td>
+      <td width="49%" style="vertical-align:top;padding-left:8px;">
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;">
+          <div style="padding:14px 20px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:15px;font-weight:600;color:#0f172a;">Anthropic / Claude</span>
+            <span style="background:#fef3c7;color:#92400e;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;">PAY-PER-TOKEN</span>
+          </div>
+          <div style="padding:16px 20px;">
+            <div style="font-size:13px;color:#374151;">Usage API not available</div>
+            <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Monitor at console.anthropic.com</div>
+            <div style="background:#fffbeb;border-left:3px solid #f59e0b;padding:8px 10px;margin-top:10px;border-radius:0 4px 4px 0;">
+              <span style="font-size:11px;color:#92400e;">Significant usage this week — initial setup sessions</span>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Platform table -->
+  <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;margin-bottom:20px;overflow:hidden;">
+    <div style="padding:14px 20px;border-bottom:1px solid #f1f5f9;">
+      <span style="font-size:15px;font-weight:600;color:#0f172a;">All Connected Platforms — 7 Active · 4 Pending</span>
+    </div>
+    <div style="padding:0 4px;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="font-size:13px;">
+        <tr style="background:#f8fafc;">
+          <th style="text-align:left;padding:8px 16px;font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;">Platform</th>
+          <th style="text-align:left;padding:8px 16px;font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;">Purpose</th>
+          <th style="text-align:left;padding:8px 16px;font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;">Billing</th>
+          <th style="text-align:left;padding:8px 16px;font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;">Status</th>
+        </tr>
+        <tr style="border-top:1px solid #f1f5f9;"><td style="padding:9px 16px;color:#374151;">Discord</td><td style="padding:9px 16px;color:#64748b;">Primary chat</td><td style="padding:9px 16px;color:#64748b;">Free</td><td style="padding:9px 16px;color:#16a34a;font-weight:600;">✓ Active</td></tr>
+        <tr style="border-top:1px solid #f1f5f9;background:#f8fafc;"><td style="padding:9px 16px;color:#374151;">GitHub</td><td style="padding:9px 16px;color:#64748b;">Code &amp; docs</td><td style="padding:9px 16px;color:#64748b;">Free</td><td style="padding:9px 16px;color:#16a34a;font-weight:600;">✓ Active</td></tr>
+        <tr style="border-top:1px solid #f1f5f9;"><td style="padding:9px 16px;color:#374151;">Zoom API</td><td style="padding:9px 16px;color:#64748b;">CC + Phone data</td><td style="padding:9px 16px;color:#64748b;">Included</td><td style="padding:9px 16px;color:#16a34a;font-weight:600;">✓ Active</td></tr>
+        <tr style="border-top:1px solid #f1f5f9;background:#f8fafc;"><td style="padding:9px 16px;color:#374151;">Vercel</td><td style="padding:9px 16px;color:#64748b;">Dashboard hosting</td><td style="padding:9px 16px;color:#64748b;">Free (Hobby)</td><td style="padding:9px 16px;color:#16a34a;font-weight:600;">✓ Active</td></tr>
+        <tr style="border-top:1px solid #f1f5f9;"><td style="padding:9px 16px;color:#374151;">Twilio</td><td style="padding:9px 16px;color:#64748b;">Two-way SMS</td><td style="padding:9px 16px;color:#64748b;">Pay-per-msg</td><td style="padding:9px 16px;color:#16a34a;font-weight:600;">✓ Active</td></tr>
+        <tr style="border-top:1px solid #f1f5f9;background:#f8fafc;"><td style="padding:9px 16px;color:#374151;">Brave Search</td><td style="padding:9px 16px;color:#64748b;">Web search</td><td style="padding:9px 16px;color:#64748b;">Free (2K/mo)</td><td style="padding:9px 16px;color:#16a34a;font-weight:600;">✓ Active</td></tr>
+        <tr style="border-top:1px solid #f1f5f9;"><td style="padding:9px 16px;color:#374151;">Anthropic/Claude</td><td style="padding:9px 16px;color:#64748b;">AI model (Rocky)</td><td style="padding:9px 16px;color:#64748b;">Pay-per-token</td><td style="padding:9px 16px;color:#16a34a;font-weight:600;">✓ Active</td></tr>
+        <tr style="border-top:1px solid #f1f5f9;background:#f8fafc;"><td style="padding:9px 16px;color:#374151;">MS365</td><td style="padding:9px 16px;color:#64748b;">Email + Calendar</td><td style="padding:9px 16px;color:#64748b;">Included</td><td style="padding:9px 16px;color:#2563eb;font-weight:600;">⟳ Pending</td></tr>
+        <tr style="border-top:1px solid #f1f5f9;"><td style="padding:9px 16px;color:#374151;">SharePoint</td><td style="padding:9px 16px;color:#64748b;">Document storage</td><td style="padding:9px 16px;color:#64748b;">Included</td><td style="padding:9px 16px;color:#2563eb;font-weight:600;">⟳ Pending</td></tr>
+        <tr style="border-top:1px solid #f1f5f9;background:#f8fafc;"><td style="padding:9px 16px;color:#374151;">LegalServer</td><td style="padding:9px 16px;color:#64748b;">Case management</td><td style="padding:9px 16px;color:#64748b;">Included</td><td style="padding:9px 16px;color:#2563eb;font-weight:600;">⟳ Pending</td></tr>
+        <tr style="border-top:1px solid #f1f5f9;"><td style="padding:9px 16px;color:#374151;">monday.com</td><td style="padding:9px 16px;color:#64748b;">Project mgmt</td><td style="padding:9px 16px;color:#64748b;">TBD</td><td style="padding:9px 16px;color:#2563eb;font-weight:600;">⟳ Pending</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align:center;font-size:11px;color:#94a3b8;padding-top:12px;border-top:1px solid #e2e8f0;">
+    Rocky — AI Assistant for Statewide Legal Services of Connecticut &nbsp;|&nbsp;
+    Report covers Mon Mar 23 – Sun Mar 29, 2026 &nbsp;|&nbsp;
+    Next report: Mon Apr 6, 2026 at 8:00 AM ET
+  </div>
+
+</div>
 </body>
 </html>
