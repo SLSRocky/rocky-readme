@@ -150,3 +150,51 @@ PENDING / TODO (as of end of day)
 - monday.com integration: future
 - SharePoint integration: future
 - MS365 Secret expiry: 2028-03-28 (24 months, calendar reminder set)
+====================================================
+2026-03-29 (Session 4 — MS365, SharePoint, LegalServer DEMO)
+====================================================
+
+MS365 — FULLY CONNECTED
+- Azure App Registration: Rocky AI Assistant (App ID: 845c0e8f-5f38-455f-af05-6dcab3cf669e)
+- Tenant: SLS-CT (56dc725a-74b1-4552-8c18-b403d5a22364)
+- Client secret expiry: 2028-03-28 (calendar reminder set in mdugan@slsct.org)
+- Permissions: Mail.Send, Mail.Read, Calendars.Read (application permissions, AAP-restricted)
+- Mailbox scope group: rocky-ai-access@slsct.org (Rocky@slsct.org + mdugan@slsct.org only)
+- Calendar event created: "ACTION REQUIRED: Re-generate Rocky AI Production Secret" — March 28, 2028, 9 AM ET, 7-day advance reminder
+- Test email from Rocky@slsct.org confirmed working
+- Weekly usage report cron updated to email mdugan@slsct.org on Mondays
+
+SHAREPOINT — CONNECTED
+- Site: Matt & Rocky (https://slsctorg.sharepoint.com/sites/MattRocky)
+- Site ID: slsctorg.sharepoint.com,a2d8aa22-7c08-4c77-b271-a8e63e4bfd4c,4d8e0e54-9487-4efe-8ad5-97d6aada7547
+- Access: Sites.Selected (write to MattRocky site only — scoped, not tenant-wide)
+- Security: Private M365 group, hidden from address book, search indexing disabled
+- Credential drop workflow: Matt drops credentials in SharePoint → Rocky reads + saves → Rocky deletes file
+- Credential drop template created: _credential-drop-template.txt in Documents library
+
+LEGALSERVER DEMO — CONNECTED
+- Site: https://slsct-demo.legalserver.org
+- API User: RockyAPI (Bearer token, 1-year expiry: 2027-03-29)
+- Credentials delivered via SharePoint credential drop (file deleted after reading)
+- Access: Read-only all matters + write to Case 25-0381304 only
+- Confirmed working: v1 + v2 matter search, case note read/write, note editing via UUID
+- Total records in demo site: 376,418 matters
+
+LEGALSERVER TESTING
+- Read all 5 notes on Case 25-0381304 (Morticia XXXAdams) ✓
+- Edited case note subject via UUID ✓
+- Restored original subject + appended Program Disposition Code line ✓
+- Discovery: Program Disposition Code not exposed in v1 or v2 API after case is reopened
+- Research finding: Generic Outgoing API Block on Close Case form could capture it at close time
+- date_opened filter NOT supported in v1/v2 search API — requires Reports API
+
+HARD LIMITS ADDED
+- Limit #8: LegalServer writes — DEMO: Case 25-0381304 only | LIVE: Case 25-0383515 only (when connected)
+- Limit #9: All data reports/dashboards must be behind an auth wall (SharePoint or email).
+  Dashboard requests require a conversation about data sensitivity first.
+
+PENDING / TODO (as of end of day)
+- LegalServer Reports walkthrough: Matt to introduce report IDs
+- Program Disposition Code automation: design + build
+- LegalServer live site connection: pending demo validation
+- ntfy.sh integration: noted (Ben's suggestion, future)
