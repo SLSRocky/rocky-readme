@@ -198,3 +198,69 @@ PENDING / TODO (as of end of day)
 - Program Disposition Code automation: design + build
 - LegalServer live site connection: pending demo validation
 - ntfy.sh integration: noted (Ben's suggestion, future)
+
+====================================================
+2026-03-30 (Session 5 — RTC Weekly Reports Pipeline, LegalServer LIVE, Mail.ReadWrite)
+====================================================
+
+PROJECT: RTC WEEKLY REPORTS — BUILT & AUTOMATED
+- Full automated ETL pipeline built: Zoom Contact Center API → SQLite → 3 chart reports → SharePoint upload → draft email
+- Variable logs endpoint (variable_logs) confirmed working for RTC Hotline call flow data
+- Zoom API cap handling implemented: re-pull in 4-hour windows if any day returns 10,000 records
+- Timezone handling: Zoom returns UTC; pipeline converts to ET (EDT UTC-4, EST UTC-5, DST-aware)
+- Business hours filter: 8:50 AM–4:45 PM ET, excluding 12:00–1:00 PM lunch (matches RTC Hotline screener schedule)
+
+CHART SPECS LOCKED IN (Call Flow Chart)
+- External Inbound: single full-width bar (dark gray #404040), total count in white centered
+- Inbound / Vet xFer / Non-Area / Eligible: diverging bars — English right (blue #2E75B6), Spanish left (orange #ED7D31)
+- X-axis: symmetric, range = max language-stage value × 1.25 per side
+- Title, legend, total calls text box (light yellow, bottom-right), figure 13×6 white background
+- On Hold: permanently omitted (feature phased out, always zero)
+
+AUTOMATION ADDED
+- Weekly cron (job ID: c1f7d2df): every Monday 7:00 AM ET
+  Pulls prior Mon–Sun data, builds 3 charts, uploads to SharePoint, creates draft email in Rocky@slsct.org
+  First automated run: Monday April 6, 2026 (will cover March 30 – April 5)
+- Monthly cron (job ID: 5a0dce0e): first Monday of each month, 7:00 AM ET
+  Same pipeline, full prior-month date range, DST-aware split within month
+  First automated run: Monday April 6, 2026 (will cover March 2026)
+
+EMAIL TEMPLATE CONFIRMED
+- Subject: RTC Hotline Data Reports - [start date] - [end date]
+- To: Jan Chiaretto, Aletheia Stratos, Jason Becker, Alexis Smith, Jamey Bell, JKelleher@ctlegal.org, Giovanna Shay, Anne Louise Blanchard
+- CC: Angela@ctbarfdn.org, Emma@ctbarfdn.org, Carolyn@ctbarfdn.org
+- From: MDugan@slsct.org (draft only — Matt reviews and sends)
+
+BUG FOUND IN EXISTING MACRO (RTCReport-Macro.txt)
+- Location: "CONVERT TO EST" section; Line: FilterTime.Formula = "=I1-TIME(5,0,0)"
+- Bug: Zoom portal exports are already in ET — macro subtracts 5 extra hours, shifting filter window to ~1:50 PM–9:45 PM ET
+- Impact: All historical RTC reports have understated morning call counts (stages 2–5 roughly halved)
+- Rocky's automated pipeline uses the CORRECT filter (bug fixed in new pipeline)
+- Action required: Matt to manually fix macro and re-run historical reports
+
+CONFIRMED DATA (week of 3/23–3/29, with corrected filter)
+- Total External Inbound: 506 | Inbound: Eng=341, Esp=36 | Vet xFer: Eng=16, Esp=0
+- Non-Area: Eng=48, Esp=2 | Eligible: Eng=159, Esp=19 | On Hold: 0/0 (omitted)
+
+MS365 — PERMISSION EXPANDED
+- Mail.ReadWrite scope added (in addition to existing Mail.Send, Mail.Read, Calendars.Read)
+- Required for draft email workflow: Rocky creates draft in Rocky@slsct.org inbox → Matt reviews and sends
+
+LEGALSERVER LIVE — CONNECTED
+- Site: https://slsct.legalserver.org
+- API User: RockyAPI (Bearer token, 1-year expiry: 2027-03-29)
+- Access: Read-only all matters; write scoped to Case 25-0383515 only
+- Credentials delivered via SharePoint credential drop (file deleted after reading)
+
+SHAREPOINT
+- Security-Privacy-Decisions.txt created in MattRocky SharePoint site
+  Decision #1 logged: phone numbers stripped from SharePoint/email-delivered reports (privacy)
+  Cron scheduled to audit full history and add all decisions organized by date (10 PM)
+
+PENDING / TODO (updated)
+- Matt to fix RTCReport-Macro.txt and re-run historical RTC reports
+- TownIndex (~TownIndex.xlsx) in SharePoint: add zip 06516 (West Haven) and 06514 (Hamden) as Eligible
+- LegalServer Reports walkthrough: Matt to introduce report IDs
+- Program Disposition Code automation: design + build
+- Zoom Phone scopes: Matt action needed in Marketplace (phone:read:list_call_logs:admin)
+- Ally Stratos introduction: Matt to plan timing
