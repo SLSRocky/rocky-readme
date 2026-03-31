@@ -246,11 +246,11 @@ MS365 — PERMISSION EXPANDED
 - Mail.ReadWrite scope added (in addition to existing Mail.Send, Mail.Read, Calendars.Read)
 - Required for draft email workflow: Rocky creates draft in Rocky@slsct.org inbox → Matt reviews and sends
 
-LEGALSERVER LIVE — CONNECTED
+LEGALSERVER LIVE — NOT YET CONNECTED
 - Site: https://slsct.legalserver.org
-- API User: RockyAPI (Bearer token, 1-year expiry: 2027-03-29)
-- Access: Read-only all matters; write scoped to Case 25-0383515 only
-- Credentials delivered via SharePoint credential drop (file deleted after reading)
+- Status: Pending — awaiting demo site validation before connecting
+- Write restriction when connected: Case 25-0383515 only
+- Note: Only the DEMO site (slsct-demo.legalserver.org) is currently connected
 
 SHAREPOINT
 - Security-Privacy-Decisions.txt created in MattRocky SharePoint site
