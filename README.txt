@@ -312,3 +312,47 @@ PENDING
 - Matt to review RTC Hotline flow JSON -> update TownIndex
 - LegalServer LIVE connection (pending demo validation)
 - Staff onboarding + offboarding checklists
+
+
+=======================================================
+2026-04-01 (Session 6 — SLS Main Hotline 16-Month Chart, LegalServer Demo Search, reMarkable Attempt)
+=======================================================
+
+SLS MAIN HOTLINE - LEGAL ISSUE SELECTION REPORT (COMPLETE)
+- 16-month chart (Dec 2024 – Mar 2026) finalized and uploaded to SharePoint
+  File: SLS Main Hotline - Legal Issue Selections - 1224 - 0326.pdf
+  Location: SharePoint -> SLS Main Hotline Reports/
+  Total unique calls: 40,235 that reached legal issue selection
+- Chart specs locked: pie chart with % label per slice + call count table below
+  Legend brackets show option number (e.g. "Housing [1]"), no footer/watermark
+  Data: first-tier selections only (0=Operator excluded)
+
+LEGALSERVER DEMO - SEARCH CAPABILITY CONFIRMED
+- Searched demo site for client "Harold" -> found Harold Bennett (25-0381271)
+- New Haven, DOB 01/16/1952, veteran, disabled, income eligible, LSC eligible
+- Case summary PDF generated and uploaded to SharePoint root
+- LegalServer DEMO search capability confirmed working end-to-end
+
+REMARKABLE INTEGRATION - ATTEMPTED (BLOCKED)
+- Attempted connection using unofficial cloud API
+- One-time code generated from my.remarkable.com but all known endpoints returned 404
+- reMarkable appears to have migrated API infrastructure; community docs are outdated
+- Research cron scheduled (job id: 48fda8af): fires 10 PM ET to research current working
+  endpoints from GitHub/community sources; findings to be posted in Discord before retry
+- Status: BLOCKED pending endpoint research results
+
+DISCORD SESSION ISSUE
+- Main Discord session (b3fa17ec) became unresponsive ~17:42 UTC (API rate limited,
+  840 messages / 2.7MB context)
+- Matt switched to webchat to diagnose; /reset issued in Discord to clear context
+
+SECURITY DECISION #6 - 24-HOUR RETENTION FOR ACTIVE REPORTS
+- For long-running pulls under active review: data may be held up to 24 hours
+- PII still stripped at ingestion; logged in Security-Privacy-Decisions.txt in SharePoint
+
+PENDING / TODO (updated)
+- reMarkable integration: wait for research cron results, retry with confirmed endpoint
+- Historical RTC PDF backfill (12 weeks): cron job b020acd1 errored; needs re-run
+- Matt to review RTC Hotline flow JSON -> update TownIndex
+- LegalServer LIVE connection (pending demo validation)
+- Staff onboarding + offboarding checklists
