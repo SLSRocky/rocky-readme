@@ -356,3 +356,67 @@ PENDING / TODO (updated)
 - Matt to review RTC Hotline flow JSON -> update TownIndex
 - LegalServer LIVE connection (pending demo validation)
 - Staff onboarding + offboarding checklists
+==============================================================================
+2026-04-02 (Session 7 — AssetPanda Integration)
+==============================================================================
+
+PLATFORM CONNECTED: ASSETPANDA
+- API base: https://api.assetpanda.com/v2
+- Bearer token stored securely in tools/assetpanda.md (may expire; regenerate from AP UI)
+- Credentials delivered via SharePoint credential drop (file deleted after read)
+- Entity IDs mapped: Assets (208780), Offices (208781), Categories (208782),
+  Employees (208783), Software Licenses (208784), Rooms (208785), Inventory (209396)
+
+PROJECT: TECHNOLOGY EQUIPMENT IMPORT (AssetPanda)
+- Source: Technology Equipment Inventory-FINAL.xlsx (292 asset records)
+- Field mapping locked: Barcode #, Description, Category, Model, Serial #,
+  Dell Service Tag, Dell Express Service Code, Assigned Staff, Location, Status,
+  Purchase Date, Cost, Purchase From, Funding Source
+- Status mapping locked: Available, Assigned to Employee, Not In Use,
+  Out for Repair, Disposed
+- Office mapping: Staff Offsite -> Remote Location; all others -> SLS Main Office
+- Name fixes applied: Aletheia Stratos, Janice Chiaretto, Jason Becker, Wendy Vazquez
+
+IMPORT METHOD: CSV (not API) — changed mid-session
+- Discovery: AssetPanda depreciation sub-fields (date_placed_in_service,
+  period_of_life, salvage_value, original_cost) do NOT save via API — silently ignored
+- Solution: generate CSV matching AssetPanda's import format; import via UI
+- CSV columns include: Old SLS Tag #, Asset ID, Category, Description, Model,
+  Serial #, Dell Service Tag, Dell Express Service Code, Current Employee,
+  Current Office, Current Room, Status, Purchase From, Purchase Date, Cost,
+  End of Life Date, Date Scanned, Date Placed in Service, Original Cost Basis,
+  Total Months of Life (60), Salvage Value (0)
+
+TEST IMPORT RESULTS (20 records via AssetPanda UI CSV import)
+- 17 imported successfully
+- 3 skipped — blank Asset ID (barcode missing), Status=Disposed
+- Decision: exclude blank-barcode rows from full import
+
+EXCLUSION RULES (FINAL)
+- Barcode = 9999 -> exclude (old "discard" marker)
+- Match in September 2025 - Junked Assets.csv -> exclude
+- Blank barcode -> exclude (can't set unique Asset ID)
+- Total excluded: ~54 rows; Total to import: ~238 records
+
+FIXED ASSETS JOIN
+- Sheets "Computers" AND "Furniture" both parsed for purchase data
+- Join key: Barcode # in inventory <-> BARCODE # in fixed assets
+- original_cost = Cost; date_placed_in_service = Purchase Date
+- Total Months of Life = 60; Salvage Value = 0; Funding Source = LSC
+
+OTHER WORK
+- Zoom user count confirmed: 43 active users via API
+- Calendar appointment created: "Test Staging Pipeline" Thu Apr 2 at 8:45 AM ET
+
+STATUS
+- Test import (17/20 records) pending staff verification at SLS
+- Once approved: generate full 238-record CSV, upload to SharePoint, Matt imports via UI
+- Script: /home/aiadmin/.openclaw/workspace/assetpanda_import.py (API version, keep for reference)
+- Probe records to delete from AP UI: DEPR-PROBE, DEPR-PROBE-2, DEPR-TEST
+
+PENDING / TODO (updated)
+- Staff to verify 17 test import records in AssetPanda
+- Matt to update Excel files: fix duplicate barcode 9999, add missing laptop purchase data
+- Matt to clear test records from AssetPanda UI before full import
+- Generate and upload full import CSV once files are updated
+- reMarkable integration: research cron (job 48fda8af) fired overnight — check results
