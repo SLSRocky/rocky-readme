@@ -420,3 +420,81 @@ PENDING / TODO (updated)
 - Matt to clear test records from AssetPanda UI before full import
 - Generate and upload full import CSV once files are updated
 - reMarkable integration: research cron (job 48fda8af) fired overnight — check results
+
+==============================================================================
+2026-04-07 (Session 8 — RTC Unified Pipeline, LegalServer LIVE, AssetPanda Full Import)
+==============================================================================
+
+LEGALSERVER LIVE — CONNECTED
+- LIVE bearer token provided by Matt and validated for read access against the v1 API (HTTP 200)
+- Observed LIVE matter count: approximately 386,218
+- SharePoint RTC Hotline Reports folder populated with LegalServer reference files:
+  - Case Referral API URL
+  - Case Demographics API URL
+  - Project LS Reports
+
+RTC REPORTING — UNIFIED AUTOMATION BUILT
+- New durable local script created: rtc_automation/rtc_unified_pipeline.py
+- Unified pipeline now handles end-to-end RTC reporting:
+  - 3 Zoom RTC PDFs
+  - 1 LegalServer RTC Referrals & Demographics PDF
+  - SharePoint uploads
+  - Outlook draft email creation
+- Weekly test run for 2026-03-30 to 2026-04-05 completed successfully end-to-end
+- Monthly March 2026 rerun started using the unified pipeline
+- Durable plan confirmed: replace prior split RTC logic with the unified pipeline and repoint weekly/monthly cron jobs to it
+
+LEGALSERVER RTC PDF CAPABILITY ADDED
+- Built local Python reporting pipeline: project-ls-reports/build_ls_reports.py
+- Standard RTC Referrals & Demographics PDF spec locked in:
+  - Filename pattern: SLS RTC Referrals & Demographics Report - MMDD - MMDD.pdf
+  - Plain professional format, no cover page, no methodology page, no footer
+  - Raw LFxferOffice values preserved as columns
+  - Household size and number-under-18 cross-tabs bucketed as 0, 1, 2, 3, 4, 5+
+  - Unknown row removed from both bucketed cross-tabs
+  - Page subtitle uses Report Run:
+- Included cross-tabs locked in:
+  - LFXferOffice x Case Status
+  - LFXferOffice x Ethnicity
+  - LFXferOffice x Gender
+  - LFXferOffice x Total Household Size
+  - LFXferOffice x Number of People under 18
+- Weekly LegalServer PDF for 2026-03-30 to 2026-04-05 generated locally and uploaded to SharePoint
+- Going forward, Matt wants this LegalServer PDF included in weekly and monthly RTC report emails
+
+SHAREPOINT / MS365 AUTH
+- SharePoint site permissions confirmed working; upload failures traced to Graph token issuance using a stale client secret
+- New MS365 client secret provided by Matt and validated by successful SharePoint upload
+- Future requirement identified: persist current MS365 / SharePoint app credentials in durable secure config storage for future sessions
+
+RTC MACRO PATCH
+- Patched RTCMacro-04072026.txt so non-eligible calls now reference RTC-NonArea-ENG / RTC-NonArea-ESP instead of relying on TownIndex.xlsx for non-eligible classification
+- Patched file uploaded to SharePoint: RTC Hotline Reports/RTCMacro-04072026.txt
+- Validation note: inferred non-eligible queue naming should still be checked in Excel
+
+ASSETPANDA — FULL IMPORT COMPLETED
+- Durable local builder created: assetpanda_build_full_csv.py
+- Script workflow now:
+  - downloads source files from SharePoint
+  - applies exclusion rules
+  - joins fixed-asset purchase data onto inventory by barcode / Asset ID
+  - outputs a true AssetPanda UI import CSV matching the approved test template
+  - uploads the corrected CSV back to SharePoint
+- Important correction: earlier full-import CSV format was wrong (JSON-payload style rather than AssetPanda UI import format); corrected process is now locked in
+- Final successful import outcome:
+  - 236 rows imported successfully via AssetPanda UI
+  - 56 rows excluded by design
+- SharePoint deliverable used for successful import:
+  - AssetPanda/AssetPanda Full Import - Corrected.csv
+- Locked import rules/spec:
+  - 26-column CSV matching AssetPanda Test Import - 20 Records.csv
+  - Exclude rows where Asset ID = 9999, blank barcode / Asset ID, or barcode appears in September 2025 - Junked Assets.csv
+  - Staff Offsite maps to Current Office = Remote Location and Current Room = Staff Offsite
+  - Purchase Date, Cost, and Purchase From are joined from 2025 Fixed Asset Records.xlsx when available
+  - All rows include Total Months of Life = 60 and Salvage Value = 0
+  - For rows missing matched purchase date, Date Placed in Service defaults to 01/01/2008
+- Earlier in the session, stale employee names were also corrected in the SharePoint source workbook so matching succeeded:
+  - Ally Stratos -> Aletheia Stratos
+  - Jan Chiaretto -> Janice Chiaretto
+  - Jason Backer -> Jason Becker
+  - Wendy Velazquez -> Wendy Vazquez
