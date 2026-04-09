@@ -498,3 +498,102 @@ ASSETPANDA — FULL IMPORT COMPLETED
   - Jan Chiaretto -> Janice Chiaretto
   - Jason Backer -> Jason Becker
   - Wendy Velazquez -> Wendy Vazquez
+
+==============================================================================
+2026-04-08 (Session 9 — Durable Credential Standardization, MS365 Persistence Repair, Monday.com Connection)
+==============================================================================
+
+MS365 / SHAREPOINT PERSISTENCE REPAIR
+- Root cause confirmed: fresh sessions lacked one durable authoritative MS365 credential source; runtime config did not carry Graph credentials and the tooling note was stale
+- Created durable local config file: /home/aiadmin/.openclaw/workspace/.openclaw/ms365.env
+- Durable config now stores tenant ID, client ID, current client secret, mailbox scope group,
+  default mailbox, SharePoint site URL/site ID, drive ID, and TownIndex item ID
+- Added shared helper module: tools/ms365_config.py
+- Updated tools/ms365.md to reference durable local config instead of embedding credentials
+- Repointed active scripts to use the shared durable MS365 config helper:
+  - rtc_backfill/run_backfill.py
+  - rtc_automation/rtc_unified_pipeline.py
+  - project-ls-reports/build_ls_reports.py
+  - assetpanda_build_full_csv.py
+  - project-ls-reports/build_ls_reports_snapshot.py
+
+MS365 ACCESS VERIFIED
+- Graph token issuance: HTTP 200
+- Mailbox read for mdugan@slsct.org: HTTP 200
+- Calendar read: HTTP 200
+- SharePoint site access: HTTP 200
+- Calendar event creation: HTTP 201
+- App roles present in token:
+  - Mail.Read
+  - Mail.ReadWrite
+  - Mail.Send
+  - Calendars.Read
+  - Calendars.ReadWrite
+  - Sites.Selected
+  - User.Read.All
+- Deleted temporary verification event: Rocky MS365 persistence test
+- Created Matt calendar reminder: call Amanda and confirm
+  - 2026-04-09 at 9:00 AM America/New_York
+  - 30-minute appointment with 15-minute reminder
+
+CREDENTIAL STANDARDIZATION EXPANDED
+- Moved GitHub token into durable local config: /home/aiadmin/.openclaw/workspace/.openclaw/github.env
+- Moved Vercel token into durable local config: /home/aiadmin/.openclaw/workspace/.openclaw/vercel.env
+- Moved AssetPanda API base, access token, client ID, and client secret into durable local config:
+  /home/aiadmin/.openclaw/workspace/.openclaw/assetpanda.env
+- Added shared helper module: tools/assetpanda_config.py
+- Added shared helper module: tools/legalserver_config.py
+- Moved LegalServer demo/live site and bearer tokens into durable local config:
+  /home/aiadmin/.openclaw/workspace/.openclaw/legalserver.env
+- Updated tools/github.md, tools/vercel.md, tools/legalserver.md, and relevant active scripts
+  to reference durable local config rather than inline secrets
+- Remaining cleanup note: stale historical secret references may still exist in prior chat/session
+  transcripts and cron payload text; active workspace tooling now points at durable config
+
+MONDAY.COM — CONNECTED
+- Monday account URL saved: https://sls-ct.monday.com/
+- Added durable local config: /home/aiadmin/.openclaw/workspace/.openclaw/monday.env
+- Added local Monday tooling files:
+  - tools/monday.md
+  - tools/monday_config.py
+  - tools/monday_lookup.py
+  - tools/monday_inventory.json
+- Matt's Monday token was briefly stored for first verification, then removed from durable config
+  at Matt's request because the token was tied to Matt's account
+- Ally Stratos's token then stored in durable local config for ongoing Monday access
+- Verified Monday API access under Ally's identity:
+  - Aletheia Stratos
+  - astratos@slsct.org
+- Initial Monday access inventory captured:
+  - 11 visible workspaces
+  - 100 visible boards in first-pass inventory sample
+  - visibility confirmed across Outreach & Education, Chat Navigation, SLS Tech, EITA,
+    Pro Bono, Training, Grant Management, Grants management, and Outreach Documents
+- Durable production rule approved by Matt: Ally is authorized for both read and write work in Monday.com
+
+MONDAY DOCUMENTATION OUTPUTS
+- Generated structured inventory JSON locally: tools/monday_inventory.json
+- Generated Monday lookup helper for future queries and raw GraphQL use: tools/monday_lookup.py
+- Generated PDF inventory report: Monday Access Inventory - Ally Stratos.pdf
+- Uploaded PDF to SharePoint Documents/Monday folder:
+  Monday Access Inventory - Ally Stratos.pdf
+
+SECURITY NOTE
+- Both Matt and Ally pasted Monday tokens into Discord during setup
+- Tokens should be treated as potentially exposed and rotated when practical
+
+SHAREPOINT — ALLYROCKY CONNECTED
+- New dedicated SharePoint collaboration site connected for Rocky + Ally:
+  - Site: AllyRocky
+  - Access model: Rocky read/write, Ally read/write
+  - Sensitivity posture: same as MattRocky; safe for sensitive internal / client-capable information
+  - Delivery rule: organizational-data outputs remain SharePoint/email only; no public links
+- Rocky app (`Rocky AI Assistant`) was granted site-scoped write access via Microsoft Graph under `Sites.Selected`
+- Access verified end-to-end:
+  - Site resolved successfully via Graph
+  - Default document library confirmed: Documents
+  - Site ID confirmed: slsctorg.sharepoint.com,782e0b3b-ddb6-43d9-9b01-8477e603a1c4,4d8e0e54-9487-4efe-8ad5-97d6aada7547
+  - Drive ID confirmed: b!OwsueLbd2UObAYR35gOhxFQOjk2HlP5OitWX1qradUfjPgSW4Zz2TqkP86QNqBtC
+- Minimal write test completed successfully, then cleanup performed:
+  - Created `Rocky Access Test.txt`
+  - Deleted the test file after verification
