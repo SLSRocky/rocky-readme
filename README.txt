@@ -597,3 +597,30 @@ SHAREPOINT — ALLYROCKY CONNECTED
 - Minimal write test completed successfully, then cleanup performed:
   - Created `Rocky Access Test.txt`
   - Deleted the test file after verification
+
+====================================================
+2026-04-09 (Operational Hard Limits, Ally SMS approval, Discord health-monitor change)
+====================================================
+
+TWILIO / SMS BOUNDARY EXPANDED
+- Matt approved Ally Stratos's cell phone number `774-994-0064` as an additional allowed SMS contact
+- Updated `Operation Hard Limits.txt` so Rocky may use that number for:
+  - outbound SMS
+  - inbound SMS
+- Hard-limits wording updated from Matt-only SMS access to an approved-number model
+- First Ally intro text was successfully sent through the approved Twilio Messaging Service
+
+MS365 ACCESS SCOPE PREPARED FOR ALLY
+- Verified Exchange-side Application Access Policy includes Ally mailbox access for Rocky's app
+- Confirmed `Test-ApplicationAccessPolicy` granted access for `astratos@slsct.org`
+- Live Graph mailbox/calendar calls from Rocky were still blocked at session time, consistent with Microsoft propagation/cache delay
+- Added an automated OpenClaw cron recheck to test Ally mailbox and calendar access again after propagation
+
+OPENCLAW / DISCORD CONFIG CHANGE
+- Updated OpenClaw config: `channels.discord.healthMonitor.enabled: false`
+- Purpose: reduce suspected duplicate Discord reply behavior by disabling Discord-only health-monitor auto-restarts
+- Gateway restart was initiated so the new Discord health-monitor setting could take effect
+
+DOCUMENTATION / HANDOFF OUTPUTS
+- Created a polished Ally intro handout summarizing Rocky's connected systems, capabilities, and hard guardrails
+- Delivered review drafts to Matt's mailbox, including revised PDF versions for the 2026-04-10 Ally introduction
