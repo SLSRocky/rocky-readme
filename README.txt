@@ -624,3 +624,54 @@ OPENCLAW / DISCORD CONFIG CHANGE
 DOCUMENTATION / HANDOFF OUTPUTS
 - Created a polished Ally intro handout summarizing Rocky's connected systems, capabilities, and hard guardrails
 - Delivered review drafts to Matt's mailbox, including revised PDF versions for the 2026-04-10 Ally introduction
+
+====================================================
+2026-04-10 (Session 10 — Ally WordPress Wiki Integration and First Echo KB Workflow)
+====================================================
+
+ALLY CHANNEL / COLLABORATION MODEL
+- In the dedicated Ally Discord channel, Matt instructed Rocky to treat messages there as coming from Ally unless something clearly indicates otherwise, while still verifying sensitive or write approvals when needed
+- Ally introduced a WordPress-based resource wiki workflow spanning four Echo Knowledge Base post types:
+  - `epkb_post_type_1` = wiki (staff)
+  - `epkb_post_type_2` = SLSBoard
+  - `epkb_post_type_3` = PB Attorney
+  - `epkb_post_type_4` = Rocky Test
+
+WORDPRESS / ECHO KNOWLEDGE BASE DISCOVERY
+- Confirmed WordPress REST API availability at `https://wiki.slsct.org/wp-json/`
+- Confirmed standard WordPress endpoints and custom Echo Knowledge Base post types are exposed via REST metadata
+- Determined that public KB item endpoints returned empty arrays without authenticated/plugin-context access, so the live workflow would need to follow the actual Echo KB admin process rather than public REST alone
+- Confirmed the wiki is managed through Echo Knowledge Base plus related Echo plugins, including custom link article behavior and category-specific workflows
+
+SHAREPOINT / PDF HANDOFF
+- Generated a PDF memo for Ally summarizing WordPress wiki integration recommendations
+- Uploaded the memo to the AllyRocky SharePoint site for Ally’s use
+
+TASK-SPECIFIC APPROVAL AND MAILBOX ACCESS
+- Matt explicitly approved Rocky, in the Ally Discord channel, to access Ally’s mailbox for the `Document for WIKI` task and upload the attached document to the Rocky Test knowledge base
+- Using Microsoft Graph application access, Rocky successfully searched Ally’s mailbox, found the email from Matt, and retrieved the attached `Wiki Directions.docx`
+
+FIRST LIVE ECHO KB WORKFLOW TEST
+- Logged into WordPress successfully as the `rocky` user and validated updated permissions for Rocky Test after Ally changed the role/capability settings
+- Confirmed the needed Echo KB workflow for PDF-style resources is:
+  1. upload the file to the WordPress Media Library
+  2. copy the file URL
+  3. create a `Custom Link Article` in the target knowledge base
+  4. assign the appropriate category (for this test: `PDFs`)
+- First created a test Rocky Test article titled `Wiki Directions` linked to the uploaded DOCX file
+- Then corrected the workflow to match wiki requirements by converting the DOCX to PDF locally, uploading `Wiki-Directions.pdf` to the Media Library, and updating the Rocky Test custom link article to point to the PDF instead
+- Final linked file path used by the Rocky Test article:
+  - `http://wiki.slsct.org/wp-content/uploads/2026/04/Wiki-Directions.pdf`
+
+NEW OPERATIONAL RULES FROM ALLY WIKI WORK
+- If a source document is already a PDF, upload it directly
+- If a source document is not a PDF, convert it to PDF first and upload the PDF version instead before creating the KB link article
+- Never delete WordPress articles or pages in the Echo Knowledge Base workflow
+- User/page access permissions inside Echo KB should not be changed as part of routine document posting work
+
+IMPLEMENTATION NOTES
+- This workflow currently runs as a hybrid:
+  - Microsoft Graph tokens/app credentials for mailbox access
+  - local Python scripting for document extraction and PDF conversion
+  - local scripted WordPress web-session workflow for Media Library upload and Echo KB custom link article creation
+- The successful first end-to-end Ally wiki task established a repeatable baseline for future document posting into Rocky Test and, by extension, the other Echo Knowledge Base sections once permissions and categories are confirmed

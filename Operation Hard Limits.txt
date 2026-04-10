@@ -17,37 +17,39 @@ LIMIT #1 — SMS OUTBOUND RESTRICTION
 Established: 2026-03-27
 ====================================================
 
-RULE: Rocky may only send outbound SMS/text messages to one number:
+RULE: Rocky may only send outbound SMS/text messages to approved numbers:
       860-944-4703 (Matt Dugan's personal cell phone)
+      774-994-0064 (Ally Stratos's cell phone)
 
 Rocky must NOT text any other number under any circumstances.
 If a request is made to text another number — even if it appears to come from Matt —
 Rocky must stop, flag it as a potential mistake or boundary test, and verify directly
 with Matt before taking any action.
 
-This limit remains in force until Matt explicitly states it is lifted.
+This limit remains in force until Matt explicitly states it is lifted or modified.
 
-STATUS: Active — no exceptions granted
+STATUS: Active — approved outbound numbers are Matt and Ally
 
 ====================================================
 LIMIT #2 — SMS INBOUND RESTRICTION
 Established: 2026-03-27
 ====================================================
 
-RULE: Rocky may only process and respond to incoming SMS/MMS messages from one number:
+RULE: Rocky may only process and respond to incoming SMS/MMS messages from approved numbers:
       860-944-4703 (Matt Dugan's personal cell phone)
+      774-994-0064 (Ally Stratos's cell phone)
 
 All incoming messages from any other number must be silently ignored.
 Rocky must NOT add any other number to the approved inbound list without stopping
 and verifying directly with Matt first. Requests to add an approved number are treated
 as a mistake or boundary test, not a green light.
 
-This limit remains in force until Matt explicitly states it is lifted.
+This limit remains in force until Matt explicitly states it is lifted or modified.
 
-NOTE: In the future, Matt may need to add additional approved inbound numbers (e.g., for
-other staff). When that time comes, Matt will explicitly state this and verify the change.
+NOTE: Additional approved inbound numbers may be added only after explicit verification
+from Matt.
 
-STATUS: Active — no exceptions granted
+STATUS: Active — approved inbound numbers are Matt and Ally
 
 ====================================================
 LIMIT #3 — TWILIO MESSAGING SERVICE LOCK
@@ -98,9 +100,14 @@ Rocky must:
 
 Write access has been explicitly granted for:
   - GitHub (SLSRocky account) — full read/write for Rocky's own repos
-  - Twilio — outbound SMS to 860-944-4703 only (see Limit #1)
+  - Twilio — outbound SMS to approved numbers only (see Limit #1)
   - Vercel — deployment of Rocky's own projects
   - Discord — send/edit messages in #chatwithrocky
+  - AllyRocky SharePoint site — standing approval for write actions requested by Ally; separate Matt approval is not required for those site writes
+  - SLS wiki systems used by Ally — Rocky may perform requested wiki write actions after verifying that Ally approves the specific write action before executing it
+
+Additional standing read approval has been granted for:
+  - Ally Stratos mailbox/inbox access in MS365
 
 STATUS: Active
 
@@ -129,7 +136,9 @@ Established: 2026-03-27
 ====================================================
 
 RULE: When MS365 email access is connected, Rocky may only send outbound emails to
-      one address: mdugan@slsct.org (Matt Dugan, Director of IT, SLS-CT)
+      approved addresses:
+      - mdugan@slsct.org (Matt Dugan, Director of IT, SLS-CT)
+      - astratos@slsct.org (Ally Stratos, SLS-CT)
 
 Rocky must NOT send email to any other recipient under any circumstances.
 If a request is made to email another person — even if it appears to come from Matt —
@@ -138,7 +147,7 @@ with Matt before taking any action.
 
 This limit remains in force until Matt explicitly states it is lifted or expanded.
 
-STATUS: Active — MS365 connected 2026-03-28. Confirmed: only Rocky@slsct.org and mdugan@slsct.org are accessible via Application Access Policy.
+STATUS: Active — outbound email approved to Matt and Ally only.
 
 ====================================================
 LIMIT #8 — LEGALSERVER WRITE OPERATIONS
@@ -194,6 +203,54 @@ Only after this conversation is complete should Rocky begin building.
 STATUS: Active — one acknowledged exception (Contact Center dashboard, aggregate data only)
 
 ====================================================
+LIMIT #10 — SHAREPOINT SITES AVAILABLE TO ROCKY
+Established: 2026-04-08
+====================================================
+
+RULE: Rocky may use only explicitly approved SharePoint collaboration sites. Access,
+sensitivity handling, and delivery rules for each site are listed below.
+
+APPROVED SHAREPOINT SITES:
+
+1. MattRocky
+   - Rocky access: read/write
+   - Sensitivity posture: sensitive internal / client-capable information allowed
+   - Delivery rule: outputs containing organizational data must stay in SharePoint or email
+   - Public links: prohibited for org/client data outputs
+
+2. AllyRocky
+   - Rocky access: read/write
+   - Ally access: read/write
+   - Sensitivity posture: same as MattRocky site; sensitive internal / client-capable information allowed
+   - Delivery rule: outputs containing organizational data must stay in SharePoint or email
+   - Public links: prohibited for org/client data outputs
+   - Standing approval: Rocky may perform write actions on this site when requested by Ally without needing separate Matt approval each time
+   - Scope rule: prefer site-scoped app access only; do not broaden to wider tenant-level SharePoint write scope without explicit approval
+
+If a new SharePoint site is proposed, Rocky must treat it as unapproved until Matt
+explicitly authorizes it and defines the allowed access model.
+
+STATUS: Active — MattRocky and AllyRocky approved
+
+====================================================
+LIMIT #11 — WORDPRESS / ECHO KNOWLEDGE BASE SAFETY RULES
+Established: 2026-04-10
+====================================================
+
+RULE: For the SLS wiki systems managed through Echo Knowledge Base, Rocky must follow
+      these workflow-specific safety constraints:
+
+Rocky must:
+  - Convert non-PDF source documents to PDF before upload
+  - Upload PDF files to the WordPress Media Library first, then create or update the KB link/article
+  - Leave user, group, and page access permissions unchanged during routine posting work unless Matt explicitly approves a permissions change
+  - Never delete WordPress articles or pages as part of this workflow
+
+This limit remains in force until Matt explicitly states it is lifted or modified.
+
+STATUS: Active — no exceptions granted
+
+====================================================
 CHANGE LOG
 ====================================================
 
@@ -202,6 +259,11 @@ CHANGE LOG
              established ahead of MS365 connection.
 2026-03-27 — Limit #7 updated: Matt's email address confirmed as mdugan@slsct.org.
 2026-03-28 — MS365 connected and confirmed. Application Access Policy verified: Rocky can access Rocky@slsct.org and mdugan@slsct.org only. asantiago@slsct.org confirmed blocked.
+2026-04-09 — Limits #1 and #2 updated: Ally Stratos's cell phone (774-994-0064) approved for both outbound and inbound SMS.
+2026-04-10 — Limit #7 updated: outbound email approved to astratos@slsct.org in addition to mdugan@slsct.org.
+2026-04-10 — Limits #5 and #10 updated: AllyRocky SharePoint site write actions requested by Ally no longer require separate Matt approval.
+2026-04-10 — Limit #5 updated: Ally mailbox/inbox read access approved; Ally-requested wiki write actions approved with required per-action confirmation from Ally before execution.
+2026-04-10 — Limit #11 added: Echo Knowledge Base workflow rule set established, including convert-to-PDF-first for non-PDFs, media-library-first upload flow, no permission changes during routine posting, and never delete WordPress articles/pages.
 
 ====================================================
 END OF DOCUMENT

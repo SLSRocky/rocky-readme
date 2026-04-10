@@ -7,7 +7,7 @@ assessments, and mitigations made during Rocky's setup and operation.
 
 Purpose: Audit trail for compliance review, IT governance, and risk assessment questions.
 Maintained by: Rocky (AI Assistant) and Matt Dugan (Director of IT)
-Last updated: 2026-03-29
+Last updated: 2026-04-10
 
 =======================================================
 SECTION 1 — GENERAL OPERATING PRINCIPLES
@@ -219,6 +219,45 @@ Mitigations: API key stored in OpenClaw config (local, not shared).
 Residual risk: LOW
 
 =======================================================
+SECTION 9 — ALLY COLLABORATION, WORDPRESS / ECHO KB, AND TASK-SPECIFIC APPROVALS
+=======================================================
+
+Date: 2026-04-10
+Decision: Allow Rocky to collaborate directly with Ally in a dedicated Discord channel,
+use approved access to Ally systems for bounded tasks, and perform document posting work
+into the SLS WordPress wiki via Echo Knowledge Base.
+
+Risk considered:
+- Group-channel identity ambiguity could cause Rocky to treat a message as Ally when it is not
+- Mailbox access to Ally's inbox introduces sensitive read exposure beyond Matt's mailbox
+- WordPress / Echo KB write actions could alter live staff, board, or attorney knowledge-base content
+- Uploading non-PDF files to the wiki causes functional/usability issues in the KB experience
+- Echo KB permission controls could be changed accidentally if workflow boundaries are not explicit
+
+Mitigations applied:
+- Matt instructed Rocky to treat the dedicated Ally Discord channel as Ally by default, while still verifying sensitive or write approvals when needed
+- Matt explicitly approved a task-specific exception allowing Rocky to access Ally's mailbox for the `Document for WIKI` task and upload the attached document to the Rocky Test knowledge base
+- WordPress work was tested first in `Rocky Test` (`epkb_post_type_4`) rather than directly in the production-facing knowledge bases
+- Rocky confirmed the working Echo KB process:
+  1. retrieve the source document
+  2. convert to PDF first if the source file is not already a PDF
+  3. upload the PDF to the WordPress Media Library
+  4. create or update a custom link article in the target KB
+  5. assign the correct category
+- New hard-limit rule recorded separately: never delete WordPress articles or pages in this Echo KB workflow
+- Additional workflow rule recorded separately: do not change Echo KB user/group/page access permissions during routine document-posting work unless explicitly approved
+
+Implementation details observed:
+- Microsoft Graph application access was used to search Ally's mailbox and retrieve the task email attachment
+- WordPress interactions were performed through a local scripted authenticated web session as the `rocky` user
+- Local Python processing was used for document extraction and conversion to PDF before final wiki upload
+- The first live workflow succeeded end-to-end in Rocky Test after Ally updated WordPress permissions for the `rocky` user
+
+Residual risk: LOW-MODERATE — mailbox and wiki access remain sensitive, but were bounded by
+explicit task approval, test-knowledge-base use, PDF-only workflow normalization, and
+clear no-delete/no-permission-change constraints.
+
+=======================================================
 CHANGE LOG
 =======================================================
 
@@ -232,6 +271,9 @@ CHANGE LOG
              Site secured: private group, hidden from address book, search indexing disabled.
              Credential drop process established via SharePoint to replace Discord for secrets.
              Security & Data Risk Log created (this document).
+2026-04-10 — Ally collaboration / WordPress Echo KB workflow documented.
+             Task-specific Ally mailbox access approval logged; first live Rocky Test KB workflow completed.
+             PDF-only wiki upload normalization and no-delete / no-permission-change controls recorded.
 
 =======================================================
 END OF DOCUMENT
