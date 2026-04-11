@@ -675,3 +675,77 @@ IMPLEMENTATION NOTES
   - local Python scripting for document extraction and PDF conversion
   - local scripted WordPress web-session workflow for Media Library upload and Echo KB custom link article creation
 - The successful first end-to-end Ally wiki task established a repeatable baseline for future document posting into Rocky Test and, by extension, the other Echo Knowledge Base sections once permissions and categories are confirmed
+
+MONDAY.COM — DAILY CALL SUMMARY BUILD (ALLY)
+- Matt approved Rocky to create a monday.com tracking structure in the `SLS Tech` workspace for Zoom Contact Center daily metrics
+- Created folder: `Daily Call Summary`
+- Created boards:
+  - `Agent Stats`
+  - `Queue Stats`
+- Initial board design was tested and then iterated with Ally in real time
+
+AGENT STATS BOARD
+- Kept as a flat daily log structure
+- Daily rows continue to represent per-agent daily totals from the Zoom dashboard source
+
+QUEUE STATS BOARD — REDESIGNED WITH ALLY
+- Ally revised the preferred layout after seeing the initial structure
+- Final working direction:
+  - one group per queue
+  - parent item per week, labeled like `Week of Apr 6, 2026`
+  - one subitem per day
+  - subitems hold the actual daily values
+  - parent items are intended to summarize the subitems via monday formulas
+- Confirmed Queue Stats subitem board columns now use numeric storage for:
+  - `Calls Per Queue`
+  - `Average Wait Seconds`
+- Daily queue data for 2026-04-10 was written into the subitems successfully
+
+AUTOMATION / SYNC WORK
+- Built local updater script: `/home/aiadmin/.openclaw/workspace/monday_daily_call_summary_sync.py`
+- Built cron wrapper: `/home/aiadmin/.openclaw/workspace/cron_monday_daily_call_summary.sh`
+- Configured weekday 6 PM ET cron schedule for the sync job
+- Sync uses the existing Zoom dashboard API as the data source:
+  - `https://zoom-dashboard-gg76va651-slsrockys-projects.vercel.app/api/zoom-data`
+- Token-minimal design used:
+  - one dashboard API fetch
+  - minimal monday reads for board/item lookup
+  - only necessary monday writes
+
+KNOWN MONDAY LIMITATION / FORMULA ISSUE
+- Ally created parent formula columns on Queue Stats for weekly summary values
+- Inspection showed the monday formula definitions were pointing at each other instead of the subitem numeric columns
+- Rocky confirmed the correct intended logic:
+  - `Total Calls` = SUM of subitems `Calls Per Queue`
+  - `Average Wait Seconds` = AVERAGE of subitems `Average Wait Seconds`
+- Rocky also confirmed the monday API path available in-session could populate the subitems but could not reliably rewrite the parent formula definitions, which appear to be handled client-side / UI-side for this board setup
+- Ally is handling the monday UI formula configuration; Rocky will continue populating the daily subitems at 6 PM on weekdays
+
+LEGALSERVER REOPEN AUTOMATION TEST
+- Matt approved additional DEMO-site write testing on case `25-0381369` for Program Disposition Code reopen automation
+- Built and deployed Vercel webhook app: `legalserver-pdc-reopen`
+- Live endpoint:
+  - `https://legalserver-pdc-reopen.vercel.app/api/reopen-hook`
+- Configured the LegalServer `ReOpen` process Generic Outgoing API Block to POST JSON containing:
+  - `caseId`
+  - `matterUuid`
+  - `programDispositionCode`
+  - `reopenedAt`
+  - optional `reopenedBy`
+- Implemented shared-secret verification via `x-rocky-secret` header stored in Vercel environment configuration
+
+LEGALSERVER API FINDINGS AND CAPABILITY ADDED
+- Confirmed that the ReOpen Generic Outgoing API Block does expose Program Disposition Code at reopen time, making reopen-time capture a viable automation path
+- Correct LegalServer note API paths/fields established for this workflow:
+  - read: `GET /api/v2/notes?matter_uuid=<uuid>`
+  - update: `PATCH /api/v2/notes/<note_uuid>`
+  - note identifier: `note_uuid`
+- Updated note-selection logic to target only the newest `Reopened Case` note by actual timestamp
+- Changed the automation to append the captured Program Disposition Code line to the note body, not the subject
+- Final appended line format now uses Eastern Time formatting, for example:
+  - `Program Disposition Code captured at reopen: 180 Caller Didn't Pursue/No Adv Con | reopenedAt=04/10/2026 11:54:47 AM EDT`
+
+TEST CLEANUP / STATUS
+- LegalServer notes for this workflow cannot be deleted through the available API, so prior test notes on case `25-0381369` were preserved and archived by renaming their subjects
+- Final DEMO test succeeded: the newest `Reopened Case` note on case `25-0381369` now receives the Program Disposition Code line in the note body after reopen
+- Matt requested that future coding work default to Claude when available; an attempted Claude ACP handoff failed because Claude local auth/CLI was not available yet
