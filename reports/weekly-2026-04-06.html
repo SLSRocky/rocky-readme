@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rocky Weekly Usage Report — Week of April 6 – April 12, 2026</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f4f6f9;
+      color: #2c2c2c;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    header {
+      background: #1a3a5c;
+      color: #fff;
+      padding: 28px 40px;
+    }
+    header h1 { font-size: 22px; font-weight: 700; }
+    header p { margin-top: 6px; font-size: 13px; opacity: 0.8; }
+    .container { max-width: 920px; margin: 32px auto; padding: 0 24px 48px; }
+    .meta { font-size: 12px; color: #666; margin-bottom: 28px; }
+    .section {
+      background: #fff;
+      border: 1px solid #dde3ec;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .section-header {
+      background: #1a3a5c;
+      color: #fff;
+      padding: 14px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .badge {
+      background: rgba(255,255,255,0.18);
+      border-radius: 12px;
+      padding: 2px 10px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .section-body { padding: 20px; }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .stat-card {
+      background: #f0f4f8;
+      border-radius: 6px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+    .num { font-size: 26px; font-weight: 700; color: #1a3a5c; }
+    .label { font-size: 11px; color: #666; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.4px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    th {
+      text-align: left;
+      padding: 8px 12px;
+      background: #f0f4f8;
+      color: #444;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #dde3ec;
+    }
+    td { padding: 10px 12px; border-bottom: 1px solid #eef1f5; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    .val { font-weight: 600; color: #1a3a5c; }
+    .na { color: #999; font-style: italic; }
+    .note {
+      background: #f8f9fb;
+      border-left: 3px solid #1a3a5c;
+      padding: 10px 14px;
+      border-radius: 0 4px 4px 0;
+      font-size: 13px;
+      color: #555;
+      margin-top: 12px;
+    }
+    .pill { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+    .pill-green { background: #e6f4ea; color: #2d7a3a; }
+    .pill-blue { background: #e3edf8; color: #1a3a5c; }
+    .pill-gray { background: #eee; color: #777; }
+    footer { text-align: center; font-size: 12px; color: #aaa; margin-top: 32px; }
+    @media (max-width: 800px) {
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>🪨 Rocky Weekly Usage Report</h1>
+  <p>Week of Monday, April 6 – Sunday, April 12, 2026 · Statewide Legal Services of Connecticut</p>
+</header>
+<div class="container">
+  <div class="meta">Generated: Monday, April 13, 2026 at 12:07 UTC · Prepared by Rocky (AI Assistant, SLS-CT)</div>
+
+  <div class="section">
+    <div class="section-header">📊 Weekly Snapshot <span class="badge">All tracked paid / limited services</span></div>
+    <div class="section-body">
+      <div class="summary-grid">
+        <div class="stat-card"><div class="num">106</div><div class="label">Vercel Function Invocations</div></div>
+        <div class="stat-card"><div class="num">0.25 MB</div><div class="label">Vercel Outbound Bandwidth</div></div>
+        <div class="stat-card"><div class="num">88,313</div><div class="label">Twilio SMS Messages</div></div>
+        <div class="stat-card"><div class="num">$732.44</div><div class="label">Twilio SMS Cost</div></div>
+      </div>
+      <div class="note">This report covers account-level usage for the previous Monday through Sunday. Where an API or required admin credential was unavailable, the report notes that directly.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">▲ Vercel <span class="badge">Hobby</span></div>
+    <div class="section-body">
+      <table>
+        <thead><tr><th>Field</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Account</td><td class="val">slsrocky (rocky@slsct.org)</td></tr>
+          <tr><td>Plan</td><td><span class="pill pill-gray">Hobby</span></td></tr>
+          <tr><td>Remote Caching</td><td><span class="pill pill-green">Enabled</span></td></tr>
+          <tr><td>Projects with request usage this week</td><td class="val">zoom-dashboard</td></tr>
+          <tr><td>Total request hits / misses</td><td class="val">22 hits / 108 misses</td></tr>
+          <tr><td>Function invocations</td><td class="val">104 successful / 2 errored</td></tr>
+          <tr><td>Bandwidth</td><td class="val">258,685 outgoing bytes / 154,925 incoming bytes</td></tr>
+          <tr><td>Function execution</td><td class="val">0.1994 GB-hours successful</td></tr>
+          <tr><td>Build activity</td><td class="val">5 completed / 2 failed builds, 92.457 build seconds</td></tr>
+          <tr><td>Build project</td><td>legalserver-pdc-reopen</td></tr>
+        </tbody>
+      </table>
+      <div class="note">Live data came from Vercel's usage API with <code>type=requests</code> and <code>type=builds</code>. That gave request, bandwidth, and function invocation data for zoom-dashboard, plus build activity for legalserver-pdc-reopen.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">📱 Twilio <span class="badge">Pay as you go</span></div>
+    <div class="section-body">
+      <div class="summary-grid">
+        <div class="stat-card"><div class="num">87,849</div><div class="label">Outbound SMS</div></div>
+        <div class="stat-card"><div class="num">464</div><div class="label">Inbound SMS</div></div>
+        <div class="stat-card"><div class="num">117,708</div><div class="label">SMS Segments</div></div>
+        <div class="stat-card"><div class="num">63,408</div><div class="label">Failed Processing Fees</div></div>
+      </div>
+      <table>
+        <thead><tr><th>Metric</th><th>Messages</th><th>Segments / Usage</th><th>Cost (USD)</th></tr></thead>
+        <tbody>
+          <tr><td>Outbound SMS</td><td class="val">87,849</td><td>117,212 segments</td><td class="val">$729.35227</td></tr>
+          <tr><td>Inbound SMS</td><td class="val">464</td><td>496 segments</td><td class="val">$3.08542</td></tr>
+          <tr><td><strong>Total SMS</strong></td><td class="val"><strong>88,313</strong></td><td>117,708 total recorded usage</td><td class="val"><strong>$732.43769</strong></td></tr>
+          <tr><td>Failed Message Processing Fee</td><td class="val">63,408</td><td>63,408 messages</td><td class="val">$63.40800</td></tr>
+          <tr><td>SMS Carrier Fees</td><td class="val">73,417</td><td>97,894 segments</td><td class="val">$73.01600</td></tr>
+        </tbody>
+      </table>
+      <div class="note">These are live account-level totals from Twilio's Usage Records API for April 6 through April 12. They appear to reflect the broader Twilio account, not only Rocky's dedicated line.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">🦁 Brave Search API <span class="badge">Limited plan</span></div>
+    <div class="section-body">
+      <table>
+        <thead><tr><th>Metric</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Programmatic usage pull</td><td class="na">Unavailable</td></tr>
+          <tr><td>Reason</td><td>Brave's search API docs and dashboard flow did not expose a usable usage endpoint or local API credential for this run.</td></tr>
+          <tr><td>Manual check</td><td>Review usage in the Brave developer dashboard if needed.</td></tr>
+        </tbody>
+      </table>
+      <div class="note">I was able to confirm service availability, but not retrieve weekly query counts through an accessible API path from this environment.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">🤖 Anthropic / Claude <span class="badge">Usage API available with admin key</span></div>
+    <div class="section-body">
+      <table>
+        <thead><tr><th>Metric</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Programmatic usage pull</td><td class="na">Blocked</td></tr>
+          <tr><td>Reason</td><td>Anthropic's Usage & Cost API now requires an Admin API key. The configured key here was rejected by the organizations usage endpoint.</td></tr>
+          <tr><td>Result</td><td>No token or cost totals could be retrieved for April 6 – April 12.</td></tr>
+        </tbody>
+      </table>
+      <div class="note">Once an admin-scoped Anthropic key is configured, this section can be populated automatically with daily token and cost totals.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">📝 Notes &amp; Delivery</div>
+    <div class="section-body">
+      <table>
+        <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Coverage</td><td>Mon April 6, 2026 – Sun April 12, 2026</td></tr>
+          <tr><td>GitHub path</td><td><code>reports/weekly-2026-04-06.html</code></td></tr>
+          <tr><td>Email delivery requested</td><td>mdugan@slsct.org from Rocky@slsct.org</td></tr>
+          <tr><td>Discord summary</td><td>Included in the task return summary for automatic delivery</td></tr>
+          <tr><td>Main limitations</td><td>Brave usage endpoint not accessible here, Anthropic admin key not configured, Vercel returned granular request/build metrics but not a separate first-class bandwidth-only report.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>Rocky Weekly Usage Report · SLS-CT · Generated automatically by Rocky · April 13, 2026</footer>
+</div>
+</body>
+</html>
