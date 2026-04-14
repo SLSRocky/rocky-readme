@@ -749,3 +749,54 @@ TEST CLEANUP / STATUS
 - LegalServer notes for this workflow cannot be deleted through the available API, so prior test notes on case `25-0381369` were preserved and archived by renaming their subjects
 - Final DEMO test succeeded: the newest `Reopened Case` note on case `25-0381369` now receives the Program Disposition Code line in the note body after reopen
 - Matt requested that future coding work default to Claude when available; an attempted Claude ACP handoff failed because Claude local auth/CLI was not available yet
+
+====================================================
+2026-04-13 (Session 11 — RTC Cron Repair, Demographics Rule Fix, Claude ACP Restored)
+====================================================
+
+RTC AUTOMATION / CRON REPAIR
+- Diagnosed why the Monday RTC weekly draft did not appear: both active RTC cron jobs had Discord announce delivery configured without a required recipient target
+- Repaired weekly RTC cron `c1f7d2df-4dc3-4569-b794-6811600e4d51` and monthly RTC cron `5a0dce0e-756a-4e1b-8805-760dc8f6d1af`
+- Set the required Discord delivery target to:
+  - `channel:1486851314800398357`
+- Manually reran the weekly RTC flow for `2026-04-06` through `2026-04-12`
+- Verified a new Outlook draft was created in `MDugan@slsct.org` with subject:
+  - `RTC Hotline Data Reports - April 6, 2026 - April 12, 2026`
+- Confirmed the weekly SharePoint uploads completed successfully
+- Resolved a runtime import blocker during rerun by supplying the workspace `PYTHONPATH`
+
+RTC REPORTING LOGIC / OUTPUT CHANGES
+- Moved the RTC Call Flow legend from lower-right to lower-left in all active generators to prevent overlap with chart content
+- Updated all active report generators:
+  - `rtc_automation/run_weekly_rtc_reports.py`
+  - `rtc_automation/run_monthly_rtc_reports.py`
+  - `rtc_automation/rtc_unified_pipeline.py`
+- Investigated a March LegalServer demographics mismatch in `Number of People under 18`
+- Confirmed the source total was 94 while the report showed 91 because 3 records had blank / N/A `family_under_18` values that were being bucketed as `Unknown`
+- Per Matt's instruction, changed the reporting rule so blank / N/A under-18 values are treated as `0` going forward
+- Verified the corrected March under-18 totals now match the source cross-tab:
+  - `0=62, 1=17, 2=8, 3=6, 4=1, 5+=0` (total 94)
+- Identified the 3 affected March case IDs:
+  - `26-0402886`
+  - `26-0412884`
+  - `26-0409660`
+- Regenerated the weekly RTC draft set successfully with the formatting change
+- A March monthly rerun was started again after one interrupted attempt; next session should confirm final completion state before assuming the monthly draft finished cleanly
+
+CLAUDE ACP / OPENCLAW CAPABILITY RESTORED
+- Restored one-off Claude ACP execution inside OpenClaw
+- Installed missing ACP runtime locally:
+  - `acpx@0.5.2`
+- Installed the Claude ACP adapter package locally:
+  - `@zed-industries/claude-agent-acp@0.21.0`
+- Confirmed the adapter requires host-side `ANTHROPIC_API_KEY` for non-interactive runs
+- Pulled the updated Anthropic key from the MattRocky SharePoint site (`Documents/Claude Token.txt`)
+- Stored the key in local sensitive env-file storage:
+  - `/home/aiadmin/.openclaw/workspace/.openclaw/anthropic.env`
+- Wired `ANTHROPIC_API_KEY` into the OpenClaw user systemd gateway service and restarted it
+- Verified successful one-off Claude ACP execution with result:
+  - `CLAUDE ACP TEST OK`
+
+CLEANUP NOTE
+- Current working state places `ANTHROPIC_API_KEY` directly in the OpenClaw user systemd service for reliability
+- Recommended follow-up: move that secret reference to a cleaner env-file pattern and remove the raw key from the unit file
