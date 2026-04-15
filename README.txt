@@ -800,3 +800,36 @@ CLAUDE ACP / OPENCLAW CAPABILITY RESTORED
 CLEANUP NOTE
 - Current working state places `ANTHROPIC_API_KEY` directly in the OpenClaw user systemd service for reliability
 - Recommended follow-up: move that secret reference to a cleaner env-file pattern and remove the raw key from the unit file
+
+====================================================
+2026-04-14 (Session 12 — Exchange archive audit, QMD memory backend, Ally routing investigation)
+====================================================
+
+MS365 / EXCHANGE ONLINE - APP-ONLY POWERSHELL AUDIT ENABLED
+- Rocky now has a working app-only Exchange Online PowerShell audit path for tenant mailbox inspection
+- Required Exchange app auth model documented and validated:
+  - Entra application permission: `Exchange.ManageAsApp`
+  - Exchange RBAC role assignment: `View-Only Recipients`
+- New operational capability added: Rocky can query Exchange mailbox recipient/archive state without delegated interactive login
+- Audit completed successfully across 53 Exchange mailboxes
+- Generated CSV of user mailboxes missing archive enablement and uploaded it to the MattRocky SharePoint site
+
+OPENCLAW MEMORY - QMD BACKEND CONNECTED
+- OpenClaw memory backend switched to QMD and verified working end-to-end
+- Durable working configuration established in `openclaw.json`:
+  - `memory.qmd.includeDefaultMemory = false`
+  - explicit collections for `MEMORY.md` and `memory/*.md`
+- New capability added: semantic memory search is now backed by QMD with vector search available
+- Important design rule locked in: workspace Markdown files remain the canonical memory source; QMD is the rebuildable index/search layer
+
+ALLY / OPENCLAW ISOLATION WORK
+- Created separate OAuth profile for Ally's Codex use while preserving Matt's profile
+- Created isolated OpenClaw agent `ally` with its own workspace:
+  - `/home/aiadmin/.openclaw/workspace/ally`
+- Seeded Ally continuity file so the separate agent can maintain its own operating context
+
+DISCORD ROUTING FINDING
+- Confirmed a likely OpenClaw routing/binding issue for per-channel non-ACP Discord agent routing in this build
+- Tested and corrected top-level route matching for Ally's Discord channel, restarted gateway, and cleared sticky main-session routing state
+- Despite the corrected route, fresh channel traffic still instantiated a new `main` session instead of `ally`
+- Current conclusion locked in: normal peer-based top-level routing appears insufficient or buggy for this use case; likely next step is source-level patching or a different Discord bot/runtime approach
