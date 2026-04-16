@@ -802,6 +802,34 @@ CLEANUP NOTE
 - Recommended follow-up: move that secret reference to a cleaner env-file pattern and remove the raw key from the unit file
 
 ====================================================
+2026-04-15 (Session 13 — TenacitOS dashboard evaluation and full rollback)
+====================================================
+
+TENACITOS DASHBOARD EVALUATION
+- Rocky evaluated TenacitOS as a possible OpenClaw dashboard for Matt
+- Confirmed host compatibility for an install attempt:
+  - OpenClaw reachable and healthy
+  - Node.js `v22.22.0`
+  - npm `10.9.4`
+- Cloned TenacitOS into `/home/aiadmin/.openclaw/workspace/mission-control`
+- Created local config, installed dependencies, built the app, and brought it up as a local-only service on `127.0.0.1:3000`
+- Created and enabled a local systemd service: `mission-control.service`
+
+SOURCE PATCHING / FINDINGS
+- Patched the TenacitOS source to remove hardcoded Claude-specific wording in the About page
+- Replaced incompatible session-listing logic with direct reads from `/home/aiadmin/.openclaw/agents/*/sessions/*.jsonl`
+- Testing showed the dashboard remained too incomplete and mismatched for this OpenClaw environment
+
+FINAL STATUS
+- Matt decided not to keep the dashboard
+- Rocky removed `/home/aiadmin/.openclaw/workspace/mission-control`
+- Matt completed the privileged cleanup needed to remove the systemd service
+- Cleanup verification confirmed:
+  - `mission-control.service` absent
+  - nothing listening on port `3000`
+- Net result: no new persistent configuration, platform, service, or capability was retained from this evaluation
+
+====================================================
 2026-04-14 (Session 12 — Exchange archive audit, QMD memory backend, Ally routing investigation)
 ====================================================
 
