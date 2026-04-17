@@ -802,6 +802,32 @@ CLEANUP NOTE
 - Recommended follow-up: move that secret reference to a cleaner env-file pattern and remove the raw key from the unit file
 
 ====================================================
+2026-04-16 (Session 14 — Family report workflow locked in, LegalServer LIVE reporting validated)
+====================================================
+
+LEGALSERVER LIVE REPORTING
+- Validated a working LegalServer LIVE reporting path using export `load=6823`
+- Confirmed Rocky can pull and analyze a constrained LIVE export for Family reporting work
+- Important field limitation documented for future report logic:
+  - export exposes `last` and combined `name`
+  - no clearly separate first-name field was present in the tested export
+
+CAPABILITIES ADDED
+- New durable report workflow added: `LS-1 — Family Case Data Request`
+- Rocky can now generate the Family case report from the validated LegalServer LIVE export logic and produce both:
+  - dated Excel workbook output
+  - matching PDF summary output
+- Local Family report builder updated to use the current run date dynamically instead of a hardcoded cutoff date
+- SharePoint report catalog updated to include `LS-1 — Family Case Data Request` with the workflow, formatting, and storage location documented
+
+DELIVERABLES / OPERATING STATE
+- Generated refreshed outputs for `2026-04-16`:
+  - `family-case-report-2026-04-16.xlsx`
+  - `family-case-data-request-2026-04-16.pdf`
+- Uploaded both final outputs to the MattRocky SharePoint site
+- Saved the deduped 490-case comparison list used during validation to SharePoint for reference
+
+====================================================
 2026-04-15 (Session 13 — TenacitOS dashboard evaluation and full rollback)
 ====================================================
 
