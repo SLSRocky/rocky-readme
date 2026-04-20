@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rocky Weekly Usage Report — Week of April 13 – April 19, 2026</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f4f6f9; color: #2c2c2c; font-size: 14px; line-height: 1.6; }
+    header { background: #1a3a5c; color: #fff; padding: 28px 40px; }
+    header h1 { font-size: 22px; font-weight: 700; }
+    header p { margin-top: 6px; font-size: 13px; opacity: 0.8; }
+    .container { max-width: 920px; margin: 32px auto; padding: 0 24px 48px; }
+    .meta { font-size: 12px; color: #666; margin-bottom: 28px; }
+    .section { background: #fff; border: 1px solid #dde3ec; border-radius: 8px; margin-bottom: 24px; overflow: hidden; }
+    .section-header { background: #1a3a5c; color: #fff; padding: 14px 20px; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+    .badge { background: rgba(255,255,255,0.18); border-radius: 12px; padding: 2px 10px; font-size: 11px; font-weight: 500; }
+    .section-body { padding: 20px; }
+    .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px; }
+    .stat-card { background: #f0f4f8; border-radius: 6px; padding: 14px 16px; text-align: center; }
+    .num { font-size: 26px; font-weight: 700; color: #1a3a5c; }
+    .label { font-size: 11px; color: #666; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.4px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    th { text-align: left; padding: 8px 12px; background: #f0f4f8; color: #444; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #dde3ec; }
+    td { padding: 10px 12px; border-bottom: 1px solid #eef1f5; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    .val { font-weight: 600; color: #1a3a5c; }
+    .na { color: #999; font-style: italic; }
+    .note { background: #f8f9fb; border-left: 3px solid #1a3a5c; padding: 10px 14px; border-radius: 0 4px 4px 0; font-size: 13px; color: #555; margin-top: 12px; }
+    .pill { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+    .pill-green { background: #e6f4ea; color: #2d7a3a; }
+    .pill-blue { background: #e3edf8; color: #1a3a5c; }
+    .pill-gray { background: #eee; color: #777; }
+    footer { text-align: center; font-size: 12px; color: #aaa; margin-top: 32px; }
+    code { background: #f0f4f8; padding: 1px 4px; border-radius: 4px; }
+    @media (max-width: 800px) { .summary-grid { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+<header>
+  <h1>🪨 Rocky Weekly Usage Report</h1>
+  <p>Week of Monday, April 13 – Sunday, April 19, 2026 · Statewide Legal Services of Connecticut</p>
+</header>
+<div class="container">
+  <div class="meta">Generated: Monday, April 20, 2026 at 12:00 UTC · Prepared by Rocky (AI Assistant, SLS-CT)</div>
+
+  <div class="section">
+    <div class="section-header">📊 Weekly Snapshot <span class="badge">All tracked paid / limited services</span></div>
+    <div class="section-body">
+      <div class="summary-grid">
+        <div class="stat-card"><div class="num">Unavailable</div><div class="label">Vercel Function Invocations</div></div>
+        <div class="stat-card"><div class="num">Unavailable</div><div class="label">Vercel Bandwidth</div></div>
+        <div class="stat-card"><div class="num">14,562</div><div class="label">Twilio SMS Messages</div></div>
+        <div class="stat-card"><div class="num">$120.83</div><div class="label">Twilio SMS Cost</div></div>
+      </div>
+      <div class="note">This report covers the previous Monday through Sunday, April 13 through April 19, 2026. Live API totals are included where the platform exposed them to the currently configured credentials and plan.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">▲ Vercel <span class="badge">Hobby</span></div>
+    <div class="section-body">
+      <table>
+        <thead><tr><th>Field</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Account</td><td class="val">slsrocky (rocky@slsct.org)</td></tr>
+          <tr><td>Remote Caching</td><td><span class="pill pill-green">Enabled</span></td></tr>
+          <tr><td>Projects in account</td><td class="val">2</td></tr>
+          <tr><td>Usage API status</td><td class="na">Unavailable for this report window</td></tr>
+          <tr><td>Reason</td><td>Vercel's live <code>/v1/usage</code> endpoint returned <code>400</code> with <code>plan_upgrade_required</code>, stating the endpoint is only available to Teams on Pro or Enterprise.</td></tr>
+          <tr><td>Requested metrics</td><td>Function invocations and bandwidth for April 13 – April 19, 2026 could not be retrieved from the API under the current Hobby-plan access.</td></tr>
+        </tbody>
+      </table>
+      <div class="note">I did confirm the account, plan, and current project inventory live via the Vercel API. The usage metrics requested for this report are currently plan-gated.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">📱 Twilio <span class="badge">Pay as you go</span></div>
+    <div class="section-body">
+      <div class="summary-grid">
+        <div class="stat-card"><div class="num">14,461</div><div class="label">Outbound SMS</div></div>
+        <div class="stat-card"><div class="num">101</div><div class="label">Inbound SMS</div></div>
+        <div class="stat-card"><div class="num">19,419</div><div class="label">SMS Segments</div></div>
+        <div class="stat-card"><div class="num">$138.50</div><div class="label">Total Twilio Spend</div></div>
+      </div>
+      <table>
+        <thead><tr><th>Metric</th><th>Messages</th><th>Segments / Usage</th><th>Cost (USD)</th></tr></thead>
+        <tbody>
+          <tr><td>Outbound SMS</td><td class="val">14,461</td><td>19,313 segments</td><td class="val">120.17535</td></tr>
+          <tr><td>Inbound SMS</td><td class="val">101</td><td>106 segments</td><td class="val">0.65936</td></tr>
+          <tr><td><strong>Total SMS</strong></td><td class="val"><strong>14,562</strong></td><td>19,419 total segments</td><td class="val"><strong>120.83471</strong></td></tr>
+          <tr><td>SMS Carrier Fees</td><td class="val">14,532</td><td>19,383 segments</td><td class="val">0.30450</td></tr>
+          <tr><td>Failed Message Processing Fee</td><td class="val">3</td><td>3 messages</td><td class="val">0.00300</td></tr>
+        </tbody>
+      </table>
+      <div class="note">These are live account-level totals from Twilio's Usage Records API for April 13 through April 19. They likely reflect the broader Twilio account, not only Rocky's dedicated number.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">🦁 Brave Search API <span class="badge">Limited plan</span></div>
+    <div class="section-body">
+      <table>
+        <thead><tr><th>Metric</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Programmatic usage pull</td><td class="na">Unavailable</td></tr>
+          <tr><td>Reason</td><td>Brave's published Search API documentation and accessible endpoints expose search results, but I could not identify or authenticate to a documented usage-report endpoint for weekly query counts from this environment.</td></tr>
+          <tr><td>Requested metric</td><td>Queries used for April 13 – April 19, 2026 could not be retrieved through a live platform API call during this run.</td></tr>
+        </tbody>
+      </table>
+      <div class="note">If Brave exposes a usage endpoint later, or if there is a separate dashboard API token for billing and usage, this section can be automated cleanly.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">🤖 Anthropic / Claude <span class="badge">Admin key required</span></div>
+    <div class="section-body">
+      <table>
+        <thead><tr><th>Metric</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Programmatic usage pull</td><td class="na">Blocked</td></tr>
+          <tr><td>Usage endpoint response</td><td><code>401</code> authentication error</td></tr>
+          <tr><td>Cost endpoint response</td><td><code>401</code> authentication error</td></tr>
+          <tr><td>Reason</td><td>The configured Anthropic key was rejected by the organization usage and cost endpoints. Anthropic's reporting APIs require an admin-scoped key.</td></tr>
+          <tr><td>Requested metric</td><td>No weekly token or cost totals could be retrieved for April 13 – April 19, 2026.</td></tr>
+        </tbody>
+      </table>
+      <div class="note">Once an admin Anthropic API key is configured, this section can include daily token and cost totals automatically.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">📝 Notes &amp; Delivery</div>
+    <div class="section-body">
+      <table>
+        <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Coverage</td><td>Mon April 13, 2026 – Sun April 19, 2026</td></tr>
+          <tr><td>GitHub path</td><td><code>reports/weekly-2026-04-13.html</code></td></tr>
+          <tr><td>Email delivery requested</td><td>mdugan@slsct.org from Rocky@slsct.org</td></tr>
+          <tr><td>Discord summary</td><td>Included in the task return summary for automatic delivery</td></tr>
+          <tr><td>Main limitations</td><td>Vercel usage endpoint is plan-gated on the current Hobby plan, Brave query usage API was not accessible, and Anthropic reporting requires an admin key.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>Rocky Weekly Usage Report · SLS-CT · Generated automatically by Rocky · April 20, 2026</footer>
+</div>
+</body>
+</html>
