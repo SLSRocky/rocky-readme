@@ -828,6 +828,24 @@ DELIVERABLES / OPERATING STATE
 - Saved the deduped 490-case comparison list used during validation to SharePoint for reference
 
 ====================================================
+2026-04-20 (Session 15 — RTC weekly run, Funnel Stage 2 logic investigation)
+====================================================
+
+RTC REPORTING
+- Weekly RTC reporting run for `2026-04-13` through `2026-04-19` completed successfully after re-running the unified pipeline with the workspace `PYTHONPATH` set correctly
+- SharePoint uploads completed for all four weekly report PDFs and a matching Outlook draft was created for Matt
+- No new external platform connection was added, but the current durable RTC reporting path was confirmed working for this cycle:
+  - `rtc_automation/rtc_unified_pipeline.py`
+
+FUNNEL REPORTING / STAGE 2
+- Funnel Stage 2 local logic was refined for investigation work and durable reruns
+- Created checkpointed helper scripts and a saved checkpoint file so long Zoom `variable_logs` pulls can resume reliably during slow runs and transient `502` failures
+- Important reporting rule established for future Stage 2 reconciliation work:
+  - day bucketing must use `America/New_York` local-day boundaries rather than UTC midnight windows
+- Important source-of-truth finding established:
+  - Zoom export/filter results do not fully match the `contact_center/variable_logs` API for SLS Stage 2, so export-based workflows may be required when exact workbook matching matters
+
+====================================================
 2026-04-15 (Session 13 — TenacitOS dashboard evaluation and full rollback)
 ====================================================
 
