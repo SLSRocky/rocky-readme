@@ -905,3 +905,64 @@ DISCORD ROUTING FINDING
 - Tested and corrected top-level route matching for Ally's Discord channel, restarted gateway, and cleared sticky main-session routing state
 - Despite the corrected route, fresh channel traffic still instantiated a new `main` session instead of `ally`
 - Current conclusion locked in: normal peer-based top-level routing appears insufficient or buggy for this use case; likely next step is source-level patching or a different Discord bot/runtime approach
+
+====================================================
+2026-04-21 (Session 13 — LegalServer LIVE CH7 webhook completed)
+====================================================
+
+LEGALSERVER LIVE - CH7 WEBHOOK FLOW COMPLETED
+- Final deployed webhook endpoint confirmed working:
+  - `https://legalserver-ch7-sync.vercel.app/api/ch7-note-hook`
+- Matt confirmed the end-to-end CH7 flow now creates the note correctly in LegalServer LIVE
+- Durable working Generic Outgoing API block configuration established:
+  - Method: `POST`
+  - URL: `https://legalserver-ch7-sync.vercel.app/api/ch7-note-hook`
+  - Raw header syntax required in HTTP Headers:
+    - `x-rocky-secret: rocky-ch7-test-2026-04-21`
+  - Parameter to send:
+    - `caseId` = `Matter/Case ID#`
+  - `caseId` must not be marked as a path parameter
+  - `Store response in a note?` must remain unchecked
+  - `JSON params to pluck from response for note body` must remain blank
+  - `dryRun` may be used for preview testing only and must be removed or false for real note creation
+
+LEGALSERVER LIVE API SYNTAX LEARNED
+- Successful `POST /api/v2/notes` create payload shape confirmed for LIVE:
+  - `module` must be `matter`
+  - `module_id` must be the numeric matter/case id, not the matter UUID
+  - `note_type` is required and accepted as:
+    - numeric id `100189`
+    - object with `lookup_value_id`
+    - object with `lookup_value_uuid`
+- Rejected note type forms confirmed:
+  - `note_type_id`
+  - `note_type_uuid`
+  - stringified numeric `"100189"`
+- Read-only fields that must not be sent on create:
+  - `date_posted`
+  - `active`
+  - `note_was_emailed`
+  - `note_was_messaged`
+  - `note_has_document_attached`
+- Final working payload pattern established:
+  - `subject`: `C4L Bankruptcy – Standard Intake Questions`
+  - `note_type`: `100189` (`Case Notes`)
+  - `is_html`: `true`
+  - `allow_etransfer`: `true`
+
+CH7 SOURCE / PARSING FINDINGS
+- Correct LegalServer report source URL pattern confirmed:
+  - `https://slsct.legalserver.org/modules/report/api_export.php?load=6922&api_key=395ea1f0-e290-449c-9a6c-a4ffd291fa71&filter[matter_identification_number]=<CASE_ID>`
+- Important finding: the CH7 report response arrives as XML embedded inside a single `raw` field, not as already-parsed columns
+- Rocky updated the app to parse the XML `<row>` content from `raw`, extract the fields, and format the note body correctly
+
+FORMATTING / OUTPUT DECISIONS LOCKED IN
+- Note title: `C4L Bankruptcy – Standard Intake Questions`
+- Include `Case ID: <case number>` near the top of the note
+- Create the note as HTML for reliable rendering in LegalServer
+- Use simple HTML paragraph formatting with escaped values for stable output
+
+SAFE OPERATING POSTURE
+- The webhook project is functional and deployed
+- Keep the allowlist restriction to case `25-0383515` until Matt explicitly approves broader scope
+- Preserve webhook secret authentication if the flow is generalized later
