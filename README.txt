@@ -966,3 +966,51 @@ SAFE OPERATING POSTURE
 - The webhook project is functional and deployed
 - Keep the allowlist restriction to case `25-0383515` until Matt explicitly approves broader scope
 - Preserve webhook secret authentication if the flow is generalized later
+
+====================================================
+2026-04-22 (Session 14 — CH7 generalized, C4L webhook deployed, Vercel hosting clarified)
+====================================================
+
+LEGALSERVER LIVE - CH7 WEBHOOK GENERALIZED
+- Removed the baked-in single-case fallback from the deployed CH7 note webhook
+- New durable behavior:
+  - `ALLOWED_LIVE_CASE_IDS` is enforced only when explicitly set and non-empty
+  - otherwise the webhook allows any case through while preserving shared-secret authentication
+- Production behavior verified after removing the lingering Vercel env var allowlist:
+  - `https://legalserver-ch7-sync.vercel.app/api/ch7-note-hook`
+- Result: the CH7 webhook is no longer restricted to the original test case `25-0383515`
+
+LEGALSERVER LIVE - C4L QUESTIONS WEBHOOK ADDED
+- Built and deployed a second LegalServer LIVE webhook app for C4L intake questions
+- New Vercel project and production endpoint:
+  - project: `legalserver-c4l-sync`
+  - endpoint: `https://legalserver-c4l-sync.vercel.app/api/c4l-note-hook`
+- Durable production configuration established:
+  - shared-secret auth via `x-rocky-secret`
+  - source report URL pattern based on LegalServer export `load=7021`
+  - LegalServer note type id `100189` (`Case Notes`)
+- Working Generic Outgoing API block pattern documented for Matt:
+  - Method: `POST`
+  - URL: `https://legalserver-c4l-sync.vercel.app/api/c4l-note-hook`
+  - Parameter: `caseId = Matter/Case ID#`
+  - `caseId` is not a path parameter
+  - response-note storage remains disabled
+
+FORMATTER CAPABILITY EXPANDED
+- Updated and redeployed both LegalServer webhook apps so blank/self-closing XML answers are preserved and rendered explicitly as:
+  - `Answer: (no response)`
+- This behavior now applies to both deployed endpoints:
+  - `https://legalserver-ch7-sync.vercel.app/api/ch7-note-hook`
+  - `https://legalserver-c4l-sync.vercel.app/api/c4l-note-hook`
+- Result: Rocky now preserves question visibility even when the upstream LegalServer report returns blank values
+
+VERCEL HOSTING IDENTITY CLARIFIED
+- Confirmed the Vercel account/scope currently hosting Rocky's deployed apps:
+  - username: `slsrocky`
+  - team/scope: `slsrockys-projects`
+  - account email: `rocky@slsct.org`
+- Confirmed active hosted projects in that scope include:
+  - `legalserver-ch7-sync`
+  - `legalserver-c4l-sync`
+  - `legalserver-pdc-reopen`
+  - `zoom-dashboard`
