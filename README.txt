@@ -1014,3 +1014,44 @@ VERCEL HOSTING IDENTITY CLARIFIED
   - `legalserver-c4l-sync`
   - `legalserver-pdc-reopen`
   - `zoom-dashboard`
+
+====================================================
+2026-04-23 (Session 15 — OCR capability added, local PaddleOCR stack stabilized)
+====================================================
+
+OCR CAPABILITY ADDED
+- Rocky evaluated OCR options for local toolbox use and selected PaddleOCR as the primary recommendation
+- Recommendation rationale locked in:
+  - strongest practical all-around default for local OCR
+  - self-hostable
+  - better layout/table handling than Tesseract
+  - Apache 2.0 licensing avoids Surya GPL concerns
+- Secondary/fallback tools noted:
+  - `Tesseract`
+  - `OCRmyPDF` for PDF-oriented workflows
+
+LOCAL OCR RUNTIME CONFIGURATION
+- Durable isolated OCR environment created at:
+  - `/home/aiadmin/.openclaw/workspace/.venv-paddleocr`
+- Initial latest-package install path was tested and rejected due to runtime prediction failure on this host:
+  - `paddleocr 3.5.0`
+  - `paddlepaddle 3.3.1`
+- Stable working compatibility stack established instead:
+  - `paddleocr 2.7.3`
+  - `paddlepaddle 2.6.2`
+  - `numpy 1.26.4`
+
+REUSABLE OCR WRAPPER ADDED
+- New wrapper script created:
+  - `/home/aiadmin/.openclaw/workspace/scripts/paddleocr_run.py`
+- Wrapper accepts an image path and returns structured JSON including:
+  - combined extracted text
+  - per-line text
+  - confidence values
+  - bounding boxes
+- Durable usage pattern:
+  - `/home/aiadmin/.openclaw/workspace/.venv-paddleocr/bin/python /home/aiadmin/.openclaw/workspace/scripts/paddleocr_run.py <image_path>`
+
+VALIDATION
+- Smoke test succeeded on a generated sample image
+- Verified OCR output correctly returned: `Hello OCR 123`
