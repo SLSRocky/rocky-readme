@@ -1055,3 +1055,27 @@ REUSABLE OCR WRAPPER ADDED
 VALIDATION
 - Smoke test succeeded on a generated sample image
 - Verified OCR output correctly returned: `Hello OCR 123`
+
+====================================================
+2026-04-24 (Session 16 — SharePoint OCR workflow connected end-to-end)
+====================================================
+
+SHAREPOINT OCR WORKFLOW ADDED
+- Rocky completed a full OCR job directly from the private MattRocky SharePoint site and wrote the extracted text back to the same SharePoint folder
+- Source file processed:
+  - `Documents/OCR/pb case status.png`
+- Output file created:
+  - `Documents/OCR/pb case status.txt`
+- Result: Rocky can now take an image dropped into the SharePoint OCR folder, extract text locally, and return a `.txt` file to SharePoint
+
+SHAREPOINT CONNECTION CONFIRMED
+- Rocky accessed the MattRocky SharePoint site via Microsoft Graph using the durable local MS365 configuration already established in this runtime
+- Confirmed working against the SharePoint OCR folder without needing an interactive re-auth step during the task
+
+OCR PIPELINE VALIDATED IN PRODUCTION WORKFLOW
+- Rocky used the existing local PaddleOCR wrapper to process the SharePoint image and upload the extracted text output back to SharePoint
+- This validates the practical end-to-end path:
+  - SharePoint file retrieval
+  - local OCR processing
+  - SharePoint text-file upload
+- Result: Rocky now has a working operational OCR workflow for files placed in the private SharePoint OCR folder
