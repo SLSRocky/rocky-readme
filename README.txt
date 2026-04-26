@@ -1079,3 +1079,67 @@ OCR PIPELINE VALIDATED IN PRODUCTION WORKFLOW
   - local OCR processing
   - SharePoint text-file upload
 - Result: Rocky now has a working operational OCR workflow for files placed in the private SharePoint OCR folder
+
+====================================================
+2026-04-25 (Session 17 — OpenClaw 2026.4.24, GPT 5.5 default, Session Radar MVP)
+====================================================
+
+OPENCLAW UPDATE COMPLETED
+- Updated OpenClaw from `2026.4.9` to `2026.4.24`
+- Confirmed gateway health after the update and restart
+- Verified the installed gateway and npm latest version both reported `2026.4.24`
+
+GPT 5.5 ENABLED AS DEFAULT
+- Confirmed GPT 5.5 availability in both model catalogs:
+  - `openai-codex/gpt-5.5`
+  - `openai/gpt-5.5`
+- Set the default model to `openai-codex/gpt-5.5` to match Matt's existing working OpenAI Codex OAuth path
+- Verified new sessions should use GPT 5.5 by default
+- Operational note: existing sessions may continue showing/using the prior model until reset or fresh session start
+
+DISCORD ELEVATED EXEC ACCESS ENABLED FOR MATT
+- Enabled elevated host command access from Discord for Matt's Discord user only
+- Verified elevated exec works from the Discord session by running OpenClaw status checks
+- Security caveat documented: Discord group policy still reports warnings while groupPolicy remains open; future hardening should allowlist Discord group access while keeping elevated access tightly scoped
+
+AUTH / MEMORY / SESSION PRACTICES CONFIRMED
+- Confirmed the active Discord channel/session was bound to Matt's OpenAI Codex OAuth profile rather than Ally's
+- Confirmed QMD remains the active memory backend and vector search layer for workspace memory files
+- Reviewed and locked in lightweight operating practices to keep long-running sessions healthy:
+  - sub-agents for larger tasks
+  - TaskFlow/cron for durable background work
+  - QMD search for targeted memory retrieval
+  - file checkpoints before resets
+  - fresh sessions after major work blocks
+  - concise summaries instead of raw logs
+
+ROCKY SESSION RADAR MVP BUILT
+- Built a read-only local browser dashboard for monitoring OpenClaw session size and reset risk
+- Project location:
+  - `/home/aiadmin/.openclaw/workspace/session-radar/`
+- Default run command:
+  - `cd /home/aiadmin/.openclaw/workspace/session-radar && npm start`
+- Default local URL:
+  - `http://127.0.0.1:8787/`
+- MVP features:
+  - lists OpenClaw sessions from local session stores
+  - shows agent, session type, model/auth, token usage, percent full, age, staleness, and reset recommendation
+  - refreshes automatically every 20 seconds
+  - includes filters for agent, risk, age/staleness, and text search
+  - includes sorting by risk, age, size, and agent/name
+  - shows checkpoint/reset buttons as disabled placeholders for future safer write-enabled phases
+- Performance improvement made during build:
+  - replaced slow `openclaw sessions --all-agents --json` API approach with direct local session-store reads
+  - reduced session API response time from roughly 45 seconds to near-instant local reads
+- UI layout fix completed after screenshot feedback:
+  - widened the table
+  - added horizontal scrolling
+  - removed sticky header clipping
+  - allowed session names/keys to wrap cleanly
+- Matt confirmed the dashboard looked perfect after the layout fixes
+
+NEXT LIKELY SESSION RADAR WORK
+- Make the dashboard durable as a service so it survives command-session exits
+- Add Discord threshold alerts with dedupe/cooldowns
+- Later add protected checkpoint/reset actions after confirming a safe OpenClaw reset mechanism
+
