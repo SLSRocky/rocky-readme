@@ -1143,3 +1143,37 @@ NEXT LIKELY SESSION RADAR WORK
 - Add Discord threshold alerts with dedupe/cooldowns
 - Later add protected checkpoint/reset actions after confirming a safe OpenClaw reset mechanism
 
+====================================================
+2026-04-26 (Session 18 — GPT 5.5 runtime confirmation, QMD checks, Session Radar stabilization)
+====================================================
+
+GPT 5.5 RUNTIME CONFIRMED AFTER RESET
+- Confirmed the active Rocky runtime/session was using `openai-codex/gpt-5.5`
+- Confirmed the Discord channel/session was bound to Matt's OpenAI Codex OAuth profile (`mdugan@slsct.org`) rather than Ally's profile
+- Confirmed no additional reset was needed because the live session was already using Matt's profile and GPT 5.5
+
+QMD MEMORY BACKEND VERIFIED
+- Confirmed QMD remains the active memory/search backend for Rocky's workspace memory
+- Verified the main agent QMD index was present, vector search was enabled, and the index was not dirty
+- Confirmed the operational practice of using QMD targeted retrieval, file checkpoints, sub-agents, TaskFlow/cron, and fresh sessions to keep main sessions lighter
+
+SESSION RADAR READ-ONLY MVP STABILIZED
+- Continued and validated the Rocky Session Radar read-only local dashboard at:
+  - `/home/aiadmin/.openclaw/workspace/session-radar/`
+  - `http://127.0.0.1:8787/`
+- The dashboard shows OpenClaw session rows with agent, type, model/auth, token usage, percent full, age, staleness, risk, and reset recommendation
+- Confirmed auto-refresh, filtering, sorting, and disabled placeholder checkpoint/reset buttons for future safer write-enabled phases
+- Reworked the session API to read local session stores directly instead of using the much slower CLI session listing path
+- Observed the direct local read approach returning session data near-instantly instead of taking roughly 45 seconds
+- Applied UI layout fixes after Matt's screenshot feedback:
+  - wider table and horizontal scrolling
+  - removed sticky header clipping
+  - fixed column sizing
+  - session names/keys wrap cleanly instead of being cut off
+- Matt confirmed the dashboard looked perfect after these fixes
+
+NEXT SESSION RADAR WORK
+- Make Session Radar durable as a service so it survives command-session exits
+- Add Discord threshold alerts with dedupe/cooldowns
+- Later add protected checkpoint/reset actions after confirming a safe OpenClaw reset mechanism
+
