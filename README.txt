@@ -1177,3 +1177,41 @@ NEXT SESSION RADAR WORK
 - Add Discord threshold alerts with dedupe/cooldowns
 - Later add protected checkpoint/reset actions after confirming a safe OpenClaw reset mechanism
 
+
+====================================================
+2026-04-27 (Session 19 — RTC automation repairs and Discord OAuth persistence)
+====================================================
+
+RTC MONTHLY REPORT CRON FIXED
+- Investigated Matt's concern that the full-month RTC monthly report was running weekly instead of only monthly
+- Found the monthly cron job was misconfigured as `0 7 1-7 * 1`, causing repeated runs in the first week when Mondays matched
+- Corrected `rtc-monthly-reports` to run only on the first day of each month at 7:00 AM ET:
+  - `0 7 1 * *`
+- Updated the job description to document that it covers the previous full month
+- Verified the job remained enabled and next scheduled for 2026-05-01 at 7:00 AM ET
+
+RTC WEEKLY REPORT PIPELINE REPAIRED
+- Matt reported the weekly RTC draft for 2026-04-20 through 2026-04-26 was missing the LegalServer referrals/demographics PDF
+- Root cause: the maintained weekly script only generated and attached the three Zoom PDFs, while the older unified pipeline still had the LegalServer report logic
+- Created a corrected Outlook draft for Matt with all four weekly report attachments:
+  - `RTC Hotline - Call Flow Report - 0420 - 0426.pdf`
+  - `RTC Hotline - Eligible Zip Codes - 0420 - 0426.pdf`
+  - `RTC Hotline - Non-Eligible Zip Codes by Town - 0420 - 0426.pdf`
+  - `SLS RTC Referrals & Demographics Report - 0420 - 0426.pdf`
+- Uploaded all four PDFs to SharePoint under `RTC Hotline Reports/Weekly/`
+- Patched `rtc_automation/run_weekly_rtc_reports.py` so future weekly drafts include the LegalServer referrals/demographics PDF automatically
+- Updated the weekly RTC cron prompt/description to use the maintained weekly script and verify four attachments
+- Verified the corrected latest Outlook draft had exactly four attachments and the Python compile check passed
+
+RTC REPORT SCHEDULES STANDARDIZED TO 7 AM ET
+- Matt asked for RTC report crons to run at 7 AM instead of 11 AM
+- Updated `rtc-weekly-reports` from `0 11 * * 1` to `0 7 * * 1` in `America/New_York`
+- Confirmed `rtc-monthly-reports` was already `0 7 1 * *` after the monthly cron repair
+- Verified both RTC report jobs are enabled and scheduled for 7:00 AM ET
+
+DISCORD CODEX OAUTH PERSISTENCE FIXED
+- Investigated why the `#matt-chatwithrocky` Discord session kept reverting to Ally's OpenAI Codex OAuth profile after reset/new-session flows
+- Found the persistent session registry entry for Matt's Discord channel had an automatic auth override pointing to Ally's profile
+- Backed up the session registry and changed only Matt's Discord channel session entry to use Matt's OpenAI Codex OAuth profile as a manual/user override
+- Verified the active session reported `openai-codex/gpt-5.5` with Matt's `mdugan@slsct.org` Codex OAuth profile
+- Left Ally's separate session/channel configuration unchanged
