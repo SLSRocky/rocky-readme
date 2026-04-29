@@ -1215,3 +1215,79 @@ DISCORD CODEX OAUTH PERSISTENCE FIXED
 - Backed up the session registry and changed only Matt's Discord channel session entry to use Matt's OpenAI Codex OAuth profile as a manual/user override
 - Verified the active session reported `openai-codex/gpt-5.5` with Matt's `mdugan@slsct.org` Codex OAuth profile
 - Left Ally's separate session/channel configuration unchanged
+
+====================================================
+2026-04-28 (Session 20 — LegalServer PB Case Status Report OCR automation)
+====================================================
+
+LEGALSERVER PB CASE STATUS REPORT OCR WORKFLOW BUILT
+- Built a production-style local poller for LegalServer PB Case Status Report processing:
+  - `/home/aiadmin/.openclaw/workspace/ocr_project/pb_status_poller.py`
+- Default mode is dry-run/no writes; live writes require explicit `--execute`
+- Poller reads the LegalServer report API for same-day `slsct_pro_bono_case.pdf` documents, downloads each PDF, extracts text, validates the `PRO BONO CASE STATUS REPORT` header, verifies case-number match, parses key fields, and prepares/executes final actions
+
+LEGALSERVER REPORT + DOCUMENT CONNECTIONS CONFIRMED
+- Confirmed LegalServer report API access works with Rocky's live bearer token
+- Confirmed queued report rows expose document ID, matter/case ID, case number, creation date, and document profile link
+- Confirmed PDF download works through:
+  - `/modules/document/download.php?id={document_id}`
+- Uploaded an XSLT normalization helper to SharePoint OCR folder, but confirmed the LegalServer report API continued returning the generic XML shape; poller now robustly parses that generic XML directly
+
+LIVE WRITE CAPABILITIES CONFIRMED ON APPROVED TEST CASES
+- Confirmed document completion marker:
+  - `PATCH /api/v2/documents/{document_uuid}` with `type.lookup_value_id = 3322657`
+  - Sets document type to `PB Case Status Report` so successful rows drop from the queue
+- Confirmed case closing date update after Matt added the needed permission:
+  - `PATCH /api/v2/matters/{matter_uuid}` with `date_closed`
+- Confirmed PB summary note creation:
+  - `POST /api/v2/notes`
+  - Subject/body begin with `PB Attorney Brief Summary`
+- Confirmed pro bono timeslip creation after Matt added the needed permission:
+  - `POST /api/v2/timeslips`
+  - Uses `03 Pro Bono`, activity type `Case Activity`, PB activity codes, Ben Franklin caseworker lookup, and no Activity Details
+- Confirmed case alert creation through the LegalServer UI form endpoint when Core API support was not found:
+  - `/matter/alert/edit/{matter_id}`
+
+PB TIME RULES LOCKED IN
+- If total time is 7 hours or less, create one timeslip on the closing date
+- If total time is 8 hours or more, split into chunks of 7 hours or less going backward consecutively from the closing date
+- Do not create timeslips before the case open date
+- If there are not enough eligible days, skip timeslips and create alert:
+  - `PB TIME NOT ENTERED - NOT ENOUGH DAYS`
+- If calculated service dates are older than LegalServer's 60-day limit, skip timeslips and create alert:
+  - `PB TIMESLIPS NOT ADDED - TOO FAR BACK IN TIME`
+
+ACTIVITY CODE MAPPING ADDED
+- Counsel and Advice: `3319753`
+- Limited Action: `3319754`
+- Negotiated Settlement without litigation: `3319755`
+- Negotiated Settlement with litigation: `3319756`
+- Administrative Agency Decision: `3319757`
+- Court Decision: `3319758`
+- Other / Explain: `3319759`
+- Extensive Service: `3319760`
+
+END-TO-END VALIDATION COMPLETED
+- Happy-path live test succeeded on Matt-created test case `25-0388775`:
+  - close date updated
+  - PB summary note created
+  - three pro bono timeslips created
+  - document type changed last
+  - queue dropped to zero
+- Too-far-back alert-path live test succeeded on test case `25-0384784`:
+  - close date and PB note handled
+  - old timeslips skipped
+  - alert `PB TIMESLIPS NOT ADDED - TOO FAR BACK IN TIME` created
+  - document type changed last
+  - queue dropped to zero
+
+SCHEDULING PLAN DOCUMENTED
+- Added scheduling notes in:
+  - `/home/aiadmin/.openclaw/workspace/ocr_project/SCHEDULING.md`
+- Recommended free/cheap approach: run locally on the Rocky/OpenClaw host every 5 minutes
+- Next decision: whether to enable recurring dry-run monitoring first or approved recurring `--execute` automation
+
+REMAINING IMPROVEMENTS
+- Add true OCR fallback for scanned PDFs
+- Refine duplicate/idempotency matching if production data may already contain legitimate PB notes or timeslips
+- Decide whether and when to schedule the poller automatically
