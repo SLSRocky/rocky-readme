@@ -1291,3 +1291,74 @@ REMAINING IMPROVEMENTS
 - Add true OCR fallback for scanned PDFs
 - Refine duplicate/idempotency matching if production data may already contain legitimate PB notes or timeslips
 - Decide whether and when to schedule the poller automatically
+
+====================================================
+2026-04-29 (Session 21 — LegalServer note apps, PDC live hook, OCR/PB automation enabled)
+====================================================
+
+LEGALSERVER C4L NOTE APP HARDENED AND REPOINTED
+- Troubleshot C4L notes that were creating title-only notes when the source report returned no usable fields
+- Patched the C4L webhook to fail safely with HTTP 422 `source_report_empty` instead of creating empty/title-only notes
+- Repointed the C4L production app to Matt's rebuilt LegalServer report:
+  - report load `7120`
+  - filter uses `matter_identification_number`
+  - production endpoint remains `https://legalserver-c4l-sync.vercel.app/api/c4l-note-hook`
+- Cleaned rebuilt-report output formatting:
+  - omitted internal fields
+  - stripped trailing numeric field IDs from labels
+  - rendered boolean values as `Yes` / `No`
+  - preserved blank answers as `(no response)`
+- Verified dry-run output for the rebuilt report sample returned a clean generated note body with 26 question/answer lines
+
+LEGALSERVER BANKRUPTCY / CH7 NOTE APP HARDENED AND REPOINTED
+- Repointed the Bankruptcy/CH7 production app to Matt's rebuilt LegalServer report:
+  - report load `7087`
+  - filter uses `matter_identification_number`
+  - production endpoint remains `https://legalserver-ch7-sync.vercel.app/api/ch7-note-hook`
+- Patched the CH7 app to fail safely with HTTP 422 `source_report_empty` instead of creating title-only notes when the source report has no usable fields
+- Cleaned rebuilt-report output formatting:
+  - omitted internal database/matter ID fields
+  - preserved blank/self-closing XML fields as `(no response)`
+  - rendered boolean values as `Yes` / `No`
+- Verified dry-run output for the rebuilt report sample generated a clean note body with the expected fields
+
+PDC REOPEN WEBHOOK PREPARED FOR LEGALSERVER LIVE
+- Updated project:
+  - `/home/aiadmin/.openclaw/workspace/legalserver-pdc-reopen/`
+- Removed the prior demo/test-case allowlist enforcement so the webhook can be used from LIVE LegalServer
+- Updated environment resolution to prefer LIVE LegalServer configuration while retaining generic/legacy fallbacks
+- Added LIVE LegalServer Vercel production environment configuration for the app
+- Deployed production endpoint:
+  - `https://legalserver-pdc-reopen.vercel.app/api/reopen-hook`
+- Simplified the appended note line so it now writes exactly:
+  - `Program Disposition Code: <code>`
+- Verified the allowlist gate was removed without performing a LegalServer write during smoke testing
+
+OCR / PB CASE STATUS REPORT WORKFLOW FINALIZED AND AUTOMATED
+- Updated the OCR/PB poller write order so Case Status is now the final completion step:
+  1. update closing date
+  2. create or skip PB summary note
+  3. set document type to `PB Case Status Report`
+  4. create or skip timeslips / alerts
+  5. set Case Status to `PB Case Status Returned`
+- Confirmed LegalServer Case Status lookup:
+  - `PB Case Status Returned` = `3322690`
+- Strengthened safety and idempotency behavior:
+  - allocation failures other than `not_enough_days` now stop before any writes
+  - exact existing PB timeslips are skipped on retry
+  - non-matching PB-looking timeslips still block to prevent duplicates
+- Processed live queued case `24-0373550` successfully through the OCR/PB workflow:
+  - close date set
+  - PB summary note created
+  - document type changed
+  - four PB timeslips totaling 27.0 hours created
+  - Case Status set to `PB Case Status Returned`
+  - queue verified empty afterward
+- Enabled free local automation with system cron on the Rocky/OpenClaw host:
+  - cron runs wrapper every 2 minutes
+  - wrapper enforces Eastern Time business hours, Monday-Friday 9:00 AM through 4:59 PM
+  - inside business hours it runs `ocr_project/pb_status_poller.py --execute`
+  - logs to `ocr_project/out/poller_runs/cron.log`
+- Verified cron service is enabled and active
+- Manual wrapper test processed case `24-0373581` successfully with status `executed`
+
