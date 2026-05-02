@@ -1362,3 +1362,37 @@ OCR / PB CASE STATUS REPORT WORKFLOW FINALIZED AND AUTOMATED
 - Verified cron service is enabled and active
 - Manual wrapper test processed case `24-0373581` successfully with status `executed`
 
+====================================================
+2026-05-01 (Session 22 — RTC monthly report run and monday daily summary hardening)
+====================================================
+
+RTC MONTHLY REPORTS — APRIL 2026 RUN COMPLETED
+- The scheduled `rtc-monthly-reports` automation ran for the previous full calendar month: April 1, 2026 through April 30, 2026
+- Generated the monthly RTC Hotline report set and uploaded the PDFs to SharePoint under the Monthly reports folder:
+  - Call Flow Report — `0401 - 0430`
+  - Eligible Zip Codes — `0401 - 0430`
+  - Non-Eligible Zip Codes by Town — `0401 - 0430`
+- Created a draft email in Matt's mailbox with subject:
+  - `RTC Hotline Data Reports - April 1, 2026 - April 30, 2026`
+- Confirmed the draft was created only, not sent, and that the expected attachments were present
+- Verified the Zoom Contact Center fetch handled high-volume days correctly by splitting capped 10,000-record days into smaller UTC windows
+- April run summary:
+  - 156,377 Zoom Contact Center records fetched
+  - 1,770 external inbound calls
+  - Inbound: 1,605 ENG / 165 ESP
+  - Eligible: 927 ENG / 92 ESP
+  - Non-Area: 196 ENG / 11 ESP
+
+MONDAY DAILY CALL SUMMARY AUTOMATION HARDENED
+- Continued hardening the monday.com daily call summary workflow used for call-center reporting boards
+- Confirmed canonical board structure for both Queue Stats 2026 and Agent Stats 2026:
+  - one group per queue/operator
+  - one parent item per month
+  - one day subitem per day
+- Updated the daily sync/repair workflow so repair runs can automatically prune known legacy monday.com structures:
+  - old `Week of ...` queue parent items
+  - old flat dated agent items such as `YYYY-MM-DD - Staff Name`
+- Cleaned leftover legacy items from Queue Stats 2026 and Agent Stats 2026 after approval from Ally in the dedicated Ally channel
+- Documented the canonical monday daily summary rules and repair workflow in:
+  - `/home/aiadmin/.openclaw/workspace/ally/MONDAY_DAILY_CALL_SUMMARY_SPEC.md`
+
