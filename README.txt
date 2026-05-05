@@ -1396,3 +1396,37 @@ MONDAY DAILY CALL SUMMARY AUTOMATION HARDENED
 - Documented the canonical monday daily summary rules and repair workflow in:
   - `/home/aiadmin/.openclaw/workspace/ally/MONDAY_DAILY_CALL_SUMMARY_SPEC.md`
 
+
+====================================================
+2026-05-04 (Session 23 — Weekly RTC reports and platform usage report)
+====================================================
+
+RTC WEEKLY REPORT AUTOMATION RUN COMPLETED
+- The scheduled `rtc-weekly-reports` automation ran for the previous Monday-Sunday period: April 27, 2026 through May 3, 2026
+- Generated the weekly RTC Hotline report set and uploaded all four PDFs to SharePoint under `RTC Hotline Reports/Weekly/`:
+  - `RTC Hotline - Call Flow Report - 0427 - 0503.pdf`
+  - `RTC Hotline - Eligible Zip Codes - 0427 - 0503.pdf`
+  - `RTC Hotline - Non-Eligible Zip Codes by Town - 0427 - 0503.pdf`
+  - `SLS RTC Referrals & Demographics Report - 0427 - 0503.pdf`
+- Created a draft email in Matt's mailbox with subject:
+  - `RTC Hotline Data Reports - April 27, 2026 - May 3, 2026`
+- Confirmed the draft was created only, not sent, and that exactly four attachments were present
+- Verified Zoom Contact Center cap handling during the run; 2026-04-27 hit the 10,000-record cap and was split into 4-hour windows
+- Weekly run summary:
+  - 41,457 Zoom Contact Center records fetched
+  - 614 external inbound calls
+  - 313 eligible calls
+  - 51 non-eligible calls
+
+WEEKLY PLATFORM USAGE REPORT RUN COMPLETED
+- The scheduled weekly usage report automation generated and committed:
+  - `reports/weekly-2026-04-27.html`
+- Pulled live usage data where available and emailed the report from `Rocky@slsct.org` to `mdugan@slsct.org`
+- Committed report to `SLSRocky/rocky-readme`:
+  - commit `c4de334`
+- Reported platform status for the week:
+  - Twilio: 158 SMS messages, $1.42 SMS cost, $4.37 total weekly spend
+  - Vercel: account/project API access live; detailed usage endpoint blocked by plan/API limit (`plan_upgrade_required`)
+  - Brave Search: usage totals unavailable from current tooling/API access
+  - Anthropic/Claude: reporting endpoints unavailable with current credentials; admin key needed
+
