@@ -1430,3 +1430,44 @@ WEEKLY PLATFORM USAGE REPORT RUN COMPLETED
   - Brave Search: usage totals unavailable from current tooling/API access
   - Anthropic/Claude: reporting endpoints unavailable with current credentials; admin key needed
 
+
+
+====================================================
+2026-05-05 (Session 24 — RTC report fixes, April funnel repair, and usage cron cleanup)
+====================================================
+
+RTC REPORT AUTOMATION HARDENED
+- Fixed weekly and monthly RTC ZIP/town mapping so report town distributions use real caller ZIP fields only:
+  - `zipcode.Digits`
+  - `ESP zipcode.Digits`
+  - `Zip Code`
+- Excluded routing ZIP variables such as `CLS-ZipCode`, `GHLA-ZipCode`, and `NHLAA-ZipCode` from town mapping after they caused an Eligible ZIP report to show `Non-CT 100%`
+- Regenerated and re-uploaded corrected Apr 27-May 3 weekly RTC PDFs to SharePoint and created a new corrected Outlook draft for Matt
+- Added the missing `SLS RTC Referrals & Demographics Report` attachment to monthly RTC report generation
+- Updated the monthly RTC cron/job flow so future monthly drafts expect and attach all four report PDFs
+- Fixed RTC demographics crosstabs so preferred rows are kept but additional observed categories are appended instead of dropped; this preserved a `Trans woman` Gender row and corrected April demographic totals
+- Regenerated/re-uploaded April monthly RTC PDFs and created fresh four-attachment Outlook drafts after each correction
+- Relevant code commits in the workspace/reporting repo:
+  - `916fea8 Fix RTC eligible ZIP town mapping`
+  - `8cba227 Add monthly RTC referrals report attachment`
+  - `5d8aff9 Include observed demographic categories in RTC reports`
+
+APRIL FUNNEL REPORT AUTOMATION REPAIRED
+- Ran the April 2026 Monthly Funnel Report workflow and created the `Updated Monthly Funnel Report` Outlook draft for Matt
+- Fixed the monthly funnel job so chart PDF rendering is month-aware instead of hard-coded for prior months
+- Fixed April funnel chart line breaks by backfilling blank current-year history columns from existing monthly output workbooks before plotting
+- Regenerated, visually verified, uploaded, and replaced corrected April SLS and RTC funnel chart PDFs on the existing Outlook draft
+- Relevant code commits in the workspace/reporting repo:
+  - `9eb337b Fix monthly funnel report drafting`
+  - `b784dfd Fix funnel chart history line breaks`
+
+ZOOM CONTACT CENTER AD HOC REPORTING CAPABILITY USED
+- Produced aggregate-only Zoom Contact Center pie chart reports for SLS Main Hotline Main Menu choices from Jan. 1, 2025 through May 5, 2026
+- Created an Outlook draft for Matt with two PDF attachments:
+  - CT Benefits vs Gov Benefits choices
+  - Full first-level Main Menu choices
+- Refined the all-choices pie chart to use a non-overlapping legend layout and replaced the attachment on the existing draft
+
+CRON CONFIGURATION CLEANUP
+- Removed the `Weekly Usage Report` Gateway cron job after Matt said the Rocky usage weekly reports were no longer useful
+- Deleted cron job id `2786974f-3e94-4273-9a28-f61a582b0c10`
