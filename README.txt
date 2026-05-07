@@ -1471,3 +1471,25 @@ ZOOM CONTACT CENTER AD HOC REPORTING CAPABILITY USED
 CRON CONFIGURATION CLEANUP
 - Removed the `Weekly Usage Report` Gateway cron job after Matt said the Rocky usage weekly reports were no longer useful
 - Deleted cron job id `2786974f-3e94-4273-9a28-f61a582b0c10`
+
+
+====================================================
+2026-05-06 (Session 25 — AssetPanda Dell serial cleanup)
+====================================================
+
+ASSETPANDA DELL ASSET DATA CLEANUP COMPLETED
+- Built and used a targeted AssetPanda audit/update helper for Dell hardware records, including assets identified by product/manufacturer text such as `Dell`, `Latitude`, and `Optiplex`
+- Found 143 matching Dell-related assets for review
+- Updated 132 assets so Dell serial values were copied into the dedicated Dell fields:
+  - Dell Service Tag
+  - Dell Express Service Code
+- Preserved AssetPanda uniqueness constraints and skipped blocked duplicate Service Tag values rather than forcing unsafe writes
+- Known skipped/blocked monitor records where AssetPanda rejected non-unique Service Tags:
+  - asset IDs 212, 233, 236, 238, and 252
+- Matt approved ignoring the remaining no-serial/manual-fix edge cases after the bulk cleanup
+- Local audit/helper artifacts were kept under:
+  - `/home/aiadmin/.openclaw/workspace/tmp/assetpanda_dell_tags/`
+  - `/home/aiadmin/.openclaw/workspace/tmp/assetpanda_dell_service_tags.py`
+
+CAPABILITY ADDED / CONFIRMED
+- Rocky can now audit AssetPanda asset records for Dell-identifying product data and safely populate Dell-specific serial fields in bulk, with uniqueness/error handling and audit output for follow-up review
