@@ -1473,6 +1473,7 @@ CRON CONFIGURATION CLEANUP
 - Deleted cron job id `2786974f-3e94-4273-9a28-f61a582b0c10`
 
 
+
 ====================================================
 2026-05-06 (Session 25 — AssetPanda Dell serial cleanup)
 ====================================================
@@ -1493,3 +1494,29 @@ ASSETPANDA DELL ASSET DATA CLEANUP COMPLETED
 
 CAPABILITY ADDED / CONFIRMED
 - Rocky can now audit AssetPanda asset records for Dell-identifying product data and safely populate Dell-specific serial fields in bulk, with uniqueness/error handling and audit output for follow-up review
+
+====================================================
+2026-05-08 (Session 26 — Conflict Check Email design and MS365 shared mailbox scope planning)
+====================================================
+
+CONFLICT CHECK EMAIL WORKFLOW REVIEWED
+- Reviewed the SharePoint `Conflict Check Email` folder in the MattRocky site, including:
+  - `Project Conflict Check Email.docx`
+  - `Email Body.docx`
+- Confirmed the requested workflow design:
+  - LegalServer staff action/API block calls a Rocky-hosted webhook
+  - webhook fetches current case details from LegalServer
+  - generated email includes client full name, DOB, and adverse party names
+  - test mode forces recipient to `mdtech01@gmail.com` before any external-agency rollout
+  - CC should include the primary assignment email and case email address
+  - subject should be `Emergency conflict check, please`
+- Recommended implementation pattern: small Vercel webhook, shared-secret validation, LegalServer read, MS365 Graph send, minimal logging with no client/adverse-party details in logs
+
+MS365 / GRAPH MAILBOX SCOPE CHECK
+- Performed a harmless Microsoft Graph send test using the proposed sender `slstransfers@slsct.org`; no message was sent
+- Graph returned `404 ErrorInvalidUser`, showing Rocky's app could not currently resolve/send as that mailbox through its existing access scope
+- Documented the next Exchange Online PowerShell steps for Matt:
+  - add `slstransfers@slsct.org` to `rocky-ai-access@slsct.org`
+  - verify group membership
+  - test the existing Rocky app access policy against app id `845c0e8f-5f38-455f-af05-6dcab3cf669e`
+- Status: planning/validation only; no production webhook or external-email sending capability was deployed yet
