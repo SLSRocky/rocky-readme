@@ -1520,3 +1520,29 @@ MS365 / GRAPH MAILBOX SCOPE CHECK
   - verify group membership
   - test the existing Rocky app access policy against app id `845c0e8f-5f38-455f-af05-6dcab3cf669e`
 - Status: planning/validation only; no production webhook or external-email sending capability was deployed yet
+
+
+====================================================
+2026-05-11 (Session 27 — RTC weekly report run)
+====================================================
+
+RTC WEEKLY REPORT AUTOMATION RUN COMPLETED
+- The scheduled `rtc-weekly-reports` automation ran for the previous Monday-Sunday period: May 4, 2026 through May 10, 2026
+- Generated the weekly RTC Hotline report set and uploaded all four PDFs to SharePoint under `RTC Hotline Reports/Weekly/`:
+  - `RTC Hotline - Call Flow Report - 0504 - 0510.pdf`
+  - `RTC Hotline - Eligible Zip Codes - 0504 - 0510.pdf`
+  - `RTC Hotline - Non-Eligible Zip Codes by Town - 0504 - 0510.pdf`
+  - `SLS RTC Referrals & Demographics Report - 0504 - 0510.pdf`
+- Created a draft email in Matt's mailbox with subject:
+  - `RTC Hotline Data Reports - May 4, 2026 - May 10, 2026`
+- Confirmed the draft was created only, not sent, and that exactly four attachments were present
+- Verified Zoom Contact Center cap handling during the run; no days required cap-splitting
+- Weekly run summary:
+  - 37,725 Zoom Contact Center records fetched
+  - 522 external inbound calls
+  - 239 eligible calls
+  - 54 non-eligible calls
+- Confirmed the temporary `/tmp/rtc` workspace was removed by the pipeline cleanup step
+
+CAPABILITY STATUS
+- No new platform connection or configuration was added today; this was a successful routine run of the existing RTC weekly reporting capability
