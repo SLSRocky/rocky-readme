@@ -1546,3 +1546,20 @@ RTC WEEKLY REPORT AUTOMATION RUN COMPLETED
 
 CAPABILITY STATUS
 - No new platform connection or configuration was added today; this was a successful routine run of the existing RTC weekly reporting capability
+
+====================================================
+2026-05-12 (Session 28 — slstransfers shared mailbox email capability verified)
+====================================================
+
+MS365 / GRAPH SHARED MAILBOX SEND CAPABILITY VERIFIED
+- Checked Rocky's Microsoft Graph access for `slstransfers@slsct.org` after the shared mailbox scope work from the conflict-check email planning
+- Confirmed Graph can access the `slstransfers@slsct.org` mailbox folders/messages even though direct user-object lookup returned `404`, consistent with shared/hidden mailbox behavior
+- Verified Rocky can send email from `slstransfers@slsct.org` via Microsoft Graph with approved test sends:
+  - internal test to `mdugan@slsct.org`: Graph returned `202 Accepted`
+  - one-time approved external test to `mdtech01@gmail.com`: Graph returned `202 Accepted`
+- This confirms the `slstransfers@slsct.org` sender is available for the planned conflict-check email workflow once the production workflow is built and separately approved
+
+BOUNDARY / SAFETY NOTE
+- The external Gmail send was a one-time approved test only
+- Standing email boundary remains: Rocky sends only to `mdugan@slsct.org` by default unless Matt explicitly approves a specific different recipient/action
+
