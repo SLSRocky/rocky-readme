@@ -1563,3 +1563,49 @@ BOUNDARY / SAFETY NOTE
 - The external Gmail send was a one-time approved test only
 - Standing email boundary remains: Rocky sends only to `mdugan@slsct.org` by default unless Matt explicitly approves a specific different recipient/action
 
+====================================================
+2026-05-13 (Session 29 — LegalServer Conflict Check Email webhook built and configured)
+====================================================
+
+CONFLICT CHECK EMAIL WEBHOOK BUILT AND DEPLOYED
+- Created the Vercel project `legalserver-conflict-check-email` for the LegalServer emergency conflict-check email workflow
+- Production endpoint configured at:
+  - `https://legalserver-conflict-check-email.vercel.app/api/conflict-check-email`
+- Added shared-secret validation with the required `x-rocky-secret` request header
+- Implemented request validation for LegalServer-provided fields including client name, DOB, adverse party data, primary assignment email, case email, and selected conflict-check destination
+- Added safe adverse-party parsing for LegalServer formatted text:
+  - strips `AP:` labels
+  - ignores metadata lines such as `State: CT`
+  - joins multiple adverse parties with `; `
+
+MS365 EMAIL GENERATION / FORMATTING ADDED
+- Connected the webhook to Microsoft Graph sendMail using the approved `slstransfers@slsct.org` sender configuration
+- Implemented HTML email output with:
+  - subject `Emergency conflict check, please`
+  - bold `Client:`, `DOB:`, and `Adverse Party:` labels
+  - a blank line between DOB and Adverse Party
+- Test-send mode was used first with `mdtech01@gmail.com`, then removed before live-routing configuration
+
+LIVE ROUTING CONFIGURED, THEN SAFELY PAUSED
+- Added live recipient routing support:
+  - always TO `slstransfers@slsct.org`
+  - CLS routes to `clsalltransfersfromsls@ctlegal.org`
+  - NHLAA routes to `NHLAAReferrals@nhlegal.org`
+  - CC includes primary assignment email and case email
+- Added fail-safe handling for unknown/unmapped `conflict_check_email` values so the webhook reports a missing mapped recipient rather than guessing or falling back to a test address
+- Enabled live routing after Matt approved it, then later paused actual sending while Matt moves the LegalServer API call to a second form so the selected conflict-check destination is saved before the API block runs
+- Current production state at end of day:
+  - `CONFLICT_CHECK_SEND_ENABLED=0` — sending paused
+  - `USE_LIVE_CONFLICT_CHECK_ROUTING=1` — live routing remains active for dry-run previews
+  - `TEST_CONFLICT_CHECK_TO` removed
+
+VERIFICATION / AUDITABILITY
+- Verified unauthenticated requests return `401`
+- Verified authenticated dry-run requests return `mode: dry_run_no_email_sent` while sending is paused
+- Added route logging for non-client-body routing metadata only, including routing mode, send-enabled status, selected destination, resolved recipients, CC count, and missing-field status
+- Local project folder:
+  - `/home/aiadmin/.openclaw/workspace/legalserver-conflict-check-email/`
+
+CAPABILITY ADDED
+- Rocky can now host a LegalServer-triggered conflict-check email webhook on Vercel, generate formatted MS365 email content, route conflict-check requests to the correct transfer mailbox/external agency recipients, and safely pause or dry-run sends while preserving live routing previews
+
