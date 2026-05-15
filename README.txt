@@ -1609,3 +1609,42 @@ VERIFICATION / AUDITABILITY
 CAPABILITY ADDED
 - Rocky can now host a LegalServer-triggered conflict-check email webhook on Vercel, generate formatted MS365 email content, route conflict-check requests to the correct transfer mailbox/external agency recipients, and safely pause or dry-run sends while preserving live routing previews
 
+
+====================================================
+2026-05-14 (Session 30 — Conflict Check Email live enablement and parser hardening)
+====================================================
+
+CONFLICT CHECK EMAIL LIVE SENDING ENABLED
+- Matt moved the LegalServer API call to a second form/action so the saved `conflict_check_email` value is available before the webhook runs
+- Re-enabled production sending for the `legalserver-conflict-check-email` Vercel project:
+  - `CONFLICT_CHECK_SEND_ENABLED=1`
+  - `USE_LIVE_CONFLICT_CHECK_ROUTING=1`
+- Production endpoint remains:
+  - `https://legalserver-conflict-check-email.vercel.app/api/conflict-check-email`
+- Confirmed live recipient routing remains:
+  - always TO `slstransfers@slsct.org`
+  - CLS also TO `clsalltransfersfromsls@ctlegal.org`
+  - NHLAA also TO `NHLAAReferrals@nhlegal.org`
+  - CC includes primary assignment email and case email
+
+LEGALSERVER CLIENT-NAME HTML CLEANUP ADDED
+- LegalServer sent `client_full_name` as an HTML anchor in at least one real test payload
+- Patched the email builder to strip HTML tags/entities from client full name while preserving the visible name only
+- Confirmed the email preview no longer includes anchor tags or `href` content in the client-name field
+
+VERIFICATION / FINAL STATE
+- Authenticated verification probes confirmed live routing previews with `sendEnabled:true`
+- Smoke tests passed locally after the client-name HTML cleanup
+- Redeployed the Vercel production alias after the parser fix
+- Matt completed a real LegalServer second-form test and confirmed the workflow was working: "we are golden"
+
+CURRENT CAPABILITY STATUS
+- The LegalServer Conflict Check Email workflow is now production-ready and live:
+  - LegalServer posts JSON to Rocky's Vercel webhook with `x-rocky-secret`
+  - webhook validates required fields and destination routing
+  - email is sent from `slstransfers@slsct.org` through Microsoft Graph
+  - external routing supports CLS and NHLAA destinations with safe failure for unknown values
+  - LegalServer adverse-party formatted text and client-name HTML are normalized before email generation
+
+SECURITY / FOLLOW-UP NOTE
+- Rotate the webhook shared secret when convenient because the `x-rocky-secret` appeared in a Discord screenshot during setup/testing
