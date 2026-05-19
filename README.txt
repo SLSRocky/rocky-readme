@@ -1648,3 +1648,28 @@ CURRENT CAPABILITY STATUS
 
 SECURITY / FOLLOW-UP NOTE
 - Rotate the webhook shared secret when convenient because the `x-rocky-secret` appeared in a Discord screenshot during setup/testing
+
+====================================================
+2026-05-18 (Session 31 — RTC weekly report run)
+====================================================
+
+RTC WEEKLY REPORT AUTOMATION RUN COMPLETED
+- The scheduled RTC weekly reporting automation ran for the previous Monday-Sunday period: May 11, 2026 through May 17, 2026
+- Generated the weekly RTC Hotline report set and confirmed all four report PDFs were attached to the draft email:
+  - `RTC Hotline - Call Flow Report - 0511 - 0517.pdf`
+  - `RTC Hotline - Eligible Zip Codes - 0511 - 0517.pdf`
+  - `RTC Hotline - Non-Eligible Zip Codes by Town - 0511 - 0517.pdf`
+  - `SLS RTC Referrals & Demographics Report - 0511 - 0517.pdf`
+- Created a draft email in Matt's mailbox with subject:
+  - `RTC Hotline Data Reports - May 11, 2026 - May 17, 2026`
+- Confirmed the draft was created only, not sent, and that exactly four attachments were present
+- Verified Zoom Contact Center cap handling during the run; no days required cap-splitting
+- Weekly run summary:
+  - 38,123 Zoom Contact Center records fetched
+  - 460 external inbound calls
+  - 225 eligible calls
+  - 34 non-eligible calls
+- Confirmed the temporary `/tmp/rtc` workspace was removed by the pipeline cleanup step
+
+CAPABILITY STATUS
+- No new platform connection or configuration was added today; this was a successful routine run of the existing RTC weekly reporting capability
