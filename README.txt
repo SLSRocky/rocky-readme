@@ -1673,3 +1673,32 @@ RTC WEEKLY REPORT AUTOMATION RUN COMPLETED
 
 CAPABILITY STATUS
 - No new platform connection or configuration was added today; this was a successful routine run of the existing RTC weekly reporting capability
+
+====================================================
+2026-05-19 (Session 32 — AssetPanda inventory form OCR and attachment workflow)
+====================================================
+
+ASSETPANDA ATTACHMENT API DISCOVERY
+- Confirmed AssetPanda v3 document attachment endpoints work with Rocky's existing AssetPanda bearer token for Assets entity `208780`:
+  - `GET /v3/attachments?entity_id=208780&entity_object_id=<object_id>&type=Document`
+  - `POST /v3/group/objects/<object_id>/attachments` with multipart `file=<pdf>` and `type=Document`
+- Verified successful pilot upload of `gisou.pdf` to AssetPanda asset `377` / object `69d679692742932aca2e2ada` with returned document id `9910130`.
+
+SHAREPOINT INVENTORY FORMS PROCESSING
+- Used Microsoft Graph SharePoint access against Matt's `AssetPanda/Inventory Forms` folder and the `new forms` subfolder containing signed staff laptop inventory PDFs.
+- Built local OCR/download/render/match processing support under:
+  - `/home/aiadmin/.openclaw/workspace/tmp/inventory_forms_new/`
+  - `/home/aiadmin/.openclaw/workspace/tmp/assetpanda_process_new_forms.py`
+- Added audit outputs for verification and follow-up:
+  - `process_new_forms_result_verified.json`
+  - `unmatched_new_forms.csv`
+  - `laptops_missing_pdf_forms.csv`
+
+CAPABILITY ADDED
+- Rocky can now process signed laptop inventory PDFs from SharePoint, OCR/render forms as needed, match forms to AssetPanda laptop asset records, upload the signed PDFs as AssetPanda Document attachments, and verify the resulting document links through the AssetPanda API.
+
+WORK COMPLETED
+- Original `Inventory Forms` folder: OCR/matched, uploaded, and verified 5 PDFs.
+- `new forms` subfolder: found 69 PDFs; exactly matched, uploaded, and verified 52; skipped 17 unmatched forms with no ambiguous uploads.
+- Produced follow-up lists for unmatched forms and laptop records still missing any PDF document attachment.
+
