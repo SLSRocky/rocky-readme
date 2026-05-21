@@ -1702,3 +1702,17 @@ WORK COMPLETED
 - `new forms` subfolder: found 69 PDFs; exactly matched, uploaded, and verified 52; skipped 17 unmatched forms with no ambiguous uploads.
 - Produced follow-up lists for unmatched forms and laptop records still missing any PDF document attachment.
 
+
+====================================================
+2026-05-20 (Session 33 — Zoom meeting-history retention investigation)
+====================================================
+
+ZOOM MEETING HISTORY CHECK
+- Investigated whether `rpatnode@nolsw.org` appeared as a participant in meetings hosted by `mprovost@slsct.org`.
+- Confirmed `mprovost@slsct.org` is visible through the existing Zoom API connection.
+- Zoom returned 17 hosted meetings for that user in December 2025; participant checks on those returned meetings found 0 matches for `rpatnode@nolsw.org`.
+- For January-November 2025, Zoom's live report API returned the retention-window error that reports can only be queried for a month within the last six months.
+
+CAPABILITY STATUS
+- No new platform connection or configuration was added today.
+- The existing Zoom meeting-report access was verified, and its practical retention limit was documented for future searches: older meeting participant history may require calendar records, a saved Zoom export/archive, or another retained source.
