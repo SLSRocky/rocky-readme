@@ -1716,3 +1716,22 @@ ZOOM MEETING HISTORY CHECK
 CAPABILITY STATUS
 - No new platform connection or configuration was added today.
 - The existing Zoom meeting-report access was verified, and its practical retention limit was documented for future searches: older meeting participant history may require calendar records, a saved Zoom export/archive, or another retained source.
+====================================================
+2026-05-26 (Session 34 — MS365 mailbox/archive search investigation)
+====================================================
+
+MS365 MAILBOX SEARCH INVESTIGATION
+- Matt asked Rocky to search his mailbox/online archive for evidence of when SLS-CT staff went work-from-home during COVID.
+- Used the existing Microsoft 365 / Microsoft Graph application access for `mdugan@slsct.org` as Sensitive read access.
+- Built temporary local mailbox-search helpers under the workspace `tmp/` area to query mail folders and search terms without committing mailbox contents.
+- Confirmed the existing app registration also has an Exchange Online app token role available: `Exchange.ManageAsApp`.
+
+CAPABILITY / LIMITATION DOCUMENTED
+- Rocky can perform targeted Microsoft Graph mailbox searches against Matt's accessible mailbox and summarize results without exposing full private email bodies.
+- Microsoft Graph folder/message access did not expose useful Online Archive contents for this investigation; visible archive-related folders returned no listed items for the tested paths.
+- Microsoft Graph Search API for messages was not usable with the current application-permission setup for mail entities, so deeper Online Archive searching may require an Exchange Online / Purview eDiscovery path or delegated/admin-approved tooling.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing MS365 mailbox-search capability was exercised, and the practical limitation around Online Archive access was documented for future searches.
+
