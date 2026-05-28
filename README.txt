@@ -1735,3 +1735,33 @@ CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing MS365 mailbox-search capability was exercised, and the practical limitation around Online Archive access was documented for future searches.
 
+
+====================================================
+2026-05-27 (Session 35 — Conflict-check sender update and Zoom annual answered-call counts)
+====================================================
+
+LEGALSERVER CONFLICT CHECK EMAIL SENDER UPDATED
+- Updated the production Vercel configuration for `legalserver-conflict-check-email` so generated emergency conflict-check emails send from the shared mailbox `slstransfers@slsct.org` instead of Matt's mailbox.
+- Confirmed Microsoft Graph app access to `slstransfers@slsct.org` with a non-sending mailbox probe before making the change.
+- Replaced the production `MS365_SEND_MAILBOX` environment variable and redeployed the production alias:
+  - `https://legalserver-conflict-check-email.vercel.app`
+- Verification completed with the project's check script and Vercel production deployment status.
+- No test email was sent during this configuration change.
+
+ZOOM CONTACT CENTER ANNUAL ANSWERED-CALL COUNTS
+- Used the existing Zoom Contact Center API access to calculate answered inbound-call counts for Screener-English, Screener-Spanish, and Operator queues for calendar years 2024 and 2025.
+- Final 2024 answered queue-occurrence counts:
+  - Screener-English: 12,546
+  - Screener-Spanish: 3,470
+  - Screener combined: 16,016
+  - Operator: 13,377
+- Final 2025 answered queue-occurrence counts:
+  - Screener-English: 16,762
+  - Screener-Spanish: 2,874
+  - Screener combined: 19,636
+  - Operator: 8,683
+- Added reusable local helper/checkpoint scripts for annual Zoom answered-call count scans under the workspace `tmp/` area.
+
+CAPABILITY STATUS
+- New production configuration added: the LegalServer conflict-check email app now uses the shared transfer mailbox as its sender through the `MS365_SEND_MAILBOX` setting.
+- Existing Zoom Contact Center reporting capability was extended with reusable annual answered-call count tooling.
