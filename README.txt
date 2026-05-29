@@ -1765,3 +1765,20 @@ ZOOM CONTACT CENTER ANNUAL ANSWERED-CALL COUNTS
 CAPABILITY STATUS
 - New production configuration added: the LegalServer conflict-check email app now uses the shared transfer mailbox as its sender through the `MS365_SEND_MAILBOX` setting.
 - Existing Zoom Contact Center reporting capability was extended with reusable annual answered-call count tooling.
+
+
+====================================================
+2026-05-28 (Session 36 — SharePoint PST search staging)
+====================================================
+
+PST SEARCH WORKFLOW STAGED
+- Matt asked whether Rocky can search Outlook mailboxes where Matt has delegate access; clarified that Rocky can only search mailboxes exposed through the configured Microsoft 365 / Microsoft Graph access, not automatically every mailbox Matt can personally open.
+- Matt asked whether uploading a `.pst` file to SharePoint would allow Rocky to search it. Confirmed that an approved SharePoint location can be used as a read-only staging path for targeted PST extraction/search work.
+- Matt created the SharePoint folder `MattRocky / Documents / PST Search` for the PST upload.
+- Rocky checked the folder through Microsoft Graph and confirmed the `PST Search` folder exists; at check time the folder was still empty because the PST upload/sync had not completed.
+- Target search was defined for a single email with subject approximately/exactly `2/9/21 schedule`, dated 2021-02-09 around 9:37 AM, with export desired as `.eml` or `.msg` if found.
+
+CAPABILITY STATUS
+- No new external platform connection or production configuration was added today.
+- Existing SharePoint / Microsoft Graph access was confirmed usable for a controlled PST staging workflow.
+- PST extraction/search tooling was not installed yet; next step is to add or use suitable local PST tooling once the file is available, then extract only the requested target email.
