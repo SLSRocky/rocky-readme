@@ -1782,3 +1782,28 @@ CAPABILITY STATUS
 - No new external platform connection or production configuration was added today.
 - Existing SharePoint / Microsoft Graph access was confirmed usable for a controlled PST staging workflow.
 - PST extraction/search tooling was not installed yet; next step is to add or use suitable local PST tooling once the file is available, then extract only the requested target email.
+
+
+====================================================
+2026-05-30 (Session 37 — SharePoint image OCR to highlighted Word document)
+====================================================
+
+SHAREPOINT OCR DOCUMENT CREATION
+- Matt created a new SharePoint folder named `Kayla` in the Matt & Rocky SharePoint site and asked Rocky to OCR the images into a Word document.
+- Used existing Microsoft Graph / SharePoint access to list and download 21 image files from the `Kayla` folder.
+- Used the local PaddleOCR/Python environment to OCR the images, including rotation handling for sideways screenshots.
+- Built a local image-processing workflow to detect visible colored circle/marker regions in the source images and apply matching text shading in the generated Word document.
+- Generated `Kayla OCR Text.docx` with:
+  - 21 processed images
+  - 346 OCR text lines
+  - 237 color-shaded lines
+  - low-confidence OCR line tracking for review
+- Uploaded the finished Word document back to the same SharePoint folder through Microsoft Graph.
+- Verified the uploaded file exists in SharePoint with the expected name and size.
+
+CAPABILITY ADDED
+- Rocky can now process a SharePoint folder of image files, perform OCR locally, infer simple colored annotation groupings, generate a formatted `.docx` with highlighted/shaded text blocks, and upload the finished document back to SharePoint.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing SharePoint / Microsoft Graph access was extended into a repeatable OCR-to-Word document workflow for image batches.
