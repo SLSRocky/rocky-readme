@@ -1807,3 +1807,44 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing SharePoint / Microsoft Graph access was extended into a repeatable OCR-to-Word document workflow for image batches.
+
+
+====================================================
+2026-06-01 (Session 38 — Staff ISP Reports automation and survey document conversion)
+====================================================
+
+STAFF ISP REPORTS / ZOOM SIGN-IN-OUT REPORTING
+- Matt created a SharePoint folder named `Staff ISP Reports` in the MattRocky site and uploaded an example workbook, `December 2025 - processed_ip_data.xlsx`, as the target format.
+- Verified existing Microsoft Graph / SharePoint access can read and write the new folder.
+- Built local reporting script:
+  - `/home/aiadmin/.openclaw/workspace/staff_isp_report.py`
+- The script pulls Zoom account sign-in/sign-out activity from `/v2/report/activities`, enriches unique IP addresses locally with a persistent cache, writes Excel workbooks matching Matt's example format, and can upload the generated workbook to SharePoint.
+- Required Zoom Server-to-Server OAuth scope added by Matt and verified:
+  - `report:read:user_activities:admin`
+- Output columns now match the example workbook:
+  - User Email, Time, Type, IP Address, Client Type, Version, Provider, City, State, Company
+- Generated and uploaded May 2026 report to MattRocky SharePoint `Staff ISP Reports`:
+  - `May 2026 - processed_ip_data.xlsx`
+  - 1,987 rows, 170 unique IPs, 0 blank providers
+  - Sign in: 1,663; Sign out: 324
+- Backfilled and uploaded January-April 2026 reports to the same SharePoint folder:
+  - January: 1,552 rows / 401 unique IPs
+  - February: 1,606 rows / 409 unique IPs
+  - March: 2,148 rows / 464 unique IPs
+  - April: 2,208 rows / 220 unique IPs
+- Verified no recurring OpenClaw or local cron job exists yet for Staff ISP Reports.
+- Recommended future schedule: run monthly on the 1st, generating/uploading the previous calendar month.
+
+CAPABILITY ADDED
+- Rocky can now generate monthly Staff ISP sign-in/sign-out reports from Zoom activity logs, enrich IP metadata locally with caching, produce Excel workbooks in SLS-CT's requested format, and upload the reports to SharePoint.
+
+YULAA SURVEY DOCUMENT CONVERSION
+- Matt uploaded an Excel workbook containing a YULAA survey layout and asked Rocky to convert it to Word.
+- Created `YULAA Survey.docx` from the workbook while preserving question order and listing available choice options.
+- Verified the DOCX package and confirmed LibreOffice could convert/open it successfully.
+- Uploaded `YULAA Survey.docx` to the root of the MattRocky SharePoint Documents library at Matt's request and verified it through Microsoft Graph.
+
+CAPABILITY STATUS
+- New Zoom reporting scope verified for account activity reports.
+- Existing SharePoint / Microsoft Graph access was used for controlled report/document upload workflows.
+- No recurring Staff ISP automation has been scheduled yet.
