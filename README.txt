@@ -1848,3 +1848,26 @@ CAPABILITY STATUS
 - New Zoom reporting scope verified for account activity reports.
 - Existing SharePoint / Microsoft Graph access was used for controlled report/document upload workflows.
 - No recurring Staff ISP automation has been scheduled yet.
+
+====================================================
+2026-06-02 (Session 39 — Milford residential property-purchase exports)
+====================================================
+
+PUBLIC PROPERTY PURCHASE EXPORTS
+- Matt asked whether Rocky could gather recent residential property-purchase data for Milford, CT.
+- Avoided private MLS scraping and access-control bypasses; used public/official-ish property records instead.
+- Investigated Milford land records/IQS, Milford GIS/ArcGIS, CT open data, and Vision Government Solutions.
+- Found Milford GIS/ArcGIS sale data was stale through 2021, while Vision Government Solutions provided usable residential and condominium sale results.
+- Built local extraction scripts under the workspace `tmp/` area for 2025 and 2026 Milford residential purchase exports.
+- Generated Excel exports containing buyer/owner and purchased-property details:
+  - `Milford CT 2025 Residential Property Purchases.xlsx` — 497 rows; 375 Residential and 122 Res Condo; sale dates 2025-01-03 through 2025-12-30.
+  - `Milford CT 2026 Residential Property Purchases.xlsx` — 93 rows; 61 Residential and 32 Res Condo; sale dates available at run time 2026-01-02 through 2026-04-06.
+- Uploaded both workbooks to the MattRocky SharePoint site. Matt moved them to the `MLS Scrape` folder; use that SharePoint folder for future property-purchase exports.
+
+CAPABILITY ADDED
+- Rocky can now produce controlled residential property-purchase Excel exports from public municipal/property-record sources, avoiding private MLS systems and documenting source limitations.
+- Data handling note: buyer names and property addresses are public-record information but still personal information; future exports should stay purpose-limited and avoid unnecessary columns.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing SharePoint / Microsoft Graph access was used to deliver the generated workbooks.
