@@ -1871,3 +1871,50 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing SharePoint / Microsoft Graph access was used to deliver the generated workbooks.
+
+====================================================
+2026-06-03 (Session 40 — YULAA Judicial extraction workflow, policy updates, and LegalServer IFAR note batch)
+====================================================
+
+YULAA JUDICIAL EXTRACTION PROTOTYPE
+- Started the YULAA Project workflow using a SharePoint project folder and a LegalServer API report as the source of eligible matters.
+- Confirmed authenticated LegalServer LIVE API reads can retrieve source report rows, matter UUIDs, notes, docket URLs, legal problem codes, and relevant custom fields needed for YULAA processing.
+- Built local prototype artifacts under the workspace `tmp/` area, including a temporary SQLite processing database and Python scripts for case review documents and exception-log generation.
+- Confirmed CT Judicial docket pages and attached PDF documents can be inspected for disposition and stipulation data.
+- Confirmed many Judicial complaint/stipulation PDFs are scanned/image-only, and reused the local PaddleOCR environment for reliable OCR extraction.
+- Added logic to distinguish normal Judicial pages from pages that return HTTP 200 but state the case is not found or not electronically available.
+
+YULAA EXTRACTION RULES ESTABLISHED
+- Defendant first advised by SLS: use the earliest IFAR note date from LegalServer notes API; do not use the report `date_posted` field or earliest general note date.
+- Housing subsidy: mark Yes if any IFAR note contains `#housingsubsidy#` or if the Legal Problem Code starts with `61` or `64`.
+- Stay of Execution through date: select the latest valid Judicial stipulation document, OCR the PDF, and extract the stay-through date from the stipulation text.
+- LegalServer custom-field write rule: only set YULAA processed fields after Judicial data is successfully pulled. This was dry-run tested only; no YULAA LegalServer custom-field write-back was performed.
+
+SHAREPOINT YULAA OUTPUTS
+- Created and iterated SharePoint YULAA Project output documents, including a merged exception log and a one-case question-data review document.
+- Replaced the initial separate exception logs with a single `LOG - YULAA Exceptions.docx` document containing sections for missing docket URL, Judicial case not found, Judicial without disposition, and missing IFAR notes.
+- Cleared sample case-specific rows from the merged exception log after extraction was verified, preserving formatting and section structure.
+- Verified generated YULAA documents avoid `Created by Rocky` attribution text.
+
+YULAA AUTOMATION CONFIGURATION
+- Created OpenClaw cron job `YULAA weekly Judicial extraction` to run Mondays at 8:00 AM America/New_York.
+- Guardrails for the weekly job: LegalServer reads only, CT Judicial reads/OCR, local temp artifacts, and SharePoint YULAA Project output/log updates are allowed; no LegalServer write-back without explicit approval.
+- Configured the weekly workflow notes so, after updating the SharePoint exception log, the updated copy should be emailed to Matt and Ally Stratos only for this specific YULAA delivery workflow.
+- Documented the user-facing project aliases Matt/Ally can use: `YULAA Project` and `YULAA weekly Judicial extraction app`.
+
+SECURITY / PRIVACY DECISIONS UPDATED
+- Reviewed the SharePoint `Security-Privacy-Decisions.txt` file and found it was behind current operating decisions.
+- With Matt's approval, updated the SharePoint document to `Last Updated: 2026-06-03` and expanded it through Decisions #1-#16.
+- Added durable policy notes covering Ally access boundaries, SharePoint handling, mailbox/wiki guardrails, credential-storage standards, SMS/Twilio boundaries, LegalServer write/dry-run posture, public-record export minimization, Rocky's inability to change its own permissions, and the YULAA Judicial-success-before-write rule.
+
+LEGALSERVER IFAR HOUSING-SUBSIDY NOTE BATCH
+- Matt provided a spreadsheet of 42 unique LegalServer matter/case IDs and explicitly approved adding IFAR notes with the `#housingsubsidy#` tag.
+- Preflight resolved all 42 cases and confirmed none already had an IFAR note containing the tag.
+- First attempted note creation was rejected by LegalServer because the required subject field was missing; no notes were created in that attempt.
+- Retried with both subject and body set to `#housingsubsidy#`; 42 of 42 IFAR notes were created and verified.
+- Local audit output was saved in the workspace `tmp/` area for traceability.
+
+CAPABILITY ADDED
+- Rocky can now prototype and run a controlled YULAA Judicial extraction pipeline combining LegalServer report/API reads, CT Judicial docket/document reads, OCR of scanned Judicial PDFs, SharePoint Word output generation, exception-log maintenance, and scheduled weekly orchestration with explicit LegalServer write guardrails.
+- Rocky can perform approved, preflighted LegalServer IFAR note batch writes with verification and local audit output.
+
