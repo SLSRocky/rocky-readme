@@ -1918,3 +1918,37 @@ CAPABILITY ADDED
 - Rocky can now prototype and run a controlled YULAA Judicial extraction pipeline combining LegalServer report/API reads, CT Judicial docket/document reads, OCR of scanned Judicial PDFs, SharePoint Word output generation, exception-log maintenance, and scheduled weekly orchestration with explicit LegalServer write guardrails.
 - Rocky can perform approved, preflighted LegalServer IFAR note batch writes with verification and local audit output.
 
+
+====================================================
+2026-06-05 (Session 41 — Twilio outgoing SMS report and YULAA continuity checkpoint)
+====================================================
+
+TWILIO OUTGOING SMS REPORTING
+- Matt asked whether Rocky can run Twilio reports and then requested all outgoing SMS messages grouped by sending phone number.
+- Confirmed existing Twilio API access is usable for read-only reporting while preserving the permanent SMS guardrails: no Twilio settings changes, no outbound texts except to Matt's approved number, and no message-body/recipient-number collection unless explicitly justified.
+- Built a local metadata-only reporting script under the workspace `tmp/` area:
+  - `/home/aiadmin/.openclaw/workspace/tmp/twilio_outgoing_by_from_fast.py`
+- Initial all-message pagination attempt hit a five-minute safety timeout; switched to a safer report method that lists current Twilio IncomingPhoneNumbers and queries Messages filtered by each `From` number.
+- Generated final CSV:
+  - `/home/aiadmin/.openclaw/workspace/tmp/twilio_reports/outgoing_sms_by_sending_number_20260605_132526.csv`
+- Report scope/results:
+  - 17 current Twilio sending numbers checked
+  - 323,607 outgoing SMS messages
+  - 392,925 message segments
+  - Estimated Twilio message charges: about $1,788.23, based on Twilio price metadata
+- Main operational red flag identified: sending number `+14752553552` accounted for 317,954 outgoing messages and had very high failed/undelivered counts, worth deeper follow-up if Matt asks.
+
+YULAA CONTINUITY CHECKPOINT
+- Verified the current YULAA housing-subsidy question logic against the actual local script, not just memory.
+- Current implementation marks housing subsidy `Yes` if any IFAR note contains literal `#housingsubsidy#`, or if the Legal Problem Code starts with `61` or `64`; otherwise it returns `No`.
+- Important caveat documented: the tag check is currently exact lowercase, so mixed-case variants like `#HousingSubsidy#` would not match unless patched to case-insensitive matching.
+- Confirmed sample case `25-0374051` returns housing subsidy `Yes` because Legal Problem Code starts with `64`, even without the IFAR tag.
+- Documented handoff guidance for Ally's isolated Rocky session: use the project anchors `YULAA Project` or `YULAA weekly Judicial extraction app`, plus the SharePoint YULAA Project documents and local `tmp/yulaa_*` artifacts.
+
+CAPABILITY ADDED
+- Rocky can now produce aggregate Twilio outgoing SMS reports by sending number using existing Twilio API access, with privacy-preserving defaults that avoid message bodies and recipient-level data.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing Twilio reporting access was extended into a reusable outgoing-SMS-by-sender reporting workflow.
+- Existing YULAA logic and project handoff anchors were verified and documented for continuity across isolated sessions.
