@@ -1952,3 +1952,41 @@ CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing Twilio reporting access was extended into a reusable outgoing-SMS-by-sender reporting workflow.
 - Existing YULAA logic and project handoff anchors were verified and documented for continuity across isolated sessions.
+
+====================================================
+2026-06-08 (Session 42 — YULAA production batch run and LegalServer note-type cleanup)
+====================================================
+
+YULAA PRODUCTION BATCH RUN
+- Matt approved running the expanded YULAA workflow as a background/batched production pipeline against the LegalServer YULAA report.
+- Established production guardrails: skip and log cases missing docket URLs, invalid/unusable CT Judicial pages, Judicial pages without disposition, and retryable processing errors; only successfully processed cases are imported/updated in monday.com and marked processed in LegalServer.
+- Processed an unexpectedly large LegalServer report result set of 5,758 rows using an 8-worker local batch pattern instead of one large OCR/process run.
+- Final production outcome:
+  - 6 cases imported/updated in monday.com and verified.
+  - 6 corresponding LegalServer YULAA write-backs verified with `yulaa_yes_no_471=true` and `yulaa_processed_date_472=2026-06-08`.
+  - 3,279 cases logged as missing docket URL.
+  - 2,471 cases logged as invalid/not-found Judicial page or bad URL value.
+  - 2 cases remained as processing errors after retry/final processing.
+- Corrected a final import issue where several monday.com disposition/date/stay fields were initially blank after a re-fetch parsing miss; patched the six active monday.com rows from batch-confirmed evidence and verified disposition data plus ZIP code mapping.
+- Regenerated the corrected `LOG - YULAA Exceptions.docx`, uploaded it to the SharePoint YULAA Project folder, and emailed the corrected log to Matt and Ally Stratos.
+- Removed the temporary YULAA batch monitor cron after completion so it would stop rechecking.
+
+LEGALSERVER CUSTOM FIELD CLEARING LESSON
+- Confirmed that LegalServer v2 top-level `null` updates can return success while not clearing UI-backed custom field storage.
+- Confirmed the reliable clearing pattern for these LegalServer custom fields: v1 `PATCH /api/v1/matters/{case_uuid}` with `custom_fields` keyed by database field name and value `%empty%`.
+- Applied the fix narrowly to live case `26-0426847`, clearing `yulaa_yes_no_471` and `yulaa_processed_date_472`, then verified both fields were null through the reliable custom-field query path.
+
+LEGALSERVER AIDA ARUS NOTE-TYPE CLEANUP
+- Matt approved a live LegalServer cleanup for report load 7813: change Aida Arus-created notes from `Case Notes` to `IFAR`.
+- Built and ran a guarded update that changed only actual note records where the creator was Aida Arus / user ID 98 and current note type was `Case Notes`.
+- Updated and verified 937 of 937 targeted notes to IFAR with 0 errors.
+- Independent post-update rescan showed no remaining Aida-created `Case Notes` in the same matter set; the refreshed original report returned only 7 non-Case-Notes rows.
+
+CAPABILITY ADDED
+- Rocky can now run the YULAA workflow as a controlled batched production pipeline across thousands of LegalServer report rows, combining LegalServer reads/writes, CT Judicial docket/PDF extraction, OCR, monday.com updates, SharePoint exception-log delivery, and limited email distribution with verification gates.
+- Rocky now has a verified LegalServer pattern for clearing UI-backed custom fields using the v1 `%empty%` sentinel when JSON `null` is ineffective.
+- Rocky can perform approved, creator-scoped LegalServer note-type batch cleanups with preflight narrowing, live update verification, and post-update rescans.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing LegalServer, CT Judicial, monday.com, SharePoint, and MS365 email capabilities were combined into larger verified production workflows.
