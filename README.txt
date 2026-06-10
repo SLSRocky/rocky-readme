@@ -1990,3 +1990,55 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing LegalServer, CT Judicial, monday.com, SharePoint, and MS365 email capabilities were combined into larger verified production workflows.
+
+====================================================
+2026-06-09 (Session 43 — YULAA docket recovery, LOG improvements, and monday.com map ZIP configuration)
+====================================================
+
+YULAA MISSING-DOCKET RECOVERY ENHANCEMENTS
+- Expanded the YULAA workflow for cases missing `docket_url_174` in LegalServer.
+- Added strict CT Judicial party-name/address discovery:
+  - Searches public CT Judicial PartySearch only for exact client first/last name candidates.
+  - Opens candidate Judicial case-detail pages and accepts a docket URL only when exactly one non-plaintiff party row matches the client's normalized name and mailing address.
+  - Leaves ambiguous or incomplete matches skipped/logged instead of guessing.
+- Added LegalServer note-derived docket discovery:
+  - Scans LegalServer notes for CT civil docket-number patterns when `docket_url_174` is missing.
+  - Validates each candidate against CT Judicial and accepts only a single exact client first/last non-plaintiff match.
+  - Audit output stores note metadata and docket candidates only, not note bodies.
+- Updated the durable batch worker so future YULAA runs try note-derived docket recovery first, then CT Judicial name/address recovery.
+- Updated finalization so verified discovered docket URLs can be written back to LegalServer `docket_url_174`, including discovered cases that are later skipped because they have no usable disposition.
+
+YULAA PRODUCTION RUNS AND LIVE CLEANUP
+- Ran multiple approved YULAA production/rerun cycles against fresh LegalServer report manifests using the 8-worker batch pattern.
+- Imported/created additional verified monday.com rows and marked corresponding LegalServer matters processed only after successful Judicial extraction.
+- Performed approved, targeted LegalServer `docket_url_174` backfills for verified docket discoveries from name/address matching and note-derived docket matching.
+- Added retry/backoff behavior for LegalServer 429 rate-limit responses during docket URL write-back.
+- Added handling for literal `docket_url_174 = NONE`:
+  - Treats `NONE` as terminal/no docket will ever exist.
+  - Marks the matter YULAA processed in LegalServer.
+  - Does not include those terminal NONE cases in the exception LOG.
+- Patched finalization to fall back to batch-confirmed disposition data when a final CT Judicial re-fetch misses a disposition block, preventing blank disposition/date fields in monday.com.
+
+YULAA EXCEPTION LOG IMPROVEMENTS
+- Updated the SharePoint `YULAA Project/LOG - YULAA Exceptions.docx` workflow so Matter IDs in generated LOG tables are hyperlinks to LegalServer profile URLs.
+- Added durable DOCX hyperlink generation to the finalizer for future LOG files.
+- Added a first-page Summary table to the LOG with section counts, followed by a page break before detailed case lists.
+- Updated the current SharePoint LOG in place with hyperlinks and the summary page, preserving the detailed case listings.
+- Patched the finalizer so LOG section-count formatting is generated automatically, avoiding manual correction-email follow-up.
+
+MONDAY.COM MAP ZIP CONFIGURATION
+- Confirmed the YULAA monday.com board columns for client ZIP, City, and `Map: Zip Code` location.
+- Patched the production Monday create/update workflow so future YULAA rows populate `Map: Zip Code` using ZIP centroid latitude/longitude plus address text from `api.zippopotam.us`.
+- Built and ran a backfill for existing board rows with client ZIP values but empty map ZIP values.
+- Verified the board ended with all current items that have client ZIP values also populated in the `Map: Zip Code` location column.
+
+CAPABILITY ADDED
+- Rocky can now recover missing YULAA docket URLs through two strict, auditable methods: LegalServer note-derived docket validation and CT Judicial name/address exact matching.
+- Rocky can write verified recovered docket URLs back to LegalServer with readback verification and rate-limit handling.
+- Rocky can treat explicit LegalServer `NONE` docket markers as terminal processed cases without re-logging them indefinitely.
+- Rocky can generate YULAA exception LOG documents with summary counts and LegalServer hyperlinks automatically.
+- Rocky can populate and backfill monday.com location/map columns using ZIP centroid coordinates for YULAA board mapping.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing LegalServer, CT Judicial, monday.com, SharePoint, and MS365 email capabilities were expanded into a more complete and resilient YULAA production workflow.
