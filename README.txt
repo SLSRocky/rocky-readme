@@ -2042,3 +2042,59 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing LegalServer, CT Judicial, monday.com, SharePoint, and MS365 email capabilities were expanded into a more complete and resilient YULAA production workflow.
+
+====================================================
+2026-06-10 (Session 44 — YULAA resilience updates, RTC report source fix, and LegalServer note cleanup)
+====================================================
+
+RTC WEEKLY REPORT SOURCE FIX
+- Investigated an RTC weekly referrals/demographics report that was unexpectedly returning only 2 cases.
+- Confirmed the prior LegalServer saved report source was too narrow for recent weekly ranges and switched the weekly RTC referrals/demographics pipeline to the broader verified LegalServer saved report source.
+- Reran the weekly RTC report automation, regenerated the corrected PDF set, uploaded the weekly PDFs, and created a fresh Outlook draft for Matt with the corrected attachments.
+
+YULAA LOG AND HYPERLINK CORRECTIONS
+- Clarified the YULAA LOG wording so the Imported / Updated section is explicitly labeled as Most Recent Run rather than cumulative history.
+- Corrected LegalServer case-profile hyperlinks in the SharePoint `YULAA Project/LOG - YULAA Exceptions.docx` so generated links use the six-digit LegalServer matter-profile ID format required by the live site.
+- Patched the durable YULAA LOG generation scripts so future generated LOG documents preserve the corrected Imported / Updated wording and correct LegalServer hyperlink target format.
+- Verified the live SharePoint LOG retained all expected LegalServer hyperlink relationships after correction.
+
+YULAA PRODUCTION RERUNS AND RETRY HANDLING
+- Ran an approved full live YULAA rerun and delivered the updated LOG to SharePoint and by email to Matt and Ally after resolving a temporary SharePoint file lock.
+- Reprocessed cases previously classified as Invalid / Not Found after Matt identified examples where CT Judicial pages were actually usable.
+- Added a targeted invalid/not-found reprocess workflow that extracts affected cases from canonical batch output, reruns them in batches, merges corrected outcomes, and then finalizes normally.
+- Separated CT Judicial transient ASP.NET error pages from true Invalid / Not Found results:
+  - Detects HTTP-200 Judicial `Error Page` responses as retryable transient failures.
+  - Retries detail-page reads with backoff.
+  - Keeps persistent transient Judicial failures out of the Invalid / Not Found LOG category.
+- Lowered future YULAA rerun/reprocess concurrency to reduce CT Judicial transient error responses.
+
+YULAA LOCAL HOURLY RETRY CRON
+- Added a local OS cron retry wrapper for YULAA invalid-case rechecks every hour on the hour without using model tokens.
+- The wrapper uses a file lock, writes local logs, probes a known-good CT Judicial docket before running, and only starts the retry process when Judicial appears healthy.
+- Confirmed the wrapper safely skips processing when CT Judicial is returning transient Error Page responses.
+
+LEGALSERVER NOTE-TYPE CLEANUP
+- Completed an approved LegalServer note-type cleanup for refreshed report 7813.
+- Matched current report rows to live note UUIDs by matter and creator, then updated verified James Winkel-created `Case Notes` entries to `IFAR`.
+- Verified all targeted note updates after PATCH and kept local audit files without storing or printing note bodies.
+
+YULAA ARCHITECTURE CHECKPOINT
+- Documented the current high-level YULAA architecture for continuity:
+  - LegalServer report/API source.
+  - Missing docket recovery.
+  - CT Judicial validation, extraction, and OCR.
+  - monday.com row create/update.
+  - LegalServer write-back only after successful/approved criteria.
+  - SharePoint LOG generation and limited email delivery.
+- Confirmed the active durable scripts and weekly OpenClaw cron anchor for future YULAA maintenance.
+
+CAPABILITY ADDED
+- Rocky can now distinguish CT Judicial transient Error Page responses from true invalid/not-found docket pages and route them to retry-later handling instead of permanent exception categories.
+- Rocky can run a local, token-free hourly YULAA retry wrapper with health probes and locking so Judicial outages do not trigger bad writes or unnecessary finalization.
+- Rocky can regenerate YULAA LOG hyperlinks using the correct LegalServer matter-profile ID format and preserve corrected LOG section labels automatically.
+- Rocky can repair and rerun targeted YULAA invalid/not-found batches from canonical batch artifacts instead of requiring a full workflow rerun every time.
+- Rocky can perform approved LegalServer note-type cleanup for refreshed report exports with exact matching, serialized live writes, verification, and privacy-preserving audit output.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing LegalServer, CT Judicial, monday.com, SharePoint, MS365 email, Outlook draft, and local cron capabilities were hardened and combined into more resilient production workflows.
