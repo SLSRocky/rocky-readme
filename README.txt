@@ -2098,3 +2098,51 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing LegalServer, CT Judicial, monday.com, SharePoint, MS365 email, Outlook draft, and local cron capabilities were hardened and combined into more resilient production workflows.
+
+====================================================
+2026-06-11 (Session 45 — YULAA retry guardrails, LegalServer IFAR cleanup, and WHPS registration checker)
+====================================================
+
+YULAA HOURLY RETRY AND FINALIZER HARDENING
+- Fixed the YULAA finalizer's monday.com verification step after the monday.com `items(ids: [...])` GraphQL query failed on large ID batches.
+- Patched verification to use smaller 25-item chunks after testing showed larger chunks either crashed or returned incomplete results.
+- Temporarily disabled the local hourly YULAA retry cron during the repair/rerun window, then restored and verified the cron entry afterward:
+  - `0 * * * * /home/aiadmin/.openclaw/workspace/tmp/yulaa_hourly_invalid_retry.sh`
+- Reran the YULAA finalizer successfully and verified the clean result:
+  - 161 imported/updated monday.com items.
+  - 161 of 161 monday.com rows verified.
+  - 161 LegalServer results.
+  - 0 processing errors.
+- Uploaded the corrected SharePoint `YULAA Project/LOG - YULAA Exceptions.docx` and sent the status email to Matt and Ally.
+
+YULAA DELIVERY SAFETY GUARD
+- Added a safety guard so hourly invalid/not-found retry runs cannot overwrite the canonical SharePoint LOG or email a misleading result when final processing errors remain.
+- Patched the YULAA finalizer to honor `YULAA_SKIP_DELIVERY_ON_PROCESSING_ERRORS=1`:
+  - If final processing has remaining errors, the run writes a local summary.
+  - SharePoint upload and email delivery are skipped for that errored retry result.
+- Patched the local hourly retry wrapper to set this guard variable automatically.
+- Verified syntax and restored a clean canonical LOG/email result after the guarded change.
+
+LEGALSERVER REPORT 7813 IFAR NOTE-TYPE CLEANUP
+- Completed an approved live LegalServer note-type cleanup for refreshed report 7813.
+- Pulled the authenticated report export and narrowed the update to verified Emma Lopez-created notes currently marked `Case Notes`.
+- Dry-run matched target notes by matter and creator while excluding unrelated live Case Notes in the same matters.
+- After Matt confirmed live execution, updated 233 notes from `Case Notes` to `IFAR` via the LegalServer notes API.
+- Verified all 233 targeted notes as IFAR with 0 errors and preserved privacy by not printing or storing note bodies.
+
+WHPS 2026-2027 REGISTRATION CHECKER
+- Created a new OpenClaw cron job to watch for West Haven Public Schools general/non-kindergarten 2026-2027 new student registration opening.
+- Job name: `WHPS 2026-2027 new student registration checker`.
+- Schedule: daily at 8:00 AM America/New_York.
+- Guardrail: do not treat the separate 26-27 Kindergarten Registration page as success.
+- Success behavior: notify Matt through allowed safe channels with the correct registration link, then disable/remove the checker after notification.
+
+CAPABILITY ADDED
+- Rocky can now run YULAA hourly retry finalization with a delivery guard that prevents errored retry runs from replacing the canonical SharePoint LOG or sending misleading emails.
+- Rocky can verify larger monday.com result sets more safely by chunking item lookups into smaller batches.
+- Rocky can create targeted website-monitoring cron jobs for time-sensitive personal/administrative needs, with explicit success criteria and safe notification/removal behavior.
+- Rocky can continue creator-scoped LegalServer note-type cleanups using exact matching, dry-run review, explicit approval, live update verification, and privacy-preserving audit output.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing LegalServer, monday.com, SharePoint, MS365 email, CT Judicial, local cron, and OpenClaw cron capabilities were hardened and extended into safer recurring operations.
