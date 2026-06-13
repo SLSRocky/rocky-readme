@@ -2146,3 +2146,36 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing LegalServer, monday.com, SharePoint, MS365 email, CT Judicial, local cron, and OpenClaw cron capabilities were hardened and extended into safer recurring operations.
+====================================================
+2026-06-12 (Session 46 — YULAA hourly retry optimization and duplicate-processing guard)
+====================================================
+
+YULAA HOURLY RETRY OPTIMIZATION
+- Hardened the local YULAA hourly invalid/not-found retry flow so already-processed eligible cases are not rechecked or redelivered every hour.
+- Patched the YULAA finalizer to live-check LegalServer custom fields before final eligible-case processing:
+  - `yulaa_yes_no_471`
+  - `yulaa_processed_date_472`
+- Added logic to skip eligible cases that are already marked processed in LegalServer.
+- Added logic to skip terminal no-docket writebacks that are already marked processed.
+- Made monday.com verification handling safer when there are no Monday items to verify.
+- Added `already_processed_skipped_count` to YULAA run summaries for clearer auditability.
+
+DELIVERY GUARDRAIL
+- Patched the hourly retry wrapper to set `YULAA_SKIP_DELIVERY_ON_NO_NEW=1`.
+- With that guard enabled, hourly retry runs skip SharePoint LOG upload and email delivery when there are no newly processed cases.
+- This prevents repeated hourly emails/LOG refreshes when the retry job only rediscovers cases already marked complete.
+
+VERIFICATION
+- Verified Python syntax with `py_compile`.
+- Verified shell wrapper syntax with `bash -n`.
+- Spot-checked the first 10 current eligible LegalServer cases and confirmed all were already marked processed with processed date `2026-06-12`.
+
+CAPABILITY ADDED
+- Rocky can now run YULAA hourly retry maintenance with duplicate-processing detection based on LegalServer processed flags.
+- Rocky can suppress no-new-work YULAA hourly deliveries while still keeping local retry/audit behavior available.
+- YULAA run summaries now expose skipped already-processed counts, making recurring retry runs easier to interpret.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing LegalServer, monday.com, SharePoint/email delivery, and local cron capabilities were hardened to reduce duplicate checks and noisy retry output.
+
