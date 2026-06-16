@@ -2178,4 +2178,31 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing LegalServer, monday.com, SharePoint/email delivery, and local cron capabilities were hardened to reduce duplicate checks and noisy retry output.
+====================================================
+2026-06-15 (Session 47 — YULAA weekly delivery and report filter hardening)
+====================================================
 
+YULAA WEEKLY JUDICIAL EXTRACTION DELIVERY
+- Verified the weekly YULAA run artifact for the June 15 12:00 UTC scheduled batch.
+- Confirmed there were no new LegalServer imports or updates in that run:
+  - report rows reviewed: 5,774
+  - already-processed cases skipped: 161
+  - final imported/updated count: 0
+  - processing errors after retry: 0
+- Regenerated the SharePoint LOG document locally with Last Run Date `2026-06-15 12:00 UTC`.
+- Uploaded the refreshed `YULAA Project/LOG - YULAA Exceptions.docx` to SharePoint.
+- Emailed the updated LOG attachment to the approved recipients only: Matt Dugan and Ally Stratos.
+- Confirmed the delivery step performed no LegalServer writes.
+
+YULAA REPORT FILTER HARDENING
+- Found that the standalone read-only weekly runner could fail when the SharePoint `Project YULAA.txt` report URL included a blank LegalServer report filter parameter.
+- Patched the local weekly runner to sanitize/drop blank report filters before requesting the LegalServer report export.
+- Avoided hours of duplicate read-only crawling by stopping the restarted standalone runner once the already-complete guarded batch result was verified and delivered.
+
+CAPABILITY ADDED
+- Rocky can now tolerate blank LegalServer report-filter parameters in the standalone YULAA weekly runner by sanitizing the report URL before export requests.
+- Rocky can safely deliver a no-new-cases weekly YULAA LOG update while preserving the no-write delivery guarantee.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing LegalServer, CT Judicial, SharePoint, MS365 email, and YULAA cron/reporting capabilities were maintained and hardened.
