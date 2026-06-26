@@ -2206,3 +2206,25 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing LegalServer, CT Judicial, SharePoint, MS365 email, and YULAA cron/reporting capabilities were maintained and hardened.
+
+====================================================
+2026-06-25 (Session 48 — YULAA housing subsidy tag support and retry cron restoration)
+====================================================
+
+YULAA HOUSING SUBSIDY DETECTION HARDENING
+- Added `#HS` as an alternate IFAR note tag for YULAA housing subsidy detection.
+- Updated the local YULAA production, finalization, weekly-run, documentation, and single-case read-only scripts so IFAR notes containing either `#housingsubsidy#` or `#HS` count as housing subsidy Yes.
+- Preserved the existing Legal Problem Code 61/64 housing-subsidy logic alongside the new shorthand tag support.
+- Verified the patched Python files with `py_compile` and a tag-regex smoke test.
+
+YULAA RUN/CRON STATUS
+- Started a full YULAA production rerun, but it was interrupted before batch output/finalizer completion; no completion summary or delivery should be assumed from that interrupted run.
+- Re-enabled the hourly invalid retry cron after the interrupted run so normal retry maintenance could resume.
+
+CAPABILITY ADDED
+- Rocky can now recognize both the long-form `#housingsubsidy#` marker and the shorthand `#HS` marker when determining YULAA housing subsidy status from IFAR notes.
+- YULAA hourly invalid retry maintenance was restored after the interrupted production rerun.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing LegalServer, CT Judicial, YULAA local automation, and local cron capabilities were hardened and maintained.
