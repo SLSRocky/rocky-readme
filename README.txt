@@ -2228,3 +2228,27 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing LegalServer, CT Judicial, YULAA local automation, and local cron capabilities were hardened and maintained.
+
+====================================================
+2026-06-26 (Session 49 — YULAA NONE docket watchlist workflow)
+====================================================
+
+YULAA NONE DOCKET WORKFLOW HARDENING
+- Changed the local YULAA workflow so literal `docket_url_174 = NONE` cases are no longer treated as immediately processed terminal cases.
+- Added a local watchlist-backed review flow for NONE docket cases using `tmp/yulaa_none_docket_watchlist.json`.
+- The batch worker now checks watched NONE cases against CT Judicial exact name/address matching at 30, 60, and 90 days from first seen.
+- If a Judicial match is found during a watchlist check, the workflow writes the discovered docket URL back through the existing exact-match docket URL path.
+- Only after the 90-day check finds no match does the workflow emit the terminal `terminal_no_docket_url_none` outcome.
+- Updated the finalizer so it maintains the local watchlist and marks terminal NONE cases processed only after the 90-day no-match result.
+
+VERIFICATION
+- Verified updated Python files with `py_compile`.
+- Ran a synthetic smoke test confirming newly seen NONE docket cases are not due immediately and that a 90-day watched case is due for review.
+
+CAPABILITY ADDED
+- Rocky can now defer and recheck YULAA cases whose LegalServer docket URL field is explicitly `NONE`, reducing premature terminal processing when a docket may appear later.
+- YULAA NONE docket handling now has an auditable local watchlist and staged 30/60/90-day CT Judicial review logic.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing LegalServer, CT Judicial, and YULAA local automation capabilities were hardened with safer delayed-review behavior.
