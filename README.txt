@@ -2252,3 +2252,29 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing LegalServer, CT Judicial, and YULAA local automation capabilities were hardened with safer delayed-review behavior.
+
+====================================================
+2026-06-27 (Session 50 — YULAA full rerun monitoring and continuity checkpoint)
+====================================================
+
+YULAA FULL RERUN STATUS CHECKPOINT
+- Checked the active local YULAA full rerun after Matt asked for status in Discord.
+- Confirmed the rerun had started around 2026-06-27 00:22 UTC and was still in the batch-worker phase.
+- Snapshot during the session:
+  - 5,758 total report rows in the batch manifest.
+  - About 3,550 rows processed (~61.7%).
+  - 188 eligible cases found so far.
+  - 3,361 skipped cases so far.
+  - 1 worker error caused by a malformed docket URL value with no URL scheme.
+- Clarified that the mid-run eligible count had not yet been processed into monday.com.
+- Verified that monday.com writes occur later in `tmp/yulaa_finalize_batches.py` after workers complete, not during worker discovery.
+
+CONTINUITY AND FOLLOW-UP
+- Wrote a reset-safe session checkpoint to local memory for continuity before Matt reset the active Discord session.
+- Scheduled a one-shot read-only follow-up check for 2026-06-27 06:15 UTC to inspect whether the run completed, finalized, or hit a blocker.
+- The follow-up was configured to notify Matt only if there was a meaningful change.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- No new production write capability was added today.
+- Existing YULAA monitoring, memory checkpointing, and OpenClaw cron follow-up capabilities were used to preserve run continuity during a long-running production rerun.
