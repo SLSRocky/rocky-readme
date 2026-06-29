@@ -2278,3 +2278,42 @@ CAPABILITY STATUS
 - No new external platform connection was added today.
 - No new production write capability was added today.
 - Existing YULAA monitoring, memory checkpointing, and OpenClaw cron follow-up capabilities were used to preserve run continuity during a long-running production rerun.
+
+====================================================
+2026-06-28 (Session 51 — YULAA resumable finalizer hardening and MCP planning)
+====================================================
+
+YULAA RESUMABLE FINALIZER HARDENING
+- Hardened the YULAA full-rerun finalization path after the June 27 507-case rerun exposed fragility in the old finalizer timeout model.
+- Added durable per-case checkpoint directories for final-prepped cases, monday.com import/update results, and LegalServer write-back results.
+- Added progress logging to `tmp/yulaa_batch/finalizer_state/progress.jsonl` so long finalizer runs can be inspected and resumed safely after interruption.
+- Added `tmp/yulaa_run_finalizer_resumable.sh`, a guarded runner with a lockfile, timestamped stdout/stderr logs, metadata capture, and exit-code recording.
+- Patched the full-rerun orchestrator so future reruns call the resumable runner instead of the old 30-minute timeout finalizer subprocess.
+- Verified the patched Python and shell files with syntax/smoke checks.
+
+YULAA 507-CASE RERUN COMPLETION
+- Ran the hardened finalizer against the interrupted 507-case rerun.
+- First pass successfully imported/updated 493 cases in monday.com, wrote back 493 cases to LegalServer, uploaded the SharePoint LOG, and emailed Matt and Ally.
+- Retried the 14 remaining transient Judicial/final-prep connection failures through the same resumable finalizer path.
+- Final durable state reached 507/507 final-prepped, 507/507 monday.com imported/updated, and 507/507 LegalServer write-backed.
+- Confirmed no active finalizer process remained after completion.
+
+MCP INTERNAL TOOLING PLANNING
+- Researched whether existing open-source Zoom MCP servers cover Zoom Contact Center.
+- Found generic/meeting-focused Zoom MCP projects, but no ready-made open-source Zoom Contact Center MCP suitable for SLS-CT needs.
+- Inspected Zoom's official plugin/API references and confirmed broad Zoom Contact Center API coverage for queues, users, recordings, engagements, reports, dispositions, flows, roles, routing profiles, skills, teams, variables, and related objects.
+- Recommended building a narrow internal read-only Zoom Contact Center MCP instead of trusting a broad third-party Zoom MCP.
+- Drafted and emailed Matt recommended steps for a Zoom Contact Center MCP.
+- Planned a privacy-first internal LegalServer MCP starting read-only against demo, with allowlisted tools, shaped/minimum-necessary responses, hard limits, no generic endpoint caller, and no writes in v1.
+- Drafted and emailed Matt recommended steps for a LegalServer MCP.
+
+CAPABILITY ADDED
+- Rocky can now resume long YULAA finalizer runs using durable per-case checkpoints rather than restarting or relying on a single long process.
+- YULAA full-rerun finalization now has lock/log/meta/exit capture and an auditable progress trail.
+- Rocky can recover transient YULAA final-prep failures through targeted retry passes while preserving already-completed monday.com and LegalServer work.
+- Rocky has a concrete implementation plan for internal read-only MCP servers for Zoom Contact Center and LegalServer, with privacy and scope guardrails appropriate for SLS-CT data.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing LegalServer, monday.com, SharePoint, MS365 email, CT Judicial, and local YULAA automation capabilities were hardened and extended.
+- MCP work today was research and implementation planning only; no production MCP server was deployed yet.
