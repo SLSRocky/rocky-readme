@@ -2317,3 +2317,23 @@ CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing LegalServer, monday.com, SharePoint, MS365 email, CT Judicial, and local YULAA automation capabilities were hardened and extended.
 - MCP work today was research and implementation planning only; no production MCP server was deployed yet.
+
+====================================================
+2026-06-29 (Session 52 — MCP shareable-core standard)
+====================================================
+
+MCP REPOSITORY AND CONFIGURATION STANDARD
+- Established a durable build standard for future MCP work so internal MCP servers can live in GitHub and be shared later if appropriate.
+- Defined the preferred pattern as a shareable MCP core plus an SLS private configuration pack:
+  - Core repo: generic MCP server framework, tool definitions, documentation, install/run instructions, `.env.example`, and mock/sample data only.
+  - Private config: tenant IDs, API URLs, credentials, SLS-specific field mappings, workflow rules, logs, and real organizational/client data.
+- Applied the standard to planned LegalServer/Zoom-style MCPs so SLS-CT needs can be met without exposing private data, secrets, or organization-specific workflows.
+- Set the expectation that any MCP repo should start private, keep secrets and real data out of GitHub, and defer public licensing/sharing decisions until reviewed.
+
+CAPABILITY ADDED
+- Rocky now has a reusable GitHub-safe MCP project pattern for building internal tools without mixing shareable framework code with SLS-CT-specific sensitive configuration.
+- Future LegalServer, Zoom Contact Center, and similar MCP projects can be structured for safer collaboration, cleaner documentation, and easier private/public separation.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing GitHub planning, LegalServer MCP planning, and Zoom Contact Center MCP planning were hardened with a privacy-first repository/configuration standard.
