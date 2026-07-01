@@ -2337,3 +2337,35 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing GitHub planning, LegalServer MCP planning, and Zoom Contact Center MCP planning were hardened with a privacy-first repository/configuration standard.
+
+====================================================
+2026-06-30 (Session 53 — GHLA alert hardening and LSWork activity report)
+====================================================
+
+GHLA REJECTED-TRANSFER ALERT HARDENING
+- Investigated why a GHLA rejected-transfer email around 4:29 AM ET did not generate a Zoom Team Chat alert.
+- Confirmed the local alert wrapper only runs Monday-Friday during business hours, and the first morning poll saw no rows because the LegalServer report row had already disappeared.
+- Updated the GHLA alert design so the LegalServer report can show recent rejection events from the past 7 days while Rocky performs durable script-side de-duplication.
+- Patched `ghla_rejected_transfer_alerts/poll_ghla_rejected_transfers.py` to keep sent-alert state in `ghla_rejected_transfer_alerts/out/sent_alerts.json` by default.
+- Added default-on `GHLA_ALERT_DEDUPE` behavior plus `GHLA_ALERT_STATE_PATH` override support.
+- Built alert keys from matter/case URL, rejection timestamp when present, and reject-reason fields, then records successful Zoom posts immediately to prevent duplicate alerts.
+- Updated `ghla_rejected_transfer_alerts/README.md` with the 7-day report requirement and the need for a stable rejection timestamp/date field when possible.
+- Verified the updated script with syntax check and dry-run; no Zoom post was sent during the dry-run.
+
+LSWORK ACTIVITY REPORT
+- Built `scripts/lswork_activity_report.py`, a request-run LegalServer reporting script for LSWork activity review.
+- The script accepts a LegalServer login, runs the Case List For Last Activity report, keeps open cases with blank close dates, checks app-log activity per matter Database ID, filters rows to the selected login, and keeps the latest 5 entries per case.
+- Sends a privacy-minimized HTML summary email to `mdugan@slsct.org` only when run with `--send`; dry-runs do not email.
+- Moved LSWork report API keys into local `.openclaw/legalserver.env` values instead of hardcoding them in the script.
+- Documented the important XML parsing detail that the case-list report has two `<id>` fields: the first is staff/user id and the second is the matter Database ID.
+- Dry-run and sent run for login `jcaez` completed successfully; Microsoft Graph sendMail returned 202.
+
+CAPABILITY ADDED
+- GHLA rejected-transfer Zoom Team Chat alerts can now catch overnight or recently rejected cases once, even when the LegalServer report shows a rolling multi-day window.
+- GHLA alerting now has durable de-duplication state and configurable state-file behavior.
+- Rocky can now generate and email a focused LSWork activity summary for a specific LegalServer login, using LegalServer report APIs and Microsoft Graph email delivery.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing LegalServer report API, Zoom Team Chat alerting, local automation, and Microsoft Graph email capabilities were hardened and extended.
+- No LegalServer write actions were performed for the LSWork report work.
