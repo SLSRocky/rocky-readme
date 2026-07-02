@@ -2369,3 +2369,40 @@ CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing LegalServer report API, Zoom Team Chat alerting, local automation, and Microsoft Graph email capabilities were hardened and extended.
 - No LegalServer write actions were performed for the LSWork report work.
+
+====================================================
+2026-07-01 (Session 54 — June Funnel report and Staff ISP monthly automation)
+====================================================
+
+JUNE FUNNEL REPORT DELIVERY
+- Processed the June 2026 Monthly Funnel Report after confirming June outputs had not been generated yet.
+- Ran the local funnel report automation for year 2026 / month 6.
+- Generated June raw data under `funnel_reports/raw_data/2026-06/` and June report outputs under `funnel_reports/output/`.
+- Created an Outlook draft in `mdugan@slsct.org` with subject `Updated Monthly Funnel Report` and two chart PDF attachments:
+  - `SLS Hotline - Monthly Funnel Report - June 2026.pdf`
+  - `RTC - Monthly Funnel Report - June 2026.pdf`
+- Final June funnel stage counts:
+  - SLS: Stage 1 9,227; Stage 2 8,578; Stage 3 2,541; Stage 4 1,857.
+  - RTC: Stage 1 2,207; Stage 2 2,021; Stage 3 731; Stage 4 589.
+
+STAFF ISP / ZOOM SIGN-IN-OUT REPORTING
+- Recalled and documented the existing Staff ISP Reports workflow for Zoom sign-in/sign-out activity enrichment.
+- Generated and uploaded the June 2026 Staff ISP report to MattRocky SharePoint folder `Staff ISP Reports`:
+  - File: `June 2026 - processed_ip_data.xlsx`
+  - Rows: 1,850
+  - Unique IPs: 180
+  - Blank providers: 0
+  - Sign-ins: 1,575
+  - Sign-outs: 275
+- Added monthly wrapper script `cron_monthly_staff_isp_report.sh`, which defaults to the previous calendar month and logs to `logs/staff_isp_report.log`.
+- Created OpenClaw cron job `staff-isp-monthly-report` (`97e4e9ea-f7fb-433c-b6ba-71ee6f50bf4c`) scheduled for `0 7 1 * *` in `America/New_York`, matching the monthly RTC report cadence.
+- The Staff ISP monthly cron will process and upload the previous full calendar month, with Discord announce delivery to Matt's channel.
+
+CAPABILITY ADDED
+- Rocky can now run the Staff ISP / Zoom Sign-In-Out report automatically every month without a manual request.
+- Staff ISP reporting is now aligned with the existing monthly RTC report schedule and uses a reusable wrapper plus persistent logging.
+- Rocky can generate the Staff ISP workbook for a completed month and upload it directly to the approved MattRocky SharePoint folder.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing Zoom activity reporting, SharePoint upload, Microsoft Graph draft-email, and OpenClaw cron capabilities were used and extended.
