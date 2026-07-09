@@ -2469,3 +2469,49 @@ CAPABILITY STATUS
 - No new external platform connection was added today.
 - No new production automation was added today.
 - Existing AssetPanda read-only inventory and attachment-query capabilities were used to produce a targeted missing-documentation report.
+
+====================================================
+2026-07-08 (Session 58 — Ally runtime fix and LSWork report enhancements)
+====================================================
+
+ALLY DISCORD / CODEX RUNTIME FIX
+- Repaired Ally's Discord channel connection after finding `openclaw-ally.service` was running from the effective profile rooted at `/home/aiadmin/.openclaw-ally/.openclaw-ally`.
+- Installed the missing `@openclaw/discord` plugin into Ally's effective profile and restarted the aiadmin-owned service process so systemd brought it back cleanly.
+- Verified Ally's Discord integration loaded and resolved the configured guild/channel:
+  - Guild: SLS Adrian
+  - Channel: ally-chatwithadrian
+- Fixed Ally's model/runtime configuration after responses failed with `Unknown model: openai-codex/gpt-5.4`.
+- Updated Ally's effective OpenClaw config to use the `openai` provider model shape with Codex runtime:
+  - Default model: `openai/gpt-5.4`
+  - Secondary model: `openai/gpt-5.5`
+  - Runtime: `codex`
+  - OAuth profile: `openai:astratos@slsct.org`
+- Restarted Ally and verified logs showed the corrected model, Discord channel resolution, and successful bot probe.
+
+LSWORK ACTIVITY REPORT ENHANCEMENTS
+- Reran the LSWork activity summary for Jonathan Caez (`jcaez`) through 2026-07-02 end-of-day Eastern Time.
+- Updated `scripts/lswork_activity_report.py` so the report can be reused for other employees with an explicit `--through YYYY-MM-DD` cutoff.
+- Enhanced the generated report by:
+  - Removing the privacy-note paragraph.
+  - Renaming the visible case column to `Case ID`.
+  - Making each Case ID a clickable LegalServer matter-profile link using the matter database ID.
+  - Calculating report ages relative to the selected cutoff date.
+- Generated a revised linked PDF and created a new Outlook draft in `mdugan@slsct.org` with the revised PDF attached.
+- Created pending Skill Workshop proposal `lswork-activity-summary-20260708-33e4e4a749` to preserve the reusable procedure for future employee requests.
+- No LegalServer writes were performed for this report work.
+
+POWER BI FILE TOOLING RESEARCH
+- Researched server-side options for Rocky to inspect or work with Power BI files on the Linux server.
+- Identified `pbixray` as the best first read-only candidate for PBIX inspection and documentation.
+- Identified DuckDB's `pbix` extension, `pbi-tools.core`, Microsoft's Power BI modeling MCP, and Tabular Editor CLI as possible later additions depending on sandboxing and workflow needs.
+- Confirmed current server fit: Node and Python are installed; .NET and DuckDB are not installed.
+
+CAPABILITY ADDED
+- Ally's OpenClaw/Discord/Codex runtime can now receive and respond in Adrian's Discord channel again.
+- Rocky can now rerun LSWork activity summaries for arbitrary LegalServer logins through an explicit historical cutoff date.
+- LSWork activity PDFs now support clickable LegalServer case links and cleaner employee-facing formatting.
+- Rocky has a documented path for adding read-only Power BI PBIX inspection capability, starting with local `pbixray` testing.
+
+CAPABILITY STATUS
+- No new external SLS-CT data platform connection was added today.
+- Existing OpenClaw, Discord, Codex runtime, LegalServer report API, Microsoft Graph draft-email, and local reporting capabilities were repaired or extended.
