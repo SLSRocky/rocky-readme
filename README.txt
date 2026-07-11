@@ -2515,3 +2515,36 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - No new external SLS-CT data platform connection was added today.
 - Existing OpenClaw, Discord, Codex runtime, LegalServer report API, Microsoft Graph draft-email, and local reporting capabilities were repaired or extended.
+
+====================================================
+2026-07-10 (Session 59 — Zoom Contact Center MCP scaffold and live read-only test)
+====================================================
+
+ZOOM CONTACT CENTER MCP SCAFFOLD
+- Created `zoom-contact-center-mcp/` as a separate Node/TypeScript stdio MCP project for Zoom Contact Center access.
+- Kept local credentials outside the project in `tools/zoom-contact-center-mcp.env`; `.env.example` contains only variable names.
+- Implemented the first read-only MCP tools:
+  - `list_contact_center_queues`
+  - `search_contact_center_engagements`
+  - `get_contact_center_engagement`
+- Enforced a read-only safety posture with `ZOOM_MCP_ACCESS_MODE`; no generic arbitrary Zoom API caller was added.
+- Responses are compact summaries rather than full raw Zoom API dumps.
+
+LIVE READ-ONLY TESTING
+- Matt added the missing Zoom Contact Center scopes and asked Rocky to run the live test.
+- Adjusted access-mode parsing so `readonly`, `read_only`, and `read-only` spellings are accepted, including quoted env-file values.
+- Built and typechecked the project successfully.
+- Verified the MCP over stdio with live Zoom credentials:
+  - Listed all 3 MCP tools.
+  - Queue listing returned 5 queues with another page available.
+  - Engagement search returned 1 engagement summary with another page available.
+  - Engagement detail lookup returned successfully.
+- No queue names, phone numbers, engagement IDs, or client/caller details were posted to Discord.
+
+CAPABILITY ADDED
+- Rocky now has a working internal Zoom Contact Center MCP scaffold that can expose read-only ZCC queue and engagement lookup tools to MCP-capable clients.
+- The MCP is built to grow from Matt's real operational workflows while preserving privacy-first defaults.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing Zoom Contact Center OAuth access was packaged into a safer, reusable read-only MCP interface.
