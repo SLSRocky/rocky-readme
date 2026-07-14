@@ -2548,3 +2548,54 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing Zoom Contact Center OAuth access was packaged into a safer, reusable read-only MCP interface.
+
+====================================================
+2026-07-13 (Session 60 — YULAA analysis and Zoom Contact Center MCP expansion)
+====================================================
+
+YULAA MONDAY.COM DATA ANALYSIS
+- Matt provided four YULAA Monday.com Excel exports in SharePoint folder `Documents/YULAA Project/For Analysis`.
+- Downloaded and analyzed the 2023, 2024, 2025, and 2026 exports read-only.
+- Built a local aggregate workbook:
+  - `/home/aiadmin/.openclaw/workspace/tmp/yulaa_monday_analysis/aggregate_tables.xlsx`
+- Summarized key relationships between first-disposition outcomes and factors such as pre-disposition SLS advice, housing subsidy, nuisance/lease/crime-count issues, attorney appearance, and legal-services referral status.
+- Identified 7 data-quality cases with negative `Length of Stay of Execution`.
+- Created and uploaded `YULAA Negative Stay Length Data Quality Cases.xlsx` to the same SharePoint analysis folder with the affected rows and a summary sheet.
+
+ZOOM CONTACT CENTER MCP EXPANSION
+- Expanded the internal read-only Zoom Contact Center MCP in:
+  - `/home/aiadmin/.openclaw/workspace/zoom-contact-center-mcp`
+- Registered it with OpenClaw as managed MCP server `zoom-contact-center`.
+- Added wrapper `run-openclaw.sh` so the MCP sources credentials from `tools/zoom-contact-center-mcp.env` without committing secrets.
+- Verified OpenClaw MCP probing reports 11 Zoom Contact Center tools.
+- Validated representative live read-only queries, including phone-number search, missed-call lookup, and hold-time lookup.
+- Confirmed design boundaries:
+  - OpenClaw-hosted only for future bot instances.
+  - Read-only.
+  - No recordings or transcripts.
+  - Queue aliases come from Zoom queue names.
+  - Missed, abandoned, declined, and system disconnect categories stay separate.
+  - Relative-date handling uses `America/New_York`.
+- Remaining Zoom scopes needed for future expansion:
+  - `contact_center:read:dataset_queue_performance:admin` for queue wait/performance data.
+  - `report:read:user_activities:admin` for login activity.
+
+ALLY ZOOM MCP ACCESS
+- Added the `zoom-contact-center` managed MCP server to Ally's effective OpenClaw profile:
+  - `/home/aiadmin/.openclaw-ally/.openclaw-ally/openclaw.json`
+- Updated Ally's durable `TOOLS.md` and `MEMORY.md` instructions so Zoom Contact Center questions should try the OpenClaw-managed MCP first.
+- Preserved safety guidance for Ally: minimum-necessary summaries, no recordings/transcripts, and separated missed/abandoned/declined/system-disconnect categories.
+- Verified Ally's profile probe reports `zoom-contact-center: 11 tools`.
+- Restarted Ally's aiadmin-owned service process after interactive auth blocked direct `systemctl restart`; systemd restarted `openclaw-ally.service` successfully.
+- Verified Discord resolution for Ally's channel `ally-chatwithadrian`.
+
+CAPABILITY ADDED
+- Rocky now has an expanded internal read-only Zoom Contact Center MCP registered as an OpenClaw-managed server.
+- Ally can now use the same Zoom Contact Center MCP from her Discord/OpenClaw runtime.
+- Rocky and Ally have durable instructions to prefer the MCP for Zoom Contact Center data questions while minimizing sensitive data exposure.
+- Rocky can now produce aggregate YULAA Monday.com analysis from exported Excel workbooks and return targeted data-quality workbooks through the approved SharePoint folder.
+
+CAPABILITY STATUS
+- Existing SharePoint, Monday.com export analysis, Zoom Contact Center OAuth, OpenClaw managed MCP, Ally OpenClaw, and Discord runtime capabilities were used or extended.
+- No LegalServer writes were performed for the YULAA analysis work.
+- The new Zoom MCP surface remains read-only and does not expose recordings or transcripts.
