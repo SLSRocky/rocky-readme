@@ -2599,3 +2599,33 @@ CAPABILITY STATUS
 - Existing SharePoint, Monday.com export analysis, Zoom Contact Center OAuth, OpenClaw managed MCP, Ally OpenClaw, and Discord runtime capabilities were used or extended.
 - No LegalServer writes were performed for the YULAA analysis work.
 - The new Zoom MCP surface remains read-only and does not expose recordings or transcripts.
+
+====================================================
+2026-07-14 (Session 61 — Zoom MCP question logging and gap tracking)
+====================================================
+
+ZOOM CONTACT CENTER MCP QUESTION LOGGING
+- Added MCP-owned append-only question/outcome logging to `zoom-contact-center-mcp/src/index.ts`.
+- Every Zoom Contact Center MCP tool call now writes a privacy-minimized JSONL entry to:
+  - `logs/zoom-mcp-question-log.jsonl`
+- Added an optional `question` argument to all Zoom MCP tools so agents can preserve the original natural-language Zoom question for later gap analysis.
+- Log entries include tool name, sanitized arguments, outcome (`answered` or `gap`), result counts/status, missing-scope markers, errors, and duration.
+- Phone numbers and engagement IDs are redacted or hashed in local log output.
+- Added human-facing documentation at:
+  - `logs/ZOOM_MCP_QUESTION_LOG.md`
+  - `zoom-contact-center-mcp/README.md`
+- Updated workspace guidance in `AGENTS.md` so Zoom Contact Center questions should try the shared MCP first and rely on the MCP log for unanswered-question improvement tracking.
+
+VERIFICATION
+- Rebuilt the Zoom Contact Center MCP with `npm run build`.
+- Reloaded OpenClaw MCP runtimes with `openclaw mcp reload`.
+- Verified direct MCP logging through `run-openclaw.sh`.
+- Confirmed a verification entry was appended at `2026-07-14T14:02:39Z`.
+
+CAPABILITY ADDED
+- Rocky now has a durable, shared source of truth for Zoom Contact Center MCP question outcomes and capability gaps across agents that use the shared MCP.
+- Future Zoom MCP improvement work can be based on accumulated local gap logs instead of relying only on chat history.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing OpenClaw managed-MCP, Zoom Contact Center, workspace instruction, and local logging capabilities were extended.
