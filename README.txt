@@ -2689,3 +2689,20 @@ CAPABILITY STATUS
 - New scoped external platform access was added for Grace: Zoom Contact Center MCP, MS365 Graph, SharePoint, Monday.com, LegalServer, and CT Judicial lookup.
 - Grace's configuration now has explicit Matt approval/change-control governance.
 - No Grace secrets are documented here; local credentials remain in locked-down env files.
+
+====================================================
+2026-07-16 (Session 63 — Runtime model confirmation)
+====================================================
+
+OPENCLAW / DISCORD RUNTIME CONFIRMATION
+- Matt asked whether the active Matt Discord session was using GPT 5.4 or GPT 5.5.
+- Confirmed from live OpenClaw status that the main Matt Discord channel session was running:
+  - Model: `gpt-5.5`
+  - Runtime: OpenAI Codex
+  - Session key: `agent:main:discord:channel:1486851314800398357`
+- Noted one configuration nuance: the short alias `gpt` still points to `openai/gpt-5.4`, while the active Matt Discord session and default path were on GPT 5.5.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- No new write-capable tool or data integration was added today.
+- Existing OpenClaw, Discord, and Codex runtime configuration was checked and documented.
