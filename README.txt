@@ -2629,3 +2629,63 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing OpenClaw managed-MCP, Zoom Contact Center, workspace instruction, and local logging capabilities were extended.
+
+====================================================
+2026-07-15 (Session 62 — Grace OpenClaw setup and governed platform access)
+====================================================
+
+GRACE OPENCLAW INSTANCE
+- Brought Grace's OpenClaw/Discord runtime into working order and verified Discord connectivity in the Grace/Moses channel.
+- Established and verified Rocky-to-Grace SSH administration for approved maintenance tasks.
+- Added a hard rule to Grace's instructions that Grace configuration/settings must not be changed without Matt's express approval for the specific change.
+- Added a Grace-to-Rocky approval handoff workflow:
+  - Grace queues Matt-approval requests locally.
+  - Rocky checks for new requests every 5 minutes.
+  - New requests are forwarded to Matt's Rocky Discord channel for approval.
+- Added plugin-approval forwarding from Grace to Rocky/Matt's channel for applicable OpenClaw approval prompts.
+- Updated the Security and Data Risk Log with Grace's approval process, Zoom MCP-first posture, and change-control expectations.
+
+GRACE ZOOM CONTACT CENTER MCP
+- Added the shared read-only Zoom Contact Center MCP to Grace's OpenClaw configuration.
+- Gave Grace a private MCP wrapper/env path and copied the MCP project into Grace's tool area so it does not depend on traversing Rocky's home directory.
+- Updated Grace's instructions to use the Zoom MCP first for Zoom Contact Center questions, summarize minimum-necessary results, and rely on the shared MCP question log for gaps.
+- Verified Grace's MCP probe reports 11 Zoom Contact Center tools.
+- Added Grace guidance for ambiguous Zoom metrics:
+  - Ask a concise clarifying question when scope could mean inbound vs all directions, handled calls vs all engagements, queue-specific vs engagement-wide values, or different timezone/date boundaries.
+  - Ask Moses about relevant queue/program scope when requests may span Main Hotline, RTC Hotline, Housing-English, RTC-Advocate, or related housing grant/program paths.
+
+GRACE MS365, SHAREPOINT, AND GRAPH
+- Matt created the `grace@slsct.org` mailbox and delegated access to Moses' mailbox/calendar.
+- Matt created a dedicated Microsoft Entra app for Grace with scoped mailbox access.
+- Rocky configured Grace's local MS365 env/helper with locked-down permissions.
+- Verified Grace's Graph access:
+  - Grace mailbox/calendar probes returned HTTP 200.
+  - Moses mailbox/calendar probes returned HTTP 200.
+  - Negative scope check against Matt's mailbox returned HTTP 403, confirming mailbox access is constrained.
+- Added SharePoint `Sites.Selected` access for Grace to the Moses/Grace shared SharePoint site only.
+- Verified Grace can resolve the site/document library, create/read/delete a temporary test file, and receives HTTP 403 against an unrelated Rocky/Matt SharePoint site.
+
+GRACE MONDAY.COM
+- Added Grace's Monday.com token to Grace's local locked-down env file and verified the token resolves as the Grace user.
+- Verified Grace can read board-level metadata for the YULAA Survey board.
+- Found Grace's Monday account/token could not yet read YULAA board columns, groups, or item IDs through the API, returning `403 UserUnauthorizedException`.
+- Documented that Monday board/API permissions remain the active loose end and that any token exposed in chat should be rotated after setup.
+
+GRACE LEGALSERVER AND CT JUDICIAL ACCESS
+- Installed Grace's read-only LegalServer env/helper with locked-down permissions.
+- Documented known report access for Grace, including LSWork case activity, LSWork app-log, and GHLA rejected-transfer report access.
+- Verified read-only LegalServer smoke checks and CT Judicial case-detail lookup.
+- Added Grace instructions for minimum-necessary LegalServer/Judicial summaries and no LegalServer writes.
+- Added guidance for temporary local SQLite request databases when a recurring or complex analysis warrants it.
+
+CAPABILITY ADDED
+- Grace now has governed, approved-change-only OpenClaw administration with Rocky/Matt approval handoff.
+- Grace can use the shared read-only Zoom Contact Center MCP as the first option for Zoom data requests.
+- Grace has scoped Microsoft Graph access for her mailbox, Moses' mailbox/calendar, and one shared SharePoint site.
+- Grace has initial read-only Monday.com and LegalServer/Judicial helper capability, with Monday board-detail permissions still pending.
+- Grace's Zoom-answering behavior now includes clarification rules for ambiguous metrics and housing/RTC queue scope.
+
+CAPABILITY STATUS
+- New scoped external platform access was added for Grace: Zoom Contact Center MCP, MS365 Graph, SharePoint, Monday.com, LegalServer, and CT Judicial lookup.
+- Grace's configuration now has explicit Matt approval/change-control governance.
+- No Grace secrets are documented here; local credentials remain in locked-down env files.
