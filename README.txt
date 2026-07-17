@@ -2691,7 +2691,7 @@ CAPABILITY STATUS
 - No Grace secrets are documented here; local credentials remain in locked-down env files.
 
 ====================================================
-2026-07-16 (Session 63 — Runtime model confirmation)
+2026-07-16 (Session 63 — Runtime model confirmation and post-restore health check)
 ====================================================
 
 OPENCLAW / DISCORD RUNTIME CONFIRMATION
@@ -2702,7 +2702,18 @@ OPENCLAW / DISCORD RUNTIME CONFIRMATION
   - Session key: `agent:main:discord:channel:1486851314800398357`
 - Noted one configuration nuance: the short alias `gpt` still points to `openai/gpt-5.4`, while the active Matt Discord session and default path were on GPT 5.5.
 
+POST-RESTORE SYSTEMS CHECK
+- Matt reported the Rocky host had been restored from backup around 2026-07-15 9 PM ET and asked for a verification pass.
+- Performed a read-only health check after the restore.
+- Verified the host was up with no failed system/user units, healthy memory, and about 15 GB free disk space.
+- Verified Rocky's OpenClaw gateway was running on loopback port 18789, Discord was connected, and the Zoom Contact Center MCP probe reported 11 tools.
+- Verified Grace's OpenClaw gateway was running on loopback port 18791, Discord was connected, Zoom MCP probe reported 11 tools, MS365 mailbox/calendar checks returned HTTP 200, and LegalServer smoke checks returned HTTP 200.
+- Verified OS cron and OpenClaw cron jobs were present and idle/OK as expected.
+- Confirmed late Grace setup artifacts from after the backup time appeared to have survived the restore.
+- Noted watch items: Ally OpenAI auth appeared expired, Rocky was back on GPT 5.5 after local GPT 5.6 model rejection, Grace remained on the newer OpenClaw/GPT 5.6 path, and the OCR/PB poller had several data-specific skipped/erroring queued items with no writes occurring.
+- No write actions or outbound message tests were performed during the health check.
+
 CAPABILITY STATUS
 - No new external platform connection was added today.
 - No new write-capable tool or data integration was added today.
-- Existing OpenClaw, Discord, and Codex runtime configuration was checked and documented.
+- Existing OpenClaw, Discord, Codex runtime, Zoom MCP, Grace runtime, MS365, LegalServer, cron, and local host health were checked and documented.
