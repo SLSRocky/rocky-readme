@@ -2717,3 +2717,52 @@ CAPABILITY STATUS
 - No new external platform connection was added today.
 - No new write-capable tool or data integration was added today.
 - Existing OpenClaw, Discord, Codex runtime, Zoom MCP, Grace runtime, MS365, LegalServer, cron, and local host health were checked and documented.
+
+====================================================
+2026-07-17 (Session 64 — Grace Zoom queue counts and LegalServer MCP source review)
+====================================================
+
+GRACE REAL-TIME ZOOM QUEUE COUNTS
+- Matt approved Moses' request for Grace to retrieve real-time Zoom Contact Center queue counts across the SLS hotline.
+- Added `get_realtime_queue_counts` to Rocky's `zoom-contact-center-mcp` source as a read-only, aggregate-only MCP tool.
+- Deployed the updated MCP source, README, and built dist files into Grace's private tool copy:
+  - `/home/graceai/.openclaw/tools/zoom-contact-center-mcp`
+- Created a Grace backup before deployment:
+  - `/home/graceai/.openclaw/tools/zoom-contact-center-mcp/backups/20260717T151856Z`
+- Updated Grace's MCP runner to write Zoom MCP question logs to Grace's local workspace log path:
+  - `/home/graceai/.openclaw/workspace/logs/zoom-mcp-question-log.jsonl`
+- Restarted Grace's `openclaw-gateway.service`; it returned active on loopback port `18791`.
+- Smoke-tested Grace's runner and confirmed 12 Zoom MCP tools, including `get_realtime_queue_counts`.
+- The real-time queue-count tool returned `status: unavailable` because Zoom's real-time queue analytics endpoint returned no live queue rows; the tool explicitly does not infer live waiting-call counts from historical engagement data.
+- Grace notified Moses that Matt approved the change and asked him to re-submit the request.
+
+LEGALSERVER MCP SOURCE PACK REVIEW
+- Matt asked Rocky to review the SharePoint folder `Legal Server MCP` on the MattRocky site.
+- Downloaded 31 files read-only to a local temp analysis area:
+  - 29 LegalServer report definition workbooks
+  - `MCP Report List & URLs.docx`
+  - `Logic for Training.txt`
+- Matched all 29 report-list entries to the 29 definition workbooks and inventoried 339 total defined columns.
+- Ran status-only LegalServer report probes with Rocky's live read-only bearer token.
+- Found 3 report URLs returned HTTP 200:
+  - Calendar Info
+  - Case Documents
+  - Staff Timeslips
+- Found 12 report URLs blocked by 401/report API key mismatch or `api_key=null`, including Case Info, Client Info, Case Timeslips, and several question/household/outreach reports.
+- Found 14 report URLs returned 400 invalid-filter errors, mostly stale or blank `matter_close_date` filters that are likely fixable in MCP URL/filter sanitization.
+- Confirmed Staff Timeslips should support Moses' daily time-total/gap-to-seven-hours request; Case Timeslips remains a separate blocked report.
+- Identified sensitive LegalServer fields in the source pack, including possible full SSN, DOB, phone, email, immigration/citizenship, DV/disability, income, assets, and expenses.
+
+GRACE LEGALSERVER TIMEKEEPING REQUEST
+- Moses asked Grace for LegalServer timekeeping access so Grace could total his daily recorded time and identify the gap to seven hours.
+- Grace queued the request to Matt and made no LegalServer settings, permission, or data changes.
+- Matt said to hold the request because Rocky was close to building the LegalServer MCP that should cover the need.
+
+CAPABILITY ADDED
+- Grace now has an approved read-only Zoom MCP tool for aggregate real-time queue-count requests, with local question logging and no caller-level details.
+- Rocky completed the first source-pack review for a future LegalServer MCP and identified usable reports, blocked reports, likely filter-sanitization fixes, and high-sensitivity fields requiring minimum-necessary summaries.
+
+CAPABILITY STATUS
+- Existing Grace OpenClaw, Zoom Contact Center MCP, SharePoint, and LegalServer report API capabilities were extended or analyzed.
+- No LegalServer writes were performed.
+- No Grace LegalServer access change was made for Moses' timekeeping request.
