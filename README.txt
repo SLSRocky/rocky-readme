@@ -2766,3 +2766,48 @@ CAPABILITY STATUS
 - Existing Grace OpenClaw, Zoom Contact Center MCP, SharePoint, and LegalServer report API capabilities were extended or analyzed.
 - No LegalServer writes were performed.
 - No Grace LegalServer access change was made for Moses' timekeeping request.
+
+====================================================
+2026-07-18 (Session 65 — LegalServer MCP source pack completed and clarified)
+====================================================
+
+LEGALSERVER MCP REPORT URL READINESS
+- Re-tested the refreshed SharePoint Word document `Legal Server MCP/MCP Report List & URLs.docx` from the MattRocky SharePoint site.
+- Confirmed all 29 intended LegalServer report URLs are reachable/readable with Rocky's live read-only LegalServer bearer token.
+- Confirmed the previously missing `Case Household Info` URL after Matt fixed the Word document; it returned HTTP 200 / XML for report load `8176`.
+- Confirmed `Staff Timeslips` works as-is; blank duplicate filter groups can be safely ignored or sanitized by the future MCP.
+- Preserved redacted local test output for build reference under the workspace temp area.
+
+LEGALSERVER MCP DEFINITION WORKBOOKS
+- Reviewed all 29 LegalServer MCP definition workbooks for build readiness, clarity, join keys, and sensitive-field handling.
+- Added scope definitions to the Case Timeslips and Staff Timeslips definition files:
+  - Case Timeslips: case/matter service time entries.
+  - Staff Timeslips: staff time across cases, outreach, and other service entries; best source for daily staff totals and gap-to-target calculations.
+- Added partner-program and Legal Files transfer context to Case Info, including CLS, NHLAA, GHLA, LFXferOffice meaning, and the expected future change as CLS/NHLAA move to LegalServer.
+- Added field-level sensitivity and minimum-necessary notes across all 29 Excel definition files for direct identifiers, SSN/DOB/contact information, immigration/citizenship, DV, disability/health, demographics, household, financial, document metadata, and free-text legal/case narrative fields.
+- Verified all 29 edited workbooks loaded successfully with `openpyxl` and key readbacks matched the intended changes.
+
+SHAREPOINT SOURCE PACK UPDATES
+- Matt approved replacing the SharePoint originals.
+- Uploaded all 29 edited `.xlsx` definition files back to the MattRocky SharePoint folder `Documents/Legal Server MCP/` by original Graph item ID.
+- First upload attempt hit one transient Microsoft Graph 503 after three files; a full retry completed successfully for all 29.
+- Downloaded SharePoint copies back and verified workbook contents cell-by-cell against the edited local copies.
+- SharePoint repackaged the `.xlsx` byte hashes, but sheet names, dimensions, and every populated cell value matched for all 29 workbooks.
+
+LEGALSERVER CATALOG REVIEW AND UPDATES
+- Reviewed Matt's new `Legal Server Catalog.docx` from the MattRocky SharePoint folder.
+- Confirmed `Matter/Case ID#` is the case-level join key across client, adverse party, notes, case questions, status history, documents, case timeslips, household, and financial reports.
+- Confirmed `Database ID`, when present, is the LegalServer object ID used for profile links.
+- Fixed the catalog's `Case Questions - Home & Community Base Care (54)` typo to match the workbook name `Case questions - Home & Community Based Care (54)`.
+- Added catalog notes for Case Documents (`Case ID`, no `Database ID`), Case Timeslips (`Database ID` direct link), Calendar (standalone/no case join key), Outreach Topics & Demographics (shared outreach `Database ID`), and Staff Timeslips (`Database ID` plus `Outreach Matter Name` case-link caution).
+- After Matt clarified Case Timeslips, updated both `(LSMCP) Case Timeslips.xlsx` and `Legal Server Catalog.docx` to state that the Case Timeslips `Database ID` is the timeslip database ID and should generate a link to that specific timeslip profile page.
+- Uploaded the catalog changes back to SharePoint and verified the readback text from SharePoint.
+
+CAPABILITY ADDED
+- The LegalServer MCP source pack is now substantially ready for implementation: all 29 report URLs are confirmed reachable, workbook definitions include minimum-necessary/sensitive-field guidance, and the catalog has clearer join-key and profile-link rules.
+- Rocky now has confirmed source documentation for using Staff Timeslips to answer daily staff time-total/gap-to-target requests without broadening Moses' or Grace's direct LegalServer access.
+
+CAPABILITY STATUS
+- Existing SharePoint, Microsoft Graph, LegalServer report API, and local workbook-processing capabilities were used and extended.
+- LegalServer report testing remained read-only.
+- SharePoint writes were performed only after Matt approved replacing the source documents.
