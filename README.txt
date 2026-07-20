@@ -2811,3 +2811,52 @@ CAPABILITY STATUS
 - Existing SharePoint, Microsoft Graph, LegalServer report API, and local workbook-processing capabilities were used and extended.
 - LegalServer report testing remained read-only.
 - SharePoint writes were performed only after Matt approved replacing the source documents.
+
+====================================================
+2026-07-19 (Session 66 — LegalServer report-backed MCP v1)
+====================================================
+
+LEGALSERVER REPORT-BACKED MCP
+- Built `legalserver-report-mcp/` as a read-only Node/TypeScript stdio MCP project modeled on the existing Zoom MCP safety pattern.
+- Generated a local report catalog from the approved Legal Server MCP source pack with all 29 LSMCP reports, load IDs, workbook-derived field descriptions, join-key notes, and sensitivity tags.
+- Added MCP tools:
+  - `list_legalserver_reports`
+  - `describe_legalserver_report`
+  - `query_legalserver_report`
+  - `search_legalserver_report`
+  - `find_legalserver_case_records`
+  - `get_legalserver_mcp_safety_notes`
+- Stored private LegalServer report export URLs/API keys in a locked-down local env file outside source control.
+- The OpenClaw runner sources the live LegalServer bearer token and the private report-MCP env file at runtime.
+
+SAFETY AND LOGGING
+- Confirmed the MCP is read-only and does not expose a generic LegalServer API caller or any write tools.
+- Added capped report results, default redaction for sensitive fields, local filtering/search, and minimum-necessary response behavior.
+- Added append-only minimized JSONL question/outcome logging at:
+  - `logs/legalserver-report-mcp-question-log.jsonl`
+- Added a human-facing LegalServer MCP gap log note at:
+  - `logs/LEGALSERVER_REPORT_MCP_QUESTION_LOG.md`
+- Updated workspace and tool guidance so LegalServer data questions covered by the approved LSMCP report pack should try the `legalserver-report` MCP first and report gaps briefly to Matt.
+
+OPENCLAW REGISTRATION AND VERIFICATION
+- Registered the MCP as an OpenClaw managed server named `legalserver-report`.
+- Verified `npm install` found no vulnerabilities and `npm run build` passed.
+- Direct stdio smoke testing confirmed initialization, 6 tools, 29 listed reports, and a capped redacted `CASE_INFO` query.
+- `openclaw mcp reload` completed and `openclaw mcp probe legalserver-report` reported 6 tools.
+- Initial report-export testing found bearer-token headers were required for report export URLs; patched the MCP wrapper path so report queries authenticate correctly.
+
+LEGALSERVER CASE INFO TEST GAP
+- Matt tested Case Info aggregate questions, including new housing cases opened last week.
+- Confirmed Matt's LegalServer UI count for open date `7/6/26-7/12/26` and LSC Problem Code `61-69` was 133.
+- Documented that LSC Problem Code categories are numeric ranges, including Housing `61-69`, and should not be inferred only from text labels.
+- Found the current unfiltered Case Info export is not reliable for date/code aggregate filtering because many repeated rows have blank `Date Opened` and `LSC Problem Code` fields.
+- Documented the follow-up gap: Case Info aggregate questions need either a dedicated filtered API report or an export configuration that emits the needed fields on every row.
+
+CAPABILITY ADDED
+- Rocky now has a registered, read-only LegalServer report-backed MCP for approved report-pack data access with field descriptions, sensitivity-aware defaults, question logging, and gap tracking.
+- LegalServer MCP behavior now matches the Zoom MCP-first default: use the MCP first for covered questions, summarize minimum-necessary results, and rely on local logs for unanswered-request improvement work.
+
+CAPABILITY STATUS
+- Existing LegalServer report API, OpenClaw managed MCP, Node/TypeScript MCP, local logging, and workspace documentation capabilities were extended.
+- No LegalServer writes were performed.
+- No LegalServer client/case raw records are documented here.
