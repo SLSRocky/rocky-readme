@@ -2860,3 +2860,20 @@ CAPABILITY STATUS
 - Existing LegalServer report API, OpenClaw managed MCP, Node/TypeScript MCP, local logging, and workspace documentation capabilities were extended.
 - No LegalServer writes were performed.
 - No LegalServer client/case raw records are documented here.
+
+====================================================
+2026-07-20 (Session 67 — YULAA weekly read-only batch delivery)
+====================================================
+
+YULAA WEEKLY JUDICIAL EXTRACTION DELIVERY
+- Ran the weekly YULAA read-only batch against the LegalServer source report and CT Judicial lookup workflow.
+- Reviewed 5,490 report rows and identified 23 eligible-with-disposition cases in read-only mode.
+- Generated the refreshed `YULAA Project/LOG - YULAA Exceptions.docx` local artifact for the weekly run.
+- Uploaded the refreshed YULAA exception LOG to the MattRocky SharePoint site.
+- Sent the weekly YULAA summary email with the LOG attachment to the approved YULAA recipients.
+- Confirmed the run performed no LegalServer writes and no monday.com writes.
+
+CAPABILITY STATUS
+- No new external platform connection was added today.
+- Existing LegalServer report API, CT Judicial lookup, SharePoint upload, MS365 email, and YULAA weekly reporting capabilities were used for the scheduled weekly delivery.
+- The run remained read-only for LegalServer and monday.com.
