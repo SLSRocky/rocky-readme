@@ -2877,3 +2877,35 @@ CAPABILITY STATUS
 - No new external platform connection was added today.
 - Existing LegalServer report API, CT Judicial lookup, SharePoint upload, MS365 email, and YULAA weekly reporting capabilities were used for the scheduled weekly delivery.
 - The run remained read-only for LegalServer and monday.com.
+
+====================================================
+2026-07-21 (Session 68 — RTC corrected draft and LegalServer MCP API docs)
+====================================================
+
+RTC REFERRALS & DEMOGRAPHICS CORRECTED DRAFT
+- Investigated Matt's discrepancy report for the July 13-19 RTC Referrals & Demographics draft, where the draft showed 22 cases and Matt's LegalServer run showed 23.
+- Verified the original attached draft totaled 22 across all five crosstab tables.
+- Re-ran the maintained RTC LegalServer report pipeline for 2026-07-13 through 2026-07-19 and found 24 rows, 23 unique matter IDs after one exact duplicate, and crosstab totals of 23.
+- Identified the difference as one additional current NHLAA case compared with the original draft.
+- Regenerated only the referrals/demographics PDF, verified all five total rows showed 23, and created a separate Outlook draft in Matt's mailbox.
+- Draft subject: Corrected SLS RTC Referrals & Demographics Report - July 13-19, 2026.
+- No email was sent.
+
+LEGALSERVER MCP API DOCUMENTATION AND FILTER SUPPORT
+- Matt provided the official LegalServer API docs site and asked Rocky to incorporate it into the LegalServer MCP work.
+- Reviewed the Stoplight API docs shell and routes while preserving the MCP's narrow, read-only, report-backed design.
+- Updated `legalserver-report-mcp` so `query_legalserver_report` now accepts validated `server_filters` limited to LegalServer `filter[...]` query parameters on allowlisted report URLs.
+- Explicitly rejected arbitrary URL, API-key, and load passthrough behavior to keep the MCP from becoming a generic LegalServer API caller.
+- Added the MCP tool `get_legalserver_api_documentation_notes`, documenting the official docs URL, report export/filter notes, and SLS-specific findings.
+- Updated `legalserver-report-mcp/README.md` and workspace LegalServer tool notes with API docs and filter guidance.
+- Built the updated MCP and verified it with direct stdio smoke testing, `openclaw mcp reload`, and `openclaw mcp probe legalserver-report`; the probe reported 7 tools.
+
+CAPABILITY ADDED
+- Rocky's LegalServer report-backed MCP now includes official API documentation notes and guarded server-side report-filter parameter support for allowlisted report URLs.
+- The LegalServer MCP tool count increased from 6 to 7 with the new documentation-notes tool.
+- Rocky can now preserve and explain the known LegalServer report API filter limitation: the Case Info export for load 8341 works with the current key, but the attempted `matter_date_open` API filter returned `Invalid report filter`.
+
+CAPABILITY STATUS
+- Existing RTC report automation, LegalServer report API, Outlook draft creation, Node/TypeScript MCP, OpenClaw MCP registration, and workspace documentation capabilities were extended or used.
+- No LegalServer writes were performed.
+- The LegalServer report API key Matt pasted in Discord was not persisted as durable configuration; it should be rotated or exchanged securely before making the load 8341 configuration permanent.
