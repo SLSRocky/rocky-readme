@@ -2909,3 +2909,28 @@ CAPABILITY STATUS
 - Existing RTC report automation, LegalServer report API, Outlook draft creation, Node/TypeScript MCP, OpenClaw MCP registration, and workspace documentation capabilities were extended or used.
 - No LegalServer writes were performed.
 - The LegalServer report API key Matt pasted in Discord was not persisted as durable configuration; it should be rotated or exchanged securely before making the load 8341 configuration permanent.
+
+====================================================
+2026-07-22 (Session 69 — Grace LegalServer MCP completion and Zoom MCP fix)
+====================================================
+
+GRACE LEGALSERVER MCP ACCESS COMPLETED
+- Completed Grace's access to the approved read-only LegalServer report-backed MCP.
+- Provisioned and verified all 29 approved report URL credentials, the live bearer-token alias, MCP support settings, and both LSWork fallback API keys in Grace's locked-down environment.
+- Preserved `graceai:graceai` ownership and mode `600`; backups were created before credential changes.
+- Confirmed the MCP catalog and runtime expose all 29 approved reports.
+- Documented the vendor-side report-filter issue: use full approved report pulls and filter locally until LegalServer resolves it.
+
+GRACE ZOOM MCP FIX DEPLOYED
+- Patched the Zoom Contact Center MCP to add an explicit timestamp note where engagement-list responses can show Eastern wall-clock times with a misleading `Z` suffix.
+- Matt approved deployment; copied the patched source/dist files to Grace's private MCP installation and restarted her gateway.
+- Verified Grace's gateway is active on port 18791 and the Zoom MCP probe reports 12 tools.
+
+GRACE TOOLING AND OPERATING GUIDANCE
+- Updated Grace's instructions to use the LegalServer MCP first for approved report-pack questions, summarize tool failures instead of exposing raw shell errors, and inspect helper output through its `.rows` field.
+- Updated the LegalServer helper to accept the standard live/report bearer-token aliases.
+- Matt confirmed standing permission for Rocky to manage Grace settings using the existing limited sudo access, with backups, scoped changes, and secret-safe handling.
+
+CAPABILITY STATUS
+- Grace now has the complete approved read-only LegalServer MCP credential/configuration set and the deployed Zoom timestamp clarification.
+- No LegalServer writes were performed.
