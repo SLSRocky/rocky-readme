@@ -2934,3 +2934,21 @@ GRACE TOOLING AND OPERATING GUIDANCE
 CAPABILITY STATUS
 - Grace now has the complete approved read-only LegalServer MCP credential/configuration set and the deployed Zoom timestamp clarification.
 - No LegalServer writes were performed.
+
+====================================================
+2026-07-23 (Session 70 — LegalServer staff-name lookup report)
+====================================================
+
+LEGALSERVER STAFF-NAME RESOLUTION REPORT
+- Added the approved `(LSMCP) SLS Staff List` report (LegalServer load 8704) to the read-only LegalServer MCP catalog and private configuration.
+- Added the report's five fields, including full staff name, first name, last name, staff type, and active login status.
+- Updated the SharePoint `MCP Report List & URLs` document with the report entry and verified the uploaded document.
+- Rebuilt and reloaded the MCP; `openclaw mcp probe legalserver-report` confirmed all 7 tools are available.
+
+CAPABILITY ADDED
+- LegalServer staff-related questions can now resolve partial names such as Carmen through the staff-list report first, then use the exact `Last, First` name in other staff reports.
+- The report catalog, tool usage notes, MCP README, and SharePoint report list now identify report 8704 as the primary staff-name resolution report.
+
+CAPABILITY STATUS
+- Existing LegalServer report API, read-only MCP, SharePoint documentation, and OpenClaw MCP registration capabilities were extended.
+- No LegalServer writes were performed.
