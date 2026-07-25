@@ -2952,3 +2952,26 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - Existing LegalServer report API, read-only MCP, SharePoint documentation, and OpenClaw MCP registration capabilities were extended.
 - No LegalServer writes were performed.
+
+====================================================
+2026-07-24 (Session 71 — Grace LegalServer MCP synchronization and verification)
+====================================================
+
+GRACE LEGALSERVER MCP CONFIGURATION SYNCHRONIZED
+- Corrected Grace's approved LegalServer report catalog to include all 30 credentialed reports, including the SLS Staff List report (load 8704).
+- Synchronized the verified report credentials and Case Info API configuration across Grace's protected runtime environment and overriding MCP environment.
+- Restored Grace's previously working Case Info bearer-token configuration after testing showed the replacement key was unauthorized.
+- Created backups before configuration changes; secret-safe hashes matched between Rocky's and Grace's verified configurations.
+
+GRACE RUNTIME VERIFICATION
+- Restarted Grace's gateway after the MCP environment synchronization; gateway remained active on loopback port 18791.
+- Verified 30 runtime report URLs, a matching Case Info configuration hash, and a successful seven-tool LegalServer MCP probe.
+- Completed a redacted Case Info test query successfully, returning 729 rows.
+
+CAPABILITY ADDED
+- Grace now has a synchronized, verified 30-report read-only LegalServer MCP configuration, including staff-name resolution and the corrected Case Info connection.
+- Rocky has documented the separate Grace runtime, protected MCP environment, independent bearer-token boundary, and approval requirement for future Grace changes.
+
+CAPABILITY STATUS
+- Existing Grace runtime, LegalServer report API, read-only MCP, protected configuration, and verification capabilities were extended.
+- No LegalServer writes were performed.
