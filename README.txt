@@ -2975,3 +2975,15 @@ CAPABILITY ADDED
 CAPABILITY STATUS
 - Existing Grace runtime, LegalServer report API, read-only MCP, protected configuration, and verification capabilities were extended.
 - No LegalServer writes were performed.
+
+====================================================
+2026-07-25 (Session 72 — LegalServer report query investigation)
+====================================================
+
+LEGALSERVER REPORT QUERY INVESTIGATION
+- Used the approved read-only LegalServer report MCP to investigate Case Info date-range and date-field behavior for the July 13-19 reporting period.
+- Confirmed the report-backed query and search paths remained available; documented the vendor/API filtering behavior encountered during the investigation.
+
+CAPABILITY STATUS
+- No new configurations, connections, platforms, or capabilities were added.
+- No LegalServer writes were performed.
