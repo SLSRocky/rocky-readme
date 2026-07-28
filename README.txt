@@ -2987,3 +2987,28 @@ LEGALSERVER REPORT QUERY INVESTIGATION
 CAPABILITY STATUS
 - No new configurations, connections, platforms, or capabilities were added.
 - No LegalServer writes were performed.
+
+====================================================
+2026-07-27 (Session 73 — RTC report rerun, parenting calendars, Zoom dashboard live-data design)
+====================================================
+
+RTC WEEKLY REPORT RERUN
+- Regenerated the July 20–26, 2026 RTC reports after a referrals-count discrepancy was identified.
+- Refreshed referrals/demographics data contained 26 unique matters; all five cross-tab totals were verified at 26.
+- Uploaded all four PDFs to the SharePoint weekly-report location and created a new Outlook draft with the attachments; no email was sent.
+
+PARENTING SCHEDULE CALENDAR CAPABILITY EXTENDED
+- Created and uploaded conceptual calendars covering August–December 2026 and all of 2027.
+- Added faded following-month dates, matching faded MOM TIME/DAD TIME labels, Monday transition days, and the requested weekend-extended schedule.
+- Current schedule assumptions: August is clear; September 7, 2026 is the first TRANSITION DAY; September 12–13 are MOM TIME and September 19–20 are DAD TIME.
+- A reusable calendar-workflow skill proposal was created and remains pending approval.
+
+ZOOM DASHBOARD LIVE-DATA INTEGRATION DESIGN
+- Reviewed the dashboard source from SharePoint and confirmed live counts are maintained from Zoom webhook-driven agent and engagement state, rather than the REST real-time queue endpoint.
+- Documented a protected, read-only `GET /api/live/queue-status` endpoint design for aggregate active/waiting queue counts, with a bearer token stored only in live-server configuration.
+- Created and uploaded the Zoom Dashboard Live Data MCP Setup Guide to SharePoint.
+- No production dashboard code or MCP code was changed; deployment and endpoint testing remain pending.
+
+CAPABILITY STATUS
+- SharePoint document generation/upload and Outlook draft creation workflows were exercised successfully.
+- Zoom dashboard live-data integration requirements and implementation path were documented.
