@@ -3012,3 +3012,19 @@ ZOOM DASHBOARD LIVE-DATA INTEGRATION DESIGN
 CAPABILITY STATUS
 - SharePoint document generation/upload and Outlook draft creation workflows were exercised successfully.
 - Zoom dashboard live-data integration requirements and implementation path were documented.
+
+====================================================
+2026-07-28 (Session 74 — Live-data setup clarification and quieter command-error handling)
+====================================================
+
+LIVE DATA SETUP DOCUMENTATION
+- Clarified that the IIS/ASP.NET setting `LiveData__Token` and the local test variable `LIVE_DATA_TOKEN` must contain the same generated token.
+- Documented that `LiveData__Token` configures the live application, while `LIVE_DATA_TOKEN` is used only by the shell test command.
+
+REUSABLE WORKFLOW CAPABILITY
+- Created the pending `quiet-command-failures` reusable skill proposal.
+- The proposed workflow suppresses raw Bash/tool failure text in user-facing replies while still reporting errors that materially affect the result.
+
+CAPABILITY STATUS
+- No new external platform connection or production deployment was added.
+- The live-data integration remains documented but not yet deployed or tested in production.
