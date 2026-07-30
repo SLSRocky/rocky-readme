@@ -3028,3 +3028,27 @@ REUSABLE WORKFLOW CAPABILITY
 CAPABILITY STATUS
 - No new external platform connection or production deployment was added.
 - The live-data integration remains documented but not yet deployed or tested in production.
+
+====================================================
+2026-07-29 (Session 75 — Zoom LIVE dashboard MCP and LegalServer filter investigation)
+====================================================
+
+ZOOM LIVE DASHBOARD MCP — COMPLETED
+- Added the read-only `get_live_dashboard_queue_status` tool to the Zoom Contact Center MCP.
+- The tool calls the protected dashboard live-data endpoint using URL/token settings stored in each agent's mode-600 environment file; no credentials were added to source or documentation.
+- Returns aggregate active/waiting queue counts, update timestamp, and `source: dashboard_live`.
+- Built and smoke-tested Rocky's MCP, deployed the matching build to Grace with a backup, and reloaded/restarted both runtimes.
+- Verified both MCP instances expose 13 tools and both live calls succeeded.
+- First verified result: 8 active calls and 1 waiting call; no raw client/call records were documented.
+
+ZOOM LIVE DATA — NEXT SCOPE
+- Recorded the requested follow-up to expose all active engagements, live agent information, and queue widget open/closed status.
+
+LEGALSERVER REPORT API INVESTIGATION
+- Tested Case Info report 8341 with RockyAPI and Grace credentials; authentication and the base export work, but `matter_date_open` is rejected as an invalid report filter.
+- Confirmed Case Household report 8176 accepts the tested `matter_close_date` date-range filter and returns successfully.
+- Documented that LegalServer API filters are report-specific; no case-level data or credentials were stored in this log.
+
+CAPABILITY STATUS
+- Rocky and Grace now share the protected, read-only Zoom dashboard live-data MCP capability.
+- Existing LegalServer report access was investigated; no LegalServer writes were performed.
