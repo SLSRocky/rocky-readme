@@ -3052,3 +3052,23 @@ LEGALSERVER REPORT API INVESTIGATION
 CAPABILITY STATUS
 - Rocky and Grace now share the protected, read-only Zoom dashboard live-data MCP capability.
 - Existing LegalServer report access was investigated; no LegalServer writes were performed.
+
+====================================================
+2026-07-30 (Session 76 — Zoom LIVE scope planning and SharePoint finance review)
+====================================================
+
+ZOOM LIVE DASHBOARD — FOLLOW-UP DESIGN
+- Reviewed the next expansion for the existing read-only LIVE dashboard capability.
+- Documented the implementation path for exposing operational agent status, active engagements, queue open/closed state, update timestamps, and stale-data indication through the protected dashboard endpoint and MCP.
+- Confirmed the privacy boundary: no caller names, phone numbers, recordings, transcripts, or raw database rows.
+- No production dashboard code, MCP code, or LIVE deployment was changed today.
+
+SHAREPOINT — FINANCE REVIEW ACCESS
+- Verified the existing scoped SharePoint access to the Matt & Rocky site and reviewed the `MSD Finances` folder contents.
+- Confirmed the folder contained seven bank-statement PDFs and seven Venmo CSV exports; the CSVs were not credit-card transaction statements.
+- Used the existing SharePoint read capability for a preliminary income, spending, and housing-budget assessment.
+
+CAPABILITY STATUS
+- No new external platform connection, configuration, or production deployment was added today.
+- Existing Zoom LIVE dashboard, SharePoint, and financial-analysis capabilities were used and documented.
+- No messages or reports were sent externally.
