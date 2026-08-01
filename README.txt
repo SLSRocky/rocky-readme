@@ -3072,3 +3072,21 @@ CAPABILITY STATUS
 - No new external platform connection, configuration, or production deployment was added today.
 - Existing Zoom LIVE dashboard, SharePoint, and financial-analysis capabilities were used and documented.
 - No messages or reports were sent externally.
+
+====================================================
+2026-07-31 (Session 77 — SharePoint calendar workflow and LegalServer Case Info refresh)
+====================================================
+
+SHAREPOINT DOCUMENT WORKFLOW EXTENDED
+- Edited, visually verified, and uploaded successive versions of the Monday Transitions 2026–2027 calendar in the authorized Matt & Rocky SharePoint site.
+- Extended the existing PDF workflow to remove a page, apply requested holiday/time-label changes, match existing typography and shading, and preserve prior versions.
+- Current working version: `Monday/Monday Transitions - Parenting Schedule Concept Calendar 2026-2027 - MOM TIME shading matched.pdf`.
+
+LEGALSERVER CASE INFO MCP CONFIGURATION REFRESHED
+- Refreshed the approved Case Info report configuration to LegalServer load 8803 from the updated report-list document.
+- Verified the refreshed catalog exposes 30 approved reports and the Case Info definition loads correctly.
+- A case-count test reached LegalServer but was blocked by the unsupported `matter_identification_number` filter; no case data was returned.
+
+CAPABILITY STATUS
+- Existing SharePoint document generation/upload and read-only LegalServer MCP capabilities were extended.
+- No new external platform connection was added, and no LegalServer writes were performed.
