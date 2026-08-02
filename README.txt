@@ -3090,3 +3090,20 @@ LEGALSERVER CASE INFO MCP CONFIGURATION REFRESHED
 CAPABILITY STATUS
 - Existing SharePoint document generation/upload and read-only LegalServer MCP capabilities were extended.
 - No new external platform connection was added, and no LegalServer writes were performed.
+
+====================================================
+2026-08-01 (Session 78 — RTC monthly reporting and Staff ISP report check)
+====================================================
+
+RTC MONTHLY REPORTING WORKFLOW COMPLETED
+- Ran the existing Zoom Contact Center → PDF report → SharePoint → Outlook draft workflow for July 2026.
+- Processed 160,062 records and identified 1,903 external inbound calls.
+- Generated and uploaded exactly four PDFs and created the Outlook draft for the July 1–31 reporting period; no message was sent.
+
+STAFF ISP MONTHLY REPORT CHECK
+- The July 2026 Staff ISP report run was attempted but stopped before workbook generation or SharePoint upload.
+- Blocker: the report process could not find the required Zoom `account_id`, `client_id`, and `client_secret` configuration values.
+
+CAPABILITY STATUS
+- Existing monthly reporting, SharePoint upload, and Outlook draft capabilities were exercised successfully for RTC.
+- No new external platform connection or configuration was added.
