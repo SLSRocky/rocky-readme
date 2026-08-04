@@ -3109,6 +3109,30 @@ CAPABILITY STATUS
 - No new external platform connection or configuration was added.
 
 ====================================================
+2026-08-03 (Session 80 — Funnel baseline, Staff ISP fix, NHPD local database)
+====================================================
+
+FUNNEL REPORT BASELINE UPDATED
+- Corrected the July 2026 SLS and RTC Funnel Report charts using Matt's June-adjusted historical values.
+- Updated both source templates with the corrected October 2025–July 2026 baseline for future reports.
+- Re-generated and uploaded corrected chart PDFs and created an Outlook draft; no email was sent.
+- Fixed the Funnel Report Zoom credential loader to support the active `tools/zoom-contact-center-mcp.env` format.
+
+STAFF ISP REPORT CONFIGURATION FIXED
+- Updated `staff_isp_report.py` to use the active Zoom Contact Center env-file format as a credential fallback.
+- Processed and uploaded the July 2026 Staff ISP Report to SharePoint: 2,058 rows, 201 unique IPs, 1,735 sign-ins, and 323 sign-outs.
+
+NHPD LOCAL DATABASE CAPABILITY ADDED
+- Downloaded Matt's complete NHPD subscription workbook from SharePoint and built a local SQLite database containing 120,868 nationwide properties and all 271 source fields.
+- Added integrity validation, dataset metadata, CT validation (1,716 properties / 96,425 units), and usage documentation.
+- Stored references to the database in both Rocky's and Grace's memory so Rocky, Grace, Moses, and Matt can ask property and density-map questions.
+- Refresh workflow is currently manual after a replacement workbook is uploaded to SharePoint.
+
+CAPABILITY STATUS
+- New capabilities: corrected Funnel Report baseline automation, Staff ISP processing with current Zoom credentials, and local NHPD property search/analysis with Connecticut density-map support.
+- The YULAA weekly batch stalled early in read-only mode; no LegalServer or monday.com writes occurred.
+
+====================================================
 2026-08-02 (Session 79 — RTC monthly reporting and Staff ISP report check)
 ====================================================
 
