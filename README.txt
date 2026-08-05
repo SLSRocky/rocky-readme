@@ -3133,6 +3133,27 @@ CAPABILITY STATUS
 - The YULAA weekly batch stalled early in read-only mode; no LegalServer or monday.com writes occurred.
 
 ====================================================
+2026-08-04 (Session 81 — Staff ISP, NHPD, and LegalServer MCP refresh)
+====================================================
+
+STAFF ISP REPORT CONFIGURATION FIXED
+- Updated `staff_isp_report.py` to fall back to the active Zoom Contact Center MCP environment-file format.
+- Processed and uploaded the July 2026 Staff ISP Report to SharePoint: 2,058 rows, 201 unique IPs, 1,735 sign-ins, and 323 sign-outs.
+
+NHPD LOCAL DATABASE CAPABILITY ADDED
+- Built a local SQLite database from Matt's complete NHPD workbook: 120,868 nationwide properties, 271 source columns, and an integrity check of `ok`.
+- Added dataset metadata, Connecticut validation (1,716 properties / 96,425 units), and usage documentation; refresh remains manual after a replacement SharePoint workbook is uploaded.
+
+LEGALSERVER MCP REFRESH AND GRACE SYNCHRONIZATION
+- Refreshed the main LegalServer report configuration from the current report-list document; Case Info now uses verified report 8803 and omits the unsupported empty `matter_identification_number` filter.
+- Updated the Case Info catalog to the current 25 approved V3 columns and verified the live Case Info URL returned HTTP 200.
+- Installed secured SSH access from Rocky to Grace and synchronized Grace's MCP configuration, catalog, source documentation, V3 workbook, and verified runtime; catalog validation passed and runtime hashes match.
+
+CAPABILITY STATUS
+- Existing Staff ISP, NHPD property analysis, and LegalServer report capabilities were fixed, extended, or synchronized.
+- No LegalServer writes were performed.
+
+====================================================
 2026-08-02 (Session 79 — RTC monthly reporting and Staff ISP report check)
 ====================================================
 
