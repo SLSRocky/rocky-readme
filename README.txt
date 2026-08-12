@@ -3109,6 +3109,34 @@ CAPABILITY STATUS
 - No new external platform connection or configuration was added.
 
 ====================================================
+2026-08-11 (Session 82 — LegalServer MCP refresh, case-count semantics, and Grace synchronization)
+====================================================
+
+LEGALSERVER MCP CONFIGURATION REFRESHED
+- Refreshed Rocky's LegalServer report configuration from the SharePoint `MCP Report List & URLs.docx` source.
+- Updated the Case Info report from stale load `8803` to the approved load `8869` and removed the unsupported empty `matter_identification_number` filter.
+- Rebuilt and verified the refreshed endpoint with HTTP 200 and 3,821 rows through 2026-07-15.
+
+UNIQUE CASE-COUNT CAPABILITY ADDED
+- Added `count_unique_legalserver_cases` to both Rocky's and Grace's LegalServer MCPs.
+- “Number/count of cases” now deduplicates report rows by stable case/database ID; raw report row counts remain distinct.
+- Verification: 258 report rows for August 3–9 represented 196 unique cases.
+
+GRACE LEGALSERVER MCP SYNCHRONIZED
+- Corrected Grace's Case Info configuration by synchronizing the current report URL and matching API key for load `8869`.
+- Preserved Grace's separate bearer token, backed up configuration files, restarted her gateway, and verified HTTP 200 and healthy runtime.
+- Added a standing refresh rule requiring Grace's report URLs and matching API keys to be updated together.
+
+CODEX LOG DATABASE MAINTENANCE
+- Safely removed oldest rows from `logs_2.sqlite`, vacuumed the database, and reduced it from 231,870,464 bytes to 46,862,336 bytes.
+- SQLite integrity check passed; the owning Codex process was restarted, and a backup was retained.
+
+CAPABILITY STATUS
+- New capability: deduplicated LegalServer case counts across Rocky and Grace.
+- Existing LegalServer reporting was refreshed from the current SharePoint source and verified for both runtimes.
+- No LegalServer writes were performed.
+
+====================================================
 2026-08-03 (Session 80 — Funnel baseline, Staff ISP fix, NHPD local database)
 ====================================================
 
