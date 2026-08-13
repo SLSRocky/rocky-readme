@@ -3137,6 +3137,21 @@ CAPABILITY STATUS
 - No LegalServer writes were performed.
 
 ====================================================
+2026-08-12 (Session 83 — Adrian/Ally Discord and GPT configuration)
+====================================================
+
+ADRIAN / ALLY CONFIGURATION UPDATED
+- Adrian's Discord bot is configured as the named `adrian` account and routed to Ally's server/channel; Rocky's default Discord binding was preserved.
+- Ally's agent model was updated to `openai/gpt-5.6-luna`.
+- Ally's active valid OpenAI OAuth profile is `mdugan@slsct.org`; the former `astratos@slsct.org` profile is expired.
+- The OpenAI subscription tier is not exposed by OpenClaw and remains unverified.
+
+CAPABILITY STATUS
+- Adrian/Ally now has the updated GPT-5.6 Luna model configuration and verified OpenAI OAuth authentication.
+- Legacy `openclaw-ally.service` remains in an auto-restart failure state because it uses an outdated Node.js runtime; the main gateway remains active.
+- No credentials or bot tokens were written to the README.
+
+====================================================
 2026-08-03 (Session 80 — Funnel baseline, Staff ISP fix, NHPD local database)
 ====================================================
 
