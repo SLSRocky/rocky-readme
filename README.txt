@@ -3122,6 +3122,24 @@ CAPABILITY STATUS
 - No sensitive client details or credentials were added to this README.
 
 ====================================================
+2026-08-15 (Session 85 — Adrian SharePoint and Ally mailbox fixes)
+====================================================
+
+ADRIAN SHAREPOINT CONTENT READ FIXED
+- Corrected Adrian's SharePoint file-content read path so redirected download responses are followed.
+- Added verification that the returned body byte count matches SharePoint's reported file size, preventing false empty-content results.
+- Fresh verification of `MattTest.txt` returned its expected 5-byte content.
+
+ADRIAN / ALLY MAILBOX ACCESS FIXED
+- Added explicit routing for Ally mailbox inbox reads and draft creation through the active MS365 tools.
+- Configured Ally's mailbox as `astratos@slsct.org` and refreshed the main gateway.
+- Verified a fresh inbox read returned HTTP 200; no email or draft was created during testing.
+
+CAPABILITY STATUS
+- Adrian can now reliably read SharePoint file contents and access Ally's mailbox for approved inbox/draft workflows.
+- No credentials or message contents were added to this README.
+
+====================================================
 2026-08-11 (Session 82 — LegalServer MCP refresh, case-count semantics, and Grace synchronization)
 ====================================================
 
