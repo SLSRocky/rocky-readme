@@ -3122,6 +3122,19 @@ CAPABILITY STATUS
 - No sensitive client details or credentials were added to this README.
 
 ====================================================
+2026-08-16 (Session 86 — README Maintenance Workflow and Skill Workshop)
+====================================================
+
+README MAINTENANCE HARDENED
+- Hardened the nightly README workflow to inspect all date-prefixed memory/note files, including timestamped filenames, available conversation transcripts, and README/git history before deciding to skip.
+- Substantive fixes, configuration changes, capability work, and operational notes are now included even when no external platform was added.
+- A reusable workflow proposal was created in Skill Workshop; it remains pending approval.
+
+SKILL WORKSHOP ACCESS
+- Documented the OpenClaw Control UI path for reviewing the pending workflow proposal: Skills → Workshop.
+- No credentials, tokens, client data, or message contents were recorded.
+
+====================================================
 2026-08-15 (Session 85 — Adrian SharePoint and Ally mailbox fixes)
 ====================================================
 
