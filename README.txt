@@ -3135,6 +3135,28 @@ SKILL WORKSHOP ACCESS
 - No credentials, tokens, client data, or message contents were recorded.
 
 ====================================================
+2026-08-17 (Session 87 — LegalServer MCP, RTC reporting, and YULAA operations)
+====================================================
+
+LEGALSERVER LIVE MCP UPDATED
+- Added the Case Alerts and Case Referral Info reports, refreshed the related Case Info configuration, and removed unsupported saved Matter ID URL filters.
+- Verified both new reports with an adjustable date range through the live MCP; Matter ID matching remains local where the upstream filter is unsupported.
+- Registered and activated the `UPDATE_ALL` workflow: refresh the canonical LIVE catalog, validate definitions and URLs, run smoke tests, and verify Rocky, Adrian, and Grace access.
+- Added routing guidance so Grace uses the LegalServer MCP for LegalServer data requests and avoids it for unrelated questions.
+
+RTC WEEKLY REPORTING COMPLETED
+- Ran the maintained read-only data pipeline for August 10–16, generated and uploaded four PDFs, and created the Outlook draft with all four attachments; no email was sent.
+- Confirmed no API cap-splitting was needed and temporary processing files were cleaned up.
+
+YULAA WEEKLY EXTRACTION STARTED
+- Started the hardened read-only judicial extraction with four workers; the source report contained 5,781 rows, including 3,320 without docket URLs.
+- LegalServer and monday.com write-back remained disabled; completion and LOG/email delivery were pending due to slow judicial responses.
+
+CAPABILITY STATUS
+- Existing LegalServer, RTC reporting, and YULAA capabilities were refreshed or exercised; no new external platform connection was added.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-15 (Session 85 — Adrian SharePoint and Ally mailbox fixes)
 ====================================================
 
