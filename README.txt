@@ -3157,6 +3157,22 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-08-18 (Session 88 — LegalServer funding analysis and SharePoint deliverables)
+====================================================
+
+LEGALSERVER FUNDING ANALYSIS COMPLETED
+- Analyzed LegalServer Case Info records by Date Opened for 2022 through August 18, 2026, using stable-case-ID deduplication after identifying a duplicate-field response-formatting issue.
+- Produced yearly funding-code totals and an RTC vs. Non-RTC comparison; RTC-funded classification covers RTC, SLS - RTC - ARPA, and SLS - RTC - HUD, with blank/missing codes shown separately.
+
+REPORTING DELIVERABLES CREATED
+- Created an Outlook draft summarizing the yearly funding analysis; it was saved as a draft and not sent.
+- Created and uploaded the funding-code summary workbook and the RTC vs. Non-RTC comparison workbook to MattRocky SharePoint's Case Data folder.
+
+CAPABILITY STATUS
+- Existing read-only LegalServer analysis, workbook generation, SharePoint upload, and Outlook draft capabilities were exercised and extended.
+- No LegalServer writes or outbound email were performed; no credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-15 (Session 85 — Adrian SharePoint and Ally mailbox fixes)
 ====================================================
 
