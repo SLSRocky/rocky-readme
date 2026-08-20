@@ -3173,6 +3173,23 @@ CAPABILITY STATUS
 - No LegalServer writes or outbound email were performed; no credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-08-19 (Session 89 — LegalServer referral count and Grace MCP synchronization)
+====================================================
+
+LEGALSERVER REFERRAL COUNT VERIFIED
+- Re-ran the March 2026 referral report after correcting the report-filter issue: 142 report rows represent 119 unique Matter IDs.
+- Confirmed the transferred-case count should be reported as 119 unique matters, not the raw row count.
+
+GRACE LEGALSERVER MCP UPDATED
+- Removed Grace's stale report MCP configuration and preserved a timestamped recovery backup.
+- Deployed the current LIVE 32-report catalog, preserved Grace's separate credentials, corrected report URLs and logging, and restarted her gateway.
+- Smoke testing passed with 8 tools, all 32 reports, and referral report load 9067 available.
+
+CAPABILITY STATUS
+- Existing LegalServer reporting and multi-runtime synchronization capabilities were refreshed and verified.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-15 (Session 85 — Adrian SharePoint and Ally mailbox fixes)
 ====================================================
 
