@@ -3109,6 +3109,23 @@ CAPABILITY STATUS
 - No new external platform connection or configuration was added.
 
 ====================================================
+2026-08-20 (Session 90 — LegalServer program lookup and daily call summary)
+====================================================
+
+LEGALSERVER PROGRAM LOOKUP COMPLETED
+- Processed Matt's attached case list through the approved read-only Case Info export and mapped 2,274 of 2,455 cases to Assigned Program.
+- Results were summarized as LSC/CBF Eligible (1,622), RTC (584), Pro Bono (62), SLS - NOFA (3), and three error results; 181 cases were not found in the current export.
+- Removed a stale saved filter from the read-only MCP request path to complete the lookup; no LegalServer writes were performed.
+- Produced a case-to-program mapping workbook for Matt without recording client details in this log.
+
+ROUTINE OPERATIONS
+- August 20 daily call-summary automation completed and recorded the aggregate call snapshot for the day.
+
+CAPABILITY STATUS
+- Existing read-only LegalServer reporting and workbook-generation capabilities were used and validated.
+- No new external platform connection or configuration was added; no credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-13 (Session 84 — Document workflow and routine monitoring)
 ====================================================
 
