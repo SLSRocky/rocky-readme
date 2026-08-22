@@ -3109,6 +3109,23 @@ CAPABILITY STATUS
 - No new external platform connection or configuration was added.
 
 ====================================================
+2026-08-21 (Session 91 — Lossless-Claw rollout and history migration)
+====================================================
+
+LOSSLESS-CLAW ENABLED ACROSS ROCKY, ADRIAN, AND GRACE
+- Installed and activated Lossless-Claw 0.15.3 for all three runtimes; gateways restarted successfully and plugin loading was verified.
+- Initialized and integrity-checked each database; QMD remained enabled and unchanged.
+
+HISTORICAL CHAT IMPORTS COMPLETED
+- Imported Rocky's historical messages plus the available Adrian/Ally and Grace/Moses chat histories into their respective Lossless-Claw databases.
+- Adrian/Ally import: 340 messages across four session files; Grace/Moses import: 46 messages from one importable session file; migration backups were retained.
+- Non-importable trajectory files were left unchanged; private account isolation and permissions were preserved.
+
+CAPABILITY STATUS
+- Added durable lossless conversation recall for Rocky, Adrian, and Grace, with verified database integrity and preserved recovery backups.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-20 (Session 90 — LegalServer program lookup and daily call summary)
 ====================================================
 
