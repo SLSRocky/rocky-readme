@@ -3126,6 +3126,19 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-08-22 (Session 92 — Lossless-Claw rollout checkpoint)
+====================================================
+
+LOSSLESS-CLAW ROLLOUT VERIFIED
+- Confirmed Lossless-Claw is active for Rocky, Adrian, and Grace after the prior-day rollout.
+- Verified the imported historical-chat counts, database integrity checks, preserved migration backups, and unchanged QMD configuration.
+- Confirmed Grace's account isolation and permissions remained intact; non-importable trajectory files were not altered.
+
+CAPABILITY STATUS
+- Durable cross-runtime conversation recall is operational with recovery safeguards preserved.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-20 (Session 90 — LegalServer program lookup and daily call summary)
 ====================================================
 
