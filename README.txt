@@ -3109,6 +3109,28 @@ CAPABILITY STATUS
 - No new external platform connection or configuration was added.
 
 ====================================================
+2026-08-24 (Session 93 — LegalServer V2 MCP and Zoom Contact Center app)
+====================================================
+
+LEGALSERVER V2 MCP BUILT AND ISOLATED
+- Built and validated LSMCP-V2 as a separate read-only Core API v2 MCP with independent configuration, logs, and process files; the LIVE MCP was not modified or restarted.
+- Confirmed authentication and matter-search operation, tightened default responses to minimal case fields, and documented that tested open/close date filters are unsupported by the current Core API operation.
+- Confirmed complete daily case-change tracking will require a filtered System Log or Case Status History report through the Reports API; no LegalServer writes were performed.
+
+ZOOM CONTACT CENTER / LEGALSERVER APP SCAFFOLD DEPLOYED
+- Deployed the initial Vercel OAuth callback and Contact Center home page, added required security headers, and verified production health and callback handling.
+- Installed and tested the development Zoom app with Contact Center engagement context diagnostics; Zoom Phone was explicitly excluded from the workflow.
+- Identified an SDK initialization/configuration issue for follow-up; no client or case data was logged or added to this README.
+
+ROUTINE REPORTING OPERATIONS
+- Completed the RTC weekly report for August 17–23 with four generated PDFs and an Outlook draft; no email was sent.
+- Started the hardened YULAA weekly extraction in read-only mode with eight workers; LegalServer and monday.com write-back remained disabled.
+
+CAPABILITY STATUS
+- Added isolated LegalServer Core API v2 search capability and a deployed Zoom Contact Center app foundation.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-21 (Session 91 — Lossless-Claw rollout and history migration)
 ====================================================
 
