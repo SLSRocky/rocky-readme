@@ -3131,6 +3131,26 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-08-25 (Session 94 — Zoom Contact Center app fixes and GitHub/Vercel synchronization)
+====================================================
+
+ZOOM CONTACT CENTER / LEGALSERVER APP EXTENDED AND FIXED
+- Added compact case-history widgets with labeled fields for Case ID, Date Opened, Date Closed, Legal Problem Code, and Case Status; dates display as MM/DD/YYYY.
+- Improved client matching details, including full mailing address on selection and safe SSN handling that preserves a value such as `0000` while masking full SSNs.
+- Added refresh-on-reopen behavior and removed the Matter ID column; Case IDs use Copy URL buttons because Zoom Contact Center did not permit reliable external navigation.
+- Broadened flow/legal-issue variable parsing and added temporary diagnostics/probe support. Diagnostics confirmed Zoom returned no exposed app variables for the test engagement; the temporary `Housing-ENG` probe was removed and normal discovery restored.
+- Deployed the updates to production and verified READY status, HTTP/health checks, and the case-widget/date-formatting behavior.
+
+GITHUB AND VERCEL SOURCE SYNCHRONIZATION
+- Synchronized `SLSRocky/zoom-dashboard` with the current production Vercel source, including the current dashboard UI and API routes; verified source parity and pushed commit `acd912f`.
+- Created private repositories and synced the latest source for `legalserver-pdc-reopen`, `legalserver-c4l-sync`, and `legalserver-ch7-sync`; excluded environment files and Vercel metadata.
+- Created and synchronized private repository `SLSRocky/legalserver-conflict-check-email`; verified the source and connected Vercel to its `main` branch. The canonical project URL still returned 404 while the promoted CLI deployment was SSO-protected, so public live status remains unconfirmed.
+
+CAPABILITY STATUS
+- Existing Zoom Contact Center, LegalServer lookup, Vercel deployment, and GitHub synchronization capabilities were materially extended and corrected.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-21 (Session 91 — Lossless-Claw rollout and history migration)
 ====================================================
 
