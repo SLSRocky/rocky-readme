@@ -3135,8 +3135,7 @@ CAPABILITY STATUS
 ====================================================
 
 ZOOM CONTACT CENTER / LEGALSERVER CALLBACK APP COMPLETED
-- Corrected the production authentication configuration issue caused by using a masked Vercel secret value; the deployed app now authenticates to the Live LegalServer report and loads callback cases read-only.
-- Fixed the XML report parser and verified complete case IDs, names, dates opened, and legal problem codes for the returned callback records, with available phone fields displayed when present.
+- Confirmed the deployed app remains authenticated to the Live LegalServer report and loads callback cases read-only, with the corrected XML parser returning the expected case fields and available phone fields.
 - Fixed LegalServer note creation so editable text preserves line breaks and blank lines, including a separate Outcome / notes section.
 - Diagnosed microphone denial inside the LegalServer iframe as a parent Permissions Policy restriction; documented the required iframe delegation and a feasible reverse-proxy/self-hosting architecture. No self-host migration was started.
 
