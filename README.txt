@@ -3131,6 +3131,23 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-08-26 (Session 95 — LegalServer callback app completion and reporting handoff)
+====================================================
+
+ZOOM CONTACT CENTER / LEGALSERVER CALLBACK APP COMPLETED
+- Corrected the production authentication configuration issue caused by using a masked Vercel secret value; the deployed app now authenticates to the Live LegalServer report and loads callback cases read-only.
+- Fixed the XML report parser and verified complete case IDs, names, dates opened, and legal problem codes for the returned callback records, with available phone fields displayed when present.
+- Fixed LegalServer note creation so editable text preserves line breaks and blank lines, including a separate Outcome / notes section.
+- Diagnosed microphone denial inside the LegalServer iframe as a parent Permissions Policy restriction; documented the required iframe delegation and a feasible reverse-proxy/self-hosting architecture. No self-host migration was started.
+
+REPORTING PROJECT HANDOFF
+- Created the `Average Call handling Report` project handoff for a rolling three-month Family English/Spanish queue average handling-time analysis, including methodology, staff results, source queue IDs, and the limitation that the available records do not expose the complete named assignment roster.
+
+CAPABILITY STATUS
+- Live LegalServer callback lookup, Zoom Contact Center integration, and LegalServer note formatting were materially extended and verified.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-25 (Session 94 — Zoom Contact Center app fixes and GitHub/Vercel synchronization)
 ====================================================
 
