@@ -3147,6 +3147,24 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-08-27 (Session 96 — Zoom app allow-list correction and Hotline Phone Tree deliverables)
+====================================================
+
+ZOOM APP CONFIGURATION AND DEPLOYMENT VERIFIED
+- Diagnosed the Zoom app's unavailable state and corrected the destination-domain guidance: the Live LegalServer host belongs in the Domain Allow List, not the OAuth redirect allow list.
+- Reverted the app's externally opening buttons to Copy URL behavior while Zoom domain review remains pending.
+- Redeployed the current Vercel build and verified READY status, HTTP 200 health checks, and both Copy URL buttons in production.
+
+SLS HOTLINE PHONE TREE DELIVERABLES COMPLETED
+- Retrieved and transcribed the SLS Hotline flow audio, documenting routing, prompts, menu destinations, wait/transfer/voicemail conditions, and unclear items.
+- Saved the completed Markdown and Word documents in the authorized MattRocky SharePoint folder `SLS Hotline Phone Tree`.
+- Created a local `Zoom Phone Tree` checkpoint; a separate ChatGPT project/workspace entry could not be created from the Discord session.
+
+CAPABILITY STATUS
+- Existing Zoom Contact Center, Vercel deployment, SharePoint document-generation, and Word-export capabilities were exercised and extended.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-25 (Session 94 — Zoom Contact Center app fixes and GitHub/Vercel synchronization)
 ====================================================
 
