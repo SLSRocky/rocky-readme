@@ -3177,6 +3177,18 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-08-30 (Session 98 — Family Queue report refinement)
+====================================================
+
+AVERAGE CALL HANDLING REPORT REFINED
+- Restated the Family-English/Family-Spanish queue average handling-time results at Matt's request with one staff entry removed from the displayed list; aggregate results were unchanged.
+- Preserved the report's methodology and queue-roster limitation in the existing project handoff.
+
+CAPABILITY STATUS
+- Existing read-only Zoom Contact Center reporting and project-handoff capability was exercised and refined.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-25 (Session 94 — Zoom Contact Center app fixes and GitHub/Vercel synchronization)
 ====================================================
 
