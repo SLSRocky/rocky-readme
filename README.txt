@@ -3209,6 +3209,31 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-08-31 (Session 99 — Security review, YULAA operations, and reporting deliverables)
+====================================================
+
+OPENCLAW SECURITY REVIEW COMPLETED
+- Performed a read-only comparison of current OpenClaw security guidance with the host configuration and documented critical and warning findings, including ingress/tool over-permission, missing sandbox restrictions, credential-handling risk, plugin drift, and host hardening gaps.
+- Created an unsent security-review email draft for Matt; no configuration changes or email transmission occurred.
+
+YULAA OPERATIONS AND RATE-LIMIT FOLLOW-UP
+- Refreshed the LIVE YULAA report to 4,473 cases and identified 3,870 cases with at least three recorded attempts.
+- Diagnosed the prior field-update run's failures as LegalServer API throttling/availability responses; 83 updates were verified, 64 cases were already correct, and 5,184 attempts failed.
+- Staged 20 checkpointed, single-worker chunks with 429/503 backoff and scheduled overnight processing plus a read-only morning status check. The weekly Judicial extraction also started in read-only mode; LegalServer and monday.com write-back remained disabled.
+
+REPORTING AND DOCUMENT DELIVERABLES
+- Completed the RTC weekly reporting run for August 24–30, generating four PDFs, uploading them to SharePoint, and creating an Outlook draft; no email was sent.
+- Retrieved the complete active Zoom Contact Center disposition list (145 entries) and updated the existing MattRocky SharePoint Word document to contain only the requested number and disposition-code/name columns.
+- Verified that exact Vercel Hobby edge-request usage is not available through the account's usage API; no account changes were made.
+
+OTHER OPERATIONAL WORK
+- Completed read-only availability checks for a proposed business account handle across Instagram, Facebook, YouTube, and Gmail and identified alternative handle candidates.
+
+CAPABILITY STATUS
+- Existing OpenClaw security-audit, YULAA, Zoom Contact Center, RTC reporting, SharePoint, Outlook-draft, and Vercel diagnostic capabilities were exercised and materially documented.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-21 (Session 91 — Lossless-Claw rollout and history migration)
 ====================================================
 
