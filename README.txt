@@ -3209,6 +3209,23 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-09-01 (Session 100 — Funnel report PDF rendering and validation)
+====================================================
+
+FUNNEL REPORT PDF WORKFLOW FIXED AND STANDARDIZED
+- Regenerated the August 2026 SLS and RTC chart-only PDFs after correcting blank, cropped, and incomplete renderings; the final PDFs are single-page, full-size January–August 2026 charts.
+- Permanently updated the monthly report builder and scheduled job to use the shared chart renderer, preserve the workbook's top reference line, and keep future PDFs chart-only.
+- Replaced the corrected PDFs in SharePoint; Excel workbooks were left unchanged.
+
+FUNNEL REPORT NUMBERS VERIFIED
+- Verified August totals against the live Zoom data: SLS 9,501 total / 1,896 handled and RTC 2,403 total / 673 handled.
+- Confirmed the difference was limited to four records outside the two configured hotline flows; conversion and handling rates remained stable, with no evidence of a reporting-definition change.
+
+CAPABILITY STATUS
+- Existing funnel-report generation, chart rendering, SharePoint delivery, and scheduled monthly processing capabilities were fixed and verified.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-31 (Session 99 — Security review, YULAA operations, and reporting deliverables)
 ====================================================
 
