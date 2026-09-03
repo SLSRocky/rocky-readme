@@ -3226,6 +3226,21 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-09-02 (Session 101 — YULAA report refresh and hotline-flow verification)
+====================================================
+
+YULAA REPORT REFRESH FIXED
+- Refreshed the LIVE YULAA report in read-only mode after removing a blank saved filter parameter that caused an HTTP 400 response.
+- Confirmed 621 cases remain with both YULAA fields blank; the prior 3,870-case update was already complete and verified with no errors.
+
+SLS HOTLINE FLOW VERIFIED
+- Checked the current published hotline flow and confirmed that 9 repeats the menu or informational recording in every English and Spanish menu.
+
+CAPABILITY STATUS
+- Existing LegalServer/YULAA read-only reporting and Zoom hotline-flow inspection capabilities were exercised and corrected.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-31 (Session 99 — Security review, YULAA operations, and reporting deliverables)
 ====================================================
 
