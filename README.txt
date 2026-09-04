@@ -3515,3 +3515,19 @@ STAFF ISP MONTHLY REPORT CHECK
 CAPABILITY STATUS
 - Existing monthly reporting, SharePoint upload, and Outlook draft capabilities were exercised successfully for RTC.
 - No new external platform connection or configuration was added.
+2026-09-03 (Session 40 — Zoom Legal Server Lookup review and Contact Center investigation)
+====================================================
+
+ZOOM LEGAL SERVER LOOKUP APP
+- Prepared the non-secret metadata needed for Zoom review of the Legal Server Lookup app, including the approved LegalServer domain and SLS-CT policy/support/documentation URLs.
+- Verified the production Vercel app and its public policy/support URLs are reachable; the Development Client ID remains a value Matt must copy from Zoom Marketplace app credentials.
+- Investigated external navigation failures through multiple UI implementations, including direct underlined anchors and the Zoom SDK URL-launch capability. Direct links and right-click new-window behavior also fail in the embedded Zoom webview, indicating a container/domain-policy issue rather than a button implementation issue.
+- Recorded the operational next steps: save the exact app configuration, fully restart Zoom, remove/re-add the development app, and use the copy-URL fallback or pursue Zoom webview/domain-policy support if navigation remains blocked.
+
+ZOOM CONTACT CENTER INVESTIGATION
+- Confirmed from Zoom help documentation that a voice engagement supports up to 10 participants in a conference; no account setting was found to raise that participant limit.
+- Performed read-only same-day inbound call investigations by phone number, flow, queue, agent, transfer presence, and engagement identifier. Contact Center data does not expose the destination extension for transfers, and Zoom Phone call logs are outside the configured Contact Center access.
+
+CAPABILITY STATUS
+- Existing Zoom Contact Center and Vercel capabilities were extended with documented app-navigation troubleshooting and more precise call-flow/transfer-limitations reporting.
+- No new external platform connection or production configuration was added today.
