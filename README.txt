@@ -3109,6 +3109,27 @@ CAPABILITY STATUS
 - No new external platform connection or configuration was added.
 
 ====================================================
+2026-09-04 (Session 102 — Critter runtime, memory search, and host storage)
+====================================================
+
+CRITTER DISCORD RUNTIME FIXED
+- Corrected Critter's Discord guild/channel allowlist mapping and verified the bot connection in its POC server.
+- Set the configured channel to respond without requiring an @Critter mention; gateway restart and routing verification passed.
+
+CRITTER MEMORY CAPABILITIES ADDED
+- Installed QMD 2.8.3 under Critter's account, created its workspace collection, and indexed seven Markdown files.
+- Installed and enabled Lossless-Claw 0.15.3, selected it as Critter's context engine, enabled memory/session search, and repaired a stale plugin-registry entry after restart.
+- Downloaded the required local QMD models (~2.2 GB); final verification passed with approximately 2.7 GB free before the later host expansion.
+
+HOST STORAGE EXPANDED
+- Extended the root LVM filesystem to approximately 983 GB total, with about 887 GB free and 6% usage.
+- This provides sufficient capacity for QMD models, Lossless-Claw databases, and future indexing.
+
+CAPABILITY STATUS
+- Critter now has verified Discord routing plus local semantic search and conversation-context management.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-24 (Session 93 — LegalServer V2 MCP and Zoom Contact Center app)
 ====================================================
 
