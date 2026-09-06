@@ -3130,6 +3130,28 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-09-05 (Session 103 — Critter memory, responsiveness, Dropbox, and storage operations)
+====================================================
+
+CRITTER MEMORY AND DISCORD EXPERIENCE IMPROVED
+- Enabled and verified Critter's bundled `session-memory` hook for `/new` and `/reset` session saves.
+- Confirmed the conversational `checkpoint` workflow and set `agents.defaults.typingMode` to `instant`; gateway restart and port verification passed.
+
+CRITTER DROPBOX ACCESS ADDED
+- Connected Critter to the Dropbox App folder with a permissions-restricted local credential file.
+- Added a read-only integration for listing, searching, metadata, and downloads; access was verified and the gateway restarted successfully.
+- The Dropbox App folder was empty at verification time; no Dropbox content was uploaded, modified, moved, or deleted.
+
+CRITTER HOST OPERATIONS COMPLETED
+- Installed and verified QMD 2.8.3 and Lossless-Claw 0.15.3 for Critter, indexed the workspace memory, and confirmed the context engine and memory search configuration.
+- Confirmed the host storage expansion provides approximately 983 GB total with about 887 GB free.
+- Temporary delegated access for Critter setup remains pending Matt's SSH cleanup command.
+
+CAPABILITY STATUS
+- Critter now has persistent session-memory behavior, immediate typing feedback, local semantic memory, and verified read-only Dropbox access.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-24 (Session 93 — LegalServer V2 MCP and Zoom Contact Center app)
 ====================================================
 
