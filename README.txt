@@ -3152,6 +3152,23 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-09-07 (Session 104 — RTC reporting and YULAA operational checkpoint)
+====================================================
+
+RTC WEEKLY REPORTING COMPLETED
+- Ran the existing Zoom Contact Center reporting pipeline for August 31–September 6: 34,647 records fetched and 576 external inbound calls identified.
+- Generated and uploaded four PDFs to SharePoint and created the Outlook draft for the reporting period; no email was sent.
+
+YULAA WEEKLY EXTRACTION CHECKPOINTED
+- The scheduled read-only run pulled 649 LegalServer rows, including 107 without docket URLs.
+- Four read-only CT Judicial workers encountered slow responses and transient errors/retries; no final result, SharePoint LOG update, or email delivery was produced.
+- No LegalServer or Monday.com writes occurred. The latest completed Monday.com batch remains 507/507 imported or updated and verified.
+
+CAPABILITY STATUS
+- Existing RTC reporting and YULAA operational-monitoring capabilities were exercised and documented.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-24 (Session 93 — LegalServer V2 MCP and Zoom Contact Center app)
 ====================================================
 
