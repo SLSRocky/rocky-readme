@@ -3169,6 +3169,19 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-09-08 (Session 105 — Rocky Discord routing fix)
+====================================================
+
+ROCKY DISCORD ROUTING FIXED
+- Investigated Matt's report that Rocky was not replying in the configured Discord channel.
+- Verified both Discord bots were connected and Rocky had channel access; the failure was caused by the default Discord account lacking an explicit route to Rocky's `main` agent.
+- Added the explicit `discord:default → main` route, validated the configuration, and confirmed Rocky's channel probe passed. A gateway restart was initiated to load the live binding.
+
+CAPABILITY STATUS
+- Rocky's Discord account now has explicit routing to the main agent for reliable message handling.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-08-24 (Session 93 — LegalServer V2 MCP and Zoom Contact Center app)
 ====================================================
 
