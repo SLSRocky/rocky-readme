@@ -3169,6 +3169,25 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-09-09 (Session 106 — OpenClaw recovery, app updates, and account routing)
+====================================================
+
+OPENCLAW UPGRADE RECOVERY
+- Recovered Rocky's configured identity and presentation settings after the OpenClaw upgrade, validated the corrected schema, and confirmed the gateway and Discord connection remained healthy.
+- Rebuilt the QMD memory index from the preserved source corpus, including semantic embeddings, and connected QMD through the configured MCP path; lossless-claw remained enabled.
+- Updated the Brave plugin to the matching OpenClaw release and verified Rocky and Adrian connectivity.
+
+ACCOUNT AND APPLICATION UPDATES
+- Changed Adrian's Ally-agent OpenAI auth priority to Ally's authorized profile, retaining the existing profile as fallback.
+- Updated and republished the LegalServer lookup app with compact case-opening controls and removed its diagnostics panel; committed the current source to GitHub.
+- Removed obsolete wording from the OLI callback app and verified the production deployment.
+- Updated the callback app's Smart Embed dial origin handling and added the caller field to prepared notes; verified deployment and pushed the source update.
+
+DATA-SAFETY STATUS
+- Declined to retrieve sensitive 2025 household demographics because the available LegalServer date filters were not verified; no raw client data was retrieved or disclosed.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-09-08 (Session 105 — Rocky Discord routing fix)
 ====================================================
 
