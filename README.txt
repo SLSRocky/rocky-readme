@@ -3169,6 +3169,19 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-09-10 (Session 107 — OLI callback app refresh and dialing fixes)
+====================================================
+
+OLI CALLBACK APP IMPROVED AND REPUBLISHED
+- Added a no-cache Refresh List control with loading/error handling so the callback list can be refreshed on demand.
+- Fixed multi-number dialing: cases with distinct Cell and Home numbers now show a visible centered selection modal with labeled choices, case identification, Cancel, and dialog accessibility attributes; single-number dialing remains direct.
+- Production builds passed, the changes were pushed to GitHub, and the linked Vercel production deployment was verified READY with live page/API checks.
+
+CAPABILITY STATUS
+- Existing OLI callback, Zoom Smart Embed, and LegalServer note-preparation capabilities were extended and verified.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-09-09 (Session 106 — OpenClaw recovery, app updates, and account routing)
 ====================================================
 
