@@ -3169,6 +3169,19 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-09-11 (Session 108 — Answered-call export and SharePoint file workflow)
+====================================================
+
+SHAREPOINT CALL-LOG FILE WORKFLOW COMPLETED
+- Created a comma-separated text export for the 30 answered calls from the authorized call-log source.
+- Uploaded the export to the call-log folder root and verified the uploaded file.
+- Reformatted the entries in place to `###-###-####` and re-verified the 30-entry result.
+
+CAPABILITY STATUS
+- Existing read-only call-log retrieval and SharePoint upload capabilities were exercised and extended with a reusable consumer-number export workflow.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-09-10 (Session 107 — OLI callback app refresh and dialing fixes)
 ====================================================
 
