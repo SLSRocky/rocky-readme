@@ -3182,6 +3182,27 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-09-12 (Session 109 — Local memory cost guardrails, rollout baseline, and Ubuntu kit)
+====================================================
+
+LOCAL MEMORY AND COST GUARDRAILS ENFORCED
+- Updated the packaged-deployment baseline to require local QMD embeddings, reranking, and query expansion plus local OpenClaw memory embeddings.
+- Configured Rocky's native memory search with the local provider and no remote fallback; the local rebuild was started and remained in progress pending final semantic-retrieval verification.
+- Added verification requirements for separate QMD/native indexes, local model/runtime details, and rejection of paid remote embedding configuration.
+
+LEGALSERVER FABRIC INGESTION DESIGN DOCUMENTED
+- Defined a case-centered MS Fabric ingestion model using the LegalServer matter/case identifier as the conformed key while preserving each report's native grain.
+- Identified the initial Bronze/Silver/Gold layers and recommended matter, person/household bridge, referral, note, document, timeslip, status, and alert entities without changing LegalServer data.
+
+UBUNTU SERVER KIT PUBLISHED
+- Created and verified the canonical Ubuntu Server Kit in the MattRocky SharePoint, including the test media chunks, checksums, seed media, reassembly instructions, and README materials.
+- Preserved existing source copies because the available connector supports upload but not move/delete operations.
+
+CAPABILITY STATUS
+- Rocky and the packaged rollout baseline now follow a local-first, no-paid-memory-egress policy for memory operations; normal conversation model routing remains unchanged.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-09-10 (Session 107 — OLI callback app refresh and dialing fixes)
 ====================================================
 
