@@ -3203,6 +3203,21 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-09-13 (Session 110 — Dropbox verification and combined Ubuntu ISO)
+====================================================
+
+COMBINED UBUNTU ISO UPLOADED
+- Verified the combined Ubuntu server and seed ISO, then uploaded it to the designated Dropbox folder.
+- Confirmed the remote file metadata, including the expected path and size; source media and the existing test system were left unchanged.
+
+DROPBOX CONNECTION VERIFIED
+- Confirmed read access to Dropbox before the upload and retained the existing secure credential handling.
+
+CAPABILITY STATUS
+- Existing Ubuntu rollout-media and Dropbox workflows were completed and verified.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-09-10 (Session 107 — OLI callback app refresh and dialing fixes)
 ====================================================
 
