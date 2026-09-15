@@ -3203,6 +3203,21 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-09-14 (Session 111 — Dropbox verification, Ubuntu ISO handoff, and checkpoint rule)
+====================================================
+
+DROPBOX AND UBUNTU ROLLOUT VERIFICATION
+- Re-verified Rocky's read-only Dropbox access through the protected gateway path and confirmed the combined Ubuntu rollout ISO remained locally validated and ready for the designated-folder handoff; the separate Critter configuration was left unchanged.
+- Preserved the secure credential-handling and egress-proxy safeguards; no credentials or tokens were recorded.
+
+SESSION CHECKPOINT WORKFLOW HARDENED
+- Added and recorded an explicit standalone `checkpoint` rule: save a resumable session handoff to durable memory, report the saved path, and never silently discard the request.
+
+CAPABILITY STATUS
+- Existing Dropbox, Ubuntu rollout-media, and session-continuity workflows were verified or hardened.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-09-13 (Session 110 — Dropbox verification and combined Ubuntu ISO)
 ====================================================
 
