@@ -3203,6 +3203,23 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-09-15 (Session 112 — Ubuntu unattended ISO repair and instance configuration)
+====================================================
+
+UBUNTU ROLLOUT MEDIA REPAIRED
+- Diagnosed and rebuilt the Ubuntu unattended-install ISO after repeated boot, seed-discovery, and cloud-init failures.
+- Corrected stale/malformed NoCloud seed content, removed the interactive installer section, preserved BIOS/UEFI boot metadata, and validated the finished media's embedded seed, YAML/schema, and boot paths.
+- Removed test-media artifacts from the designated output folder while preserving the final images; recoverable deletion was used.
+
+OPENCLAW INSTANCE CONFIGURATION BUNDLE
+- Created and published a sanitized post-install configuration bundle for deploying an OpenClaw instance on Ubuntu, including validation checks and secure handling guidance.
+- Documented SSH public-key addition and clarified that existing authorized keys should be retained.
+
+CAPABILITY STATUS
+- Existing Ubuntu rollout, ISO validation, SSH, and GitHub workflows were fixed, extended, and verified.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-09-14 (Session 111 — Dropbox verification, Ubuntu ISO handoff, and checkpoint rule)
 ====================================================
 
