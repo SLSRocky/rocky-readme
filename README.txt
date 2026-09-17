@@ -3203,6 +3203,26 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-09-16 (Session 113 — Ubuntu rollout handoff, LegalServer Fabric planning, and SharePoint report validation)
+====================================================
+
+UBUNTU CLIENT ROLLOUT PACKAGE HANDOFF
+- Confirmed the tested unattended Ubuntu/OpenClaw rollout package is ready for client deployment preparation, including the pinned post-install configuration workflow and validation checks.
+- Verified the test VM's private-network limitation from the Gateway host and documented VPN/routed-network or outbound-tunnel options for future direct administration.
+
+LEGALSERVER FABRIC MCP BLUEPRINT ADVANCED
+- Re-established the MS Fabric Bronze/Silver/Gold design for a governed, read-only LegalServer data layer, preserving each report's native grain and using the LegalServer matter/case identifier as the conformed key.
+- Retrieved and safely extracted the authoritative SharePoint report document through the tenant-backed Graph path; validated all 33 report entries, including current Case Info, referral, and staff-list report mappings.
+- Identified test-specific saved filter values that must not become Fabric ingestion defaults; controlled date windows and separate runtime filter parameters are required.
+
+OPERATIONAL DATA LOOKUP
+- Performed a read-only same-day SLS hotline aggregate lookup in Zoom Contact Center and confirmed the available data does not provide a reliable legal-issue/disposition breakdown.
+
+CAPABILITY STATUS
+- Ubuntu rollout, SharePoint document extraction, LegalServer report validation, Fabric relationship planning, and Zoom Contact Center aggregate lookup capabilities were exercised or extended.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-09-15 (Session 112 — Ubuntu unattended ISO repair and instance configuration)
 ====================================================
 
