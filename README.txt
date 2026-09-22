@@ -3203,6 +3203,22 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-09-21 (Session 116 — RTC reporting completion and YULAA read-only checkpoint)
+====================================================
+
+RTC WEEKLY REPORTING COMPLETED
+- Completed the RTC Hotline report for September 14–20 with 618 external inbound calls, 245 eligible calls, and 68 non-eligible calls.
+- Generated the four report attachments and created the Outlook draft; no email was sent.
+
+YULAA WEEKLY EXTRACTION CHECKPOINTED
+- The read-only run fetched 780 LegalServer rows, including 116 without docket URLs, then was stopped after CT Judicial retries made completion exceed the execution window.
+- No SharePoint LOG upload or email delivery was attempted from partial results, and no LegalServer or Monday.com writes occurred.
+
+CAPABILITY STATUS
+- Existing RTC reporting and YULAA operational-monitoring capabilities were exercised with delivery and write safeguards preserved.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-09-18 (Session 115 — Contact Center daily operations and LegalServer safeguards)
 ====================================================
 
