@@ -3203,6 +3203,18 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-09-22 (Session 117 — Citizenship Data View charts)
+====================================================
+
+CITIZENSHIP DATA VIEW ANALYSIS
+- Built two aggregate charts from the 2022–2025 Citizenship Data View workbooks: citizenship status year-over-year and non-citizen legal-problem counts by year.
+- Revised both charts to remove the source footer and vertical grid lines, then overwrote and verified the PNGs in the MattRocky SharePoint folder.
+- Kept the analysis aggregate-only; no client-level data or credentials were added to this README.
+
+CAPABILITY STATUS
+- Existing SharePoint/Graph binary-safe workbook analysis and chart-upload capability was exercised and refined.
+
+====================================================
 2026-09-21 (Session 116 — RTC reporting completion and YULAA read-only checkpoint)
 ====================================================
 
