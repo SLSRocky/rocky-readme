@@ -3215,6 +3215,21 @@ CAPABILITY STATUS
 - Existing SharePoint/Graph binary-safe workbook analysis and chart-upload capability was exercised and refined.
 
 ====================================================
+2026-09-23 (Session 118 — Hotline YTD analysis and intake assessment checkpoint)
+====================================================
+
+HOTLINE YTD ANALYSIS
+- Completed an aggregate-only 2026 year-to-date comparison of RTC Hotline and SLS Main Hotline housing-selected call volumes, validating Eastern-time boundaries and including the partial September period.
+- Resolved queue/data-shape issues during the read-only lookup; no caller-level details were included.
+
+INTAKE AND LEGALSERVER CHECKPOINT
+- Completed and uploaded the TIP Intake System Assessment RFP draft to the approved SharePoint library, with remaining solicitation-specific fields intentionally left for completion.
+- A requested aggregate 2025 housing-case household-demographics query could not be completed because the available LegalServer report filters rejected the date-range configuration; follow-up is pending.
+
+CAPABILITY STATUS
+- Aggregate hotline analysis, SharePoint document delivery, and read-only LegalServer report validation were exercised without adding credentials, client data, or message contents to this README.
+
+====================================================
 2026-09-21 (Session 116 — RTC reporting completion and YULAA read-only checkpoint)
 ====================================================
 
