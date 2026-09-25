@@ -3230,6 +3230,19 @@ CAPABILITY STATUS
 - Aggregate hotline analysis, SharePoint document delivery, and read-only LegalServer report validation were exercised without adding credentials, client data, or message contents to this README.
 
 ====================================================
+2026-09-24 (Session 119 — Hotline averages and checkpoint)
+====================================================
+
+HOTLINE AVERAGES COMPLETED
+- Answered Matt's aggregate-only request for 2026 year-to-date average calls per day and per month for the RTC Hotline and SLS Main Hotline calls where Housing was selected.
+- Used America/New_York calendar boundaries through September 23, including the partial month; no caller-level details were included.
+- Preserved the read-only approach after the dedicated legal-issue endpoint rejected the date parameters, using the authorized underlying data pulls for the affected aggregates.
+
+CAPABILITY STATUS
+- Existing Zoom Contact Center aggregate reporting and Eastern-time date-range validation were exercised and documented.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-09-21 (Session 116 — RTC reporting completion and YULAA read-only checkpoint)
 ====================================================
 
