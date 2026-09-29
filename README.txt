@@ -3840,3 +3840,22 @@ ZOOM CONTACT CENTER INVESTIGATION
 CAPABILITY STATUS
 - Existing Zoom Contact Center and Vercel capabilities were extended with documented app-navigation troubleshooting and more precise call-flow/transfer-limitations reporting.
 - No new external platform connection or production configuration was added today.
+
+====================================================
+2026-09-28 (Session — RTC reporting and YULAA operations)
+====================================================
+
+RTC WEEKLY REPORTS COMPLETED
+- Ran the automated RTC pipeline for September 21–27, 2026.
+- Created the Outlook draft with exactly four report attachments; no email was sent.
+- Reported counts: Inbound 431, Vet xFer 19, Non-Area 81, Eligible 197.
+- No cap-splitting was required, and temporary `/tmp/rtc` data was removed successfully.
+
+YULAA WEEKLY EXTRACTION ATTEMPTED
+- Started the hardened read-only judicial extraction with four workers.
+- The runner fetched 854 LegalServer rows, including 118 without docket URLs, but processing did not complete.
+- No SharePoint log upload or email was sent, and no LegalServer writes were performed.
+
+CAPABILITY STATUS
+- Existing RTC reporting and read-only YULAA capabilities were exercised; no new external platform connection was added.
+- No credentials, tokens, client data, or message contents were added to this README.
