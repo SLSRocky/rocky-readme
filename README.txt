@@ -3842,6 +3842,18 @@ CAPABILITY STATUS
 - No new external platform connection or production configuration was added today.
 
 ====================================================
+2026-09-29 (Session — LegalServer Lookup UI refinement)
+====================================================
+
+LEGALSERVER LOOKUP UI UPDATED
+- Refined the client-match card layout so Intake Date, DOB, and SSN appear on separate non-wrapping lines, followed directly by email and location.
+- Verified the change, pushed the application update to GitHub, and redeployed the production Vercel app successfully.
+
+CAPABILITY STATUS
+- Existing LegalServer Lookup capability was refined and redeployed; no new external platform connection was added.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-09-28 (Session — RTC reporting and YULAA operations)
 ====================================================
 
