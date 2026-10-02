@@ -3842,6 +3842,19 @@ CAPABILITY STATUS
 - No new external platform connection or production configuration was added today.
 
 ====================================================
+2026-10-01 (Session — September monthly reporting)
+====================================================
+
+MONTHLY REPORTING COMPLETED
+- Completed the September 2026 Funnel Report workflow for SLS and RTC, including the verified report artifacts, SharePoint uploads, and Outlook draft; no email was sent.
+- Verified the September Staff ISP report had already completed successfully and was uploaded to SharePoint, avoiding a duplicate run.
+- Confirmed the Funnel Report's Zoom credential parser is compatible with the active environment-file naming convention; no credentials or tokens were recorded.
+
+CAPABILITY STATUS
+- Existing Funnel, RTC, and Staff ISP reporting capabilities were exercised and verified; no new external platform connection was added.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-09-29 (Session — LegalServer Lookup UI refinement)
 ====================================================
 
