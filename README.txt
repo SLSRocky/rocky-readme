@@ -3842,6 +3842,18 @@ CAPABILITY STATUS
 - No new external platform connection or production configuration was added today.
 
 ====================================================
+2026-10-03 (Session — F2K token print layouts)
+====================================================
+
+F2K TOKEN LAYOUTS COMPLETED
+- Created and visually verified 300-DPI, portrait letter-size, three-up duplex PDFs for the 5, 10, 20, and 50 token designs, with crop marks and matching front/back pages for duplex printing.
+- Uploaded the four verified PDFs to the MattRocky SharePoint F2K folder and created/uploaded front/back PSD layout derivatives for the 5-token design; original source files were preserved.
+
+CAPABILITY STATUS
+- Existing Photoshop/PDF layout and SharePoint upload capabilities were exercised successfully; no new external platform connection or configuration was added.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-10-02 (Session — travel planning assistance)
 ====================================================
 
