@@ -3854,6 +3854,19 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-10-04 (Session — F2K landscape duplex alignment)
+====================================================
+
+F2K LANDSCAPE DUPLEX LAYOUTS COMPLETED
+- Created and visually verified 300-DPI, landscape 4-up duplex PDFs for the token designs, enlarging the layout to approximately 5.1 × 2.78 inches per token.
+- Diagnosed duplex registration feedback, produced test revisions, restored the requested unmirrored back page, and finalized PAGE 1/PAGE 2 labels with a 0.20-inch leftward PAGE 2 offset.
+- Applied the finalized layout to the 10, 20, and 50 token PDFs and uploaded the completed files to the existing SharePoint F2K folder.
+
+CAPABILITY STATUS
+- Existing Photoshop/PDF layout, print-registration adjustment, and SharePoint upload capabilities were exercised successfully; no new external platform connection or configuration was added.
+- No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
 2026-10-02 (Session — travel planning assistance)
 ====================================================
 
