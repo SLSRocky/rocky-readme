@@ -3921,3 +3921,22 @@ YULAA WEEKLY EXTRACTION ATTEMPTED
 CAPABILITY STATUS
 - Existing RTC reporting and read-only YULAA capabilities were exercised; no new external platform connection was added.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-10-05 (Session — F2K layouts, Funnel repair, and NHPD refresh)
+====================================================
+
+F2K PRINT LAYOUTS COMPLETED
+- Completed and uploaded the final landscape 4-up duplex PDFs for the 5, 10, 20, and 50 token designs, with PAGE 1/PAGE 2 labels and the requested PAGE 2 registration offset; also uploaded an unshifted 5-token reference PDF.
+
+MONTHLY FUNNEL REPORT REPAIR COMPLETED
+- Repaired the September SLS and RTC Funnel reports after August historical values plotted as zero, restored the verified prior-month values, and uploaded corrected workbooks/PDFs.
+- Updated the report builder to carry forward prior current-year values automatically; verified the September SLS increase against the underlying monthly summaries and created an Outlook draft with the corrected PDFs without sending it.
+
+NHPD DATABASE REFRESH COMPLETED
+- Rebuilt and validated the local NHPD SQLite database from the replacement workbook: 122,174 rows, 271 columns, 1,593 Connecticut properties, and 89,899 Connecticut units; SQLite integrity check passed.
+- Preserved a rollback database and moved the superseded workbook to Trash at Matt's request.
+
+CAPABILITY STATUS
+- Existing PDF/SharePoint layout, Funnel reporting, and NHPD database capabilities were fixed, extended, or exercised successfully; no new external platform connection was added.
+- No credentials, tokens, client data, or message contents were added to this README.
