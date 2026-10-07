@@ -3940,3 +3940,15 @@ NHPD DATABASE REFRESH COMPLETED
 CAPABILITY STATUS
 - Existing PDF/SharePoint layout, Funnel reporting, and NHPD database capabilities were fixed, extended, or exercised successfully; no new external platform connection was added.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-10-06 (Session — Dexter Zoom MCP access)
+====================================================
+
+DEXTER ZOOM MCP ACCESS COMPLETED
+- Deployed the pinned canonical Zoom Contact Center MCP revision to Dexter with isolated credentials and wired its active registration to the instance-specific environment file.
+- Restarted Dexter and verified the service remained active, gateway port 18793 was listening, the MCP handshake succeeded, and a harmless live Zoom queue probe completed successfully.
+- Confirmed Rocky and Adrian continue using Rocky’s main registration; Grace’s reload/probe verification remains pending, and Ally remains outside this rollout due to its pre-existing profile/state migration issue.
+
+CAPABILITY STATUS
+- Existing Zoom Contact Center MCP and isolated-instance administration capabilities were configured and verified; no credentials, tokens, client data, or message contents were added to this README.
