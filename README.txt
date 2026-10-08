@@ -3952,3 +3952,16 @@ DEXTER ZOOM MCP ACCESS COMPLETED
 
 CAPABILITY STATUS
 - Existing Zoom Contact Center MCP and isolated-instance administration capabilities were configured and verified; no credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-10-07 (Session — Dexter governance, Zoom training, and model configuration)
+====================================================
+
+DEXTER GOVERNANCE AND CAPABILITIES
+- Hardened Dexter’s Microsoft Graph connector so email sending is blocked while unsent draft creation is allowed; requests from Sandy to send mail require Matt’s approval, and the rule was added to Dexter’s governance instructions.
+- Added and verified Dexter-specific Zoom call-counting guidance: count unique inbound engagements with exact queue, direction, channel, outcome, and Eastern-time filters, and distinguish inbound attempts from answered calls and other outcomes.
+- Investigated Dexter’s Discord responsiveness and restored its saved primary model to `openai/gpt-6-luna`; service restart remains pending because remote sudo requires the Dexter host password.
+
+OTHER OPERATIONAL NOTES
+- Staged the U.S. Census Bureau Data API MCP source and verified its build, but did not connect it: the full feature set requires unavailable Docker/Postgres, and the protected API-key entry was canceled when the work was paused.
+- No credentials, tokens, client data, or message contents were added to this README.
