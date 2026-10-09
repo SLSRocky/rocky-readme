@@ -3965,3 +3965,15 @@ DEXTER GOVERNANCE AND CAPABILITIES
 OTHER OPERATIONAL NOTES
 - Staged the U.S. Census Bureau Data API MCP source and verified its build, but did not connect it: the full feature set requires unavailable Docker/Postgres, and the protected API-key entry was canceled when the work was paused.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-10-08 (Session — Dexter SharePoint access and routing diagnosis)
+====================================================
+
+DEXTER SHAREPOINT ACCESS FIXED AND VERIFIED
+- Fixed Dexter’s SharePoint file reader to fall back to Microsoft Graph’s standard content endpoint when app-only metadata omits its temporary download URL; reloaded the MCP and verified the protected test file can be downloaded successfully.
+- Confirmed the SharePoint TEST folder still exists under the Sandy & Dexter Documents library without exposing file contents.
+- Diagnosed Dexter’s failure to find the folder as a local-workspace/tool-routing or stale-session issue rather than a SharePoint permission failure; the SharePoint MCP exposes all 10 expected tools.
+
+CAPABILITY STATUS
+- Existing Dexter SharePoint read capability was repaired and verified; no credentials, tokens, client data, or message contents were added to this README.
