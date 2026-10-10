@@ -3977,3 +3977,22 @@ DEXTER SHAREPOINT ACCESS FIXED AND VERIFIED
 
 CAPABILITY STATUS
 - Existing Dexter SharePoint read capability was repaired and verified; no credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-10-09 (Session — AI policy, Zoom flow extraction, and Census MCP)
+====================================================
+
+SLS AI USAGE POLICY DRAFT UPDATED
+- Prepared an SLS AI Usage Policy draft from approved example policies and funder guidance, covering confidentiality, tool approval, human review, incident reporting, training, governance, and annual review.
+- Added a general SLS-managed AI assistant definition for on-premises/SLS-controlled assistants, retained the required inventory and authorization controls, and uploaded verified Markdown and searchable PDF draft versions to the SharePoint AI Policy folder.
+
+ZOOM RTC FLOW EXTRACTION COMPLETED
+- Extracted and verified all 38 exits from the published RTC Hotline `ENG-GHLAZipCodes` condition widget, including the recorded configuration discrepancy for one ZIP-match exit.
+- Saved the redacted exit list locally and created an unsent Microsoft 365 review draft with the file attached.
+
+CENSUS MCP CONNECTION COMPLETED
+- Registered and live-tested the Census Bureau Data API MCP using protected credential handling; the probe exposed five tools and prompts and the API reachability check succeeded.
+- Added a local built-server fallback because Docker/Postgres is unavailable; database-backed Census features remain pending that runtime.
+
+CAPABILITY STATUS
+- Existing SharePoint, Zoom Contact Center, Microsoft 365, and MCP connection capabilities were extended and verified; no credentials, tokens, client data, or message contents were added to this README.
