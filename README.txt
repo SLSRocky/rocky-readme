@@ -3996,3 +3996,16 @@ CENSUS MCP CONNECTION COMPLETED
 
 CAPABILITY STATUS
 - Existing SharePoint, Zoom Contact Center, Microsoft 365, and MCP connection capabilities were extended and verified; no credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-10-12 (Session — RTC reporting and YULAA extraction operations)
+====================================================
+
+RTC WEEKLY REPORTS COMPLETED
+- Completed the October 5–11 RTC weekly reporting run, creating and uploading four PDFs and an unsent Microsoft 365 draft; the run verified 35,308 records, 573 external inbound calls, no cap-splitting days, and temporary-file cleanup.
+
+YULAA EXTRACTION BLOCKED SAFELY
+- Refreshed the read-only LegalServer source and found 1,015 rows, including 133 without docket URLs; the extraction was stopped after the initial dependency/performance blockers and no LegalServer, SharePoint, Monday.com, or email writes occurred.
+
+CAPABILITY STATUS
+- Existing RTC reporting, SharePoint upload, Microsoft 365 draft, and read-only YULAA workflow capabilities were exercised; no credentials, tokens, client data, or message contents were added to this README.
