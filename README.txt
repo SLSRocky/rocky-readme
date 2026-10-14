@@ -4009,3 +4009,21 @@ YULAA EXTRACTION BLOCKED SAFELY
 
 CAPABILITY STATUS
 - Existing RTC reporting, SharePoint upload, Microsoft 365 draft, and read-only YULAA workflow capabilities were exercised; no credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-10-13 (Session — Zoom operations, secure access guidance, and photo cleanup)
+====================================================
+
+OPERATIONS AND GUIDANCE
+- Investigated a token-refresh reminder without exposing protected credentials; no confirmed JWT implementation or recorded expiration metadata was found.
+- Queried Zoom Contact Center calls for Housing and RTC Advocate queues and verified an agent-specific call count using Eastern-time scoping and unique engagements.
+- Provided secure guidance for persistent email access: remember the approved connector and re-authentication procedure, never passwords or tokens.
+- Explained the existing enclosure YAML schema and the compatibility-safe approach for Family subsections pending parser support.
+
+SHAREPOINT PHOTO CLEANUP COMPLETED
+- Completed verified duplicate/near-duplicate photo cleanup using `DUP_` for exact duplicates and `CLOSE_` for near-identical files, preserving chronological originals and existing labels.
+- Renamed 160 exact duplicates and 137 near-identical images in the first pass; 25 originally listed files were no longer resolvable and were left unchanged.
+- Repeated the cleanup on the current unmarked set: 15 additional near-identical photos renamed, with no new exact duplicates; MP4 clips were excluded.
+
+CAPABILITY STATUS
+- Existing Zoom, SharePoint, secure-credential, YAML, and photo-processing capabilities were exercised or extended; no credentials, tokens, client data, or message contents were added to this README.
