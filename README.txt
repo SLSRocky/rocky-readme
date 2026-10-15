@@ -4027,3 +4027,17 @@ SHAREPOINT PHOTO CLEANUP COMPLETED
 
 CAPABILITY STATUS
 - Existing Zoom, SharePoint, secure-credential, YAML, and photo-processing capabilities were exercised or extended; no credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-10-14 (Session — slideshow recreation and F2K calibration)
+====================================================
+
+MISSION TRIP SLIDESHOW RECREATED
+- Recreated the cleaned-photo slideshow with 168 varied collage frames and 2 seconds per collage, producing a verified 5:36 H.264/AAC MP4 with a gentle music fade.
+- Uploaded the new comparison video to the existing SharePoint Mission Trip folder; existing videos and MP4 source clips were preserved.
+
+F2K DUPLEX CALIBRATION COMPLETED
+- Applied the final page-2 registration adjustment from the 10-token test to the 20- and 50-token landscape 4-up duplex PDFs, preserving originals and uploading distinct calibrated copies to the SharePoint F2K folder.
+
+CAPABILITY STATUS
+- Existing photo/video processing, PDF calibration, and SharePoint upload capabilities were exercised successfully; no credentials, tokens, client data, or message contents were added to this README.
