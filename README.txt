@@ -4041,3 +4041,12 @@ F2K DUPLEX CALIBRATION COMPLETED
 
 CAPABILITY STATUS
 - Existing photo/video processing, PDF calibration, and SharePoint upload capabilities were exercised successfully; no credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-10-15 (Session — Mission Trip slideshow reflow)
+====================================================
+
+MISSION TRIP SLIDESHOW REFLOWED
+- Built and visually reviewed a separate charcoal-matte review version that reflowed the photos into mostly three-photo slides, making smaller images more prominent while preserving uncropped/face-safe framing, requested full-screen exceptions, and dry-erase removal.
+- Verified 227 JPEG frames and a 7:34, 1920x1080 H.264/AAC MP4 at 2 seconds per frame; packaged and uploaded the ZIP and matching video to the existing SharePoint Mission Trip folder.
+- Preserved the earlier versions unchanged and recorded the next step as Matt's review; no credentials, tokens, client data, or message contents were added to this README.
