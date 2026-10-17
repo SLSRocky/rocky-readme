@@ -4050,3 +4050,16 @@ MISSION TRIP SLIDESHOW REFLOWED
 - Built and visually reviewed a separate charcoal-matte review version that reflowed the photos into mostly three-photo slides, making smaller images more prominent while preserving uncropped/face-safe framing, requested full-screen exceptions, and dry-erase removal.
 - Verified 227 JPEG frames and a 7:34, 1920x1080 H.264/AAC MP4 at 2 seconds per frame; packaged and uploaded the ZIP and matching video to the existing SharePoint Mission Trip folder.
 - Preserved the earlier versions unchanged and recorded the next step as Matt's review; no credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-10-16 (Session — AI policy review, document repair, and SharePoint delivery)
+====================================================
+
+AI POLICY AND INVENTORY DOCUMENTS UPDATED
+- Repaired and normalized the AI policy and approved-tool inventory Word packages after compatibility issues, preserving the requested numbered Core rules and embedded inventory table; verified the repaired Word/PDF pairs.
+- Reviewed AI Usage Policy v8 from IT Director and HR Manager perspectives, identified governance, employment, monitoring, enforcement, incident-response, and continuity gaps, and delivered the summarized feedback PDF to the SharePoint AI Policy folder.
+- Recorded the mission-trip slideshow reduction calculation: the 7:34 version would require removing approximately 137, 122, or 107 collage frames to reach 3:00, 3:30, or 4:00.
+
+CAPABILITY STATUS
+- Existing document-generation, Word/PDF repair, policy-review, SharePoint upload, and slideshow-analysis capabilities were exercised and verified; no new external platform connection was added.
+- No credentials, tokens, client data, or message contents were added to this README.
