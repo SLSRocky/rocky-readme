@@ -4063,3 +4063,16 @@ AI POLICY AND INVENTORY DOCUMENTS UPDATED
 CAPABILITY STATUS
 - Existing document-generation, Word/PDF repair, policy-review, SharePoint upload, and slideshow-analysis capabilities were exercised and verified; no new external platform connection was added.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-10-18 (Session — Mission Trip slideshow correction)
+====================================================
+
+MISSION TRIP SLIDESHOW CORRECTED AND VERIFIED
+- Corrected the slideshow source selection after confirming that the intended set was the 305 photos at the root of the SharePoint `PictureV3` folder; the nested `Pictures` subfolder was excluded.
+- Rendered and reviewed 153 two-photo slides with contain-framed 16:9 charcoal layouts, then verified and uploaded separate hard-cut H.264/AAC versions at 2 seconds per slide and 1.5 seconds per slide.
+- The latest 1.5-second version is 229.5 seconds (about 3:49.5); both versions passed local decoding, media metadata, and remote-size verification.
+
+CAPABILITY STATUS
+- Existing photo/video processing and SharePoint upload capabilities were corrected and exercised successfully; no new external platform connection was added.
+- No credentials, tokens, client data, or message contents were added to this README.
