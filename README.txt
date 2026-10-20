@@ -4065,6 +4065,14 @@ CAPABILITY STATUS
 - No credentials, tokens, client data, or message contents were added to this README.
 
 ====================================================
+2026-10-19 (Session — RTC reports and YULAA extraction)
+====================================================
+
+OPERATIONS
+- RTC weekly reports completed for October 12–18: four verified PDFs were attached to an unsent mailbox draft; no cap-splitting days were needed, and temporary files were cleaned up.
+- YULAA weekly judicial extraction launched with the scoped LegalServer report using a hardened read-only runner and four workers. The run covered 1,082 rows, including 139 without docket URLs; repeated CT Judicial transient errors left it in progress, with no LegalServer write-back, SharePoint log update, or email sent.
+
+====================================================
 2026-10-18 (Session — Mission Trip slideshow correction)
 ====================================================
 
