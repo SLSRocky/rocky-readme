@@ -4084,3 +4084,18 @@ MISSION TRIP SLIDESHOW CORRECTED AND VERIFIED
 CAPABILITY STATUS
 - Existing photo/video processing and SharePoint upload capabilities were corrected and exercised successfully; no new external platform connection was added.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-10-26 (Session — RTC report recreation and durable reporting runner)
+====================================================
+
+RTC REPORT DRAFT RECREATED
+- Re-ran the October 12–18 RTC reporting pipeline, regenerated and verified four PDFs, and created a new unsent mailbox draft; temporary report data was cleaned up.
+- The initial launch issue was corrected by using the installed Python 3 executable; no duplicate draft was created by the failed launch.
+
+HOUSING ABANDONMENT REPORT RUNNER HARDENED
+- Diagnosed the month-by-month Zoom Contact Center report stopping after four days: the temporary interactive process ended without an API failure.
+- Relaunched the aggregate-only, checkpointed runner as a persistent user-level service, resuming safely from its checkpoint; hourly status schedules were retained without duplication.
+
+CAPABILITY STATUS
+- Existing RTC reporting, Microsoft 365 draft verification, Zoom Contact Center extraction, checkpoint/resume, and durable-service capabilities were exercised or improved; no credentials, tokens, client data, or message contents were added to this README.
