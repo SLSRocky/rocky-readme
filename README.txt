@@ -4099,3 +4099,18 @@ HOUSING ABANDONMENT REPORT RUNNER HARDENED
 
 CAPABILITY STATUS
 - Existing RTC reporting, Microsoft 365 draft verification, Zoom Contact Center extraction, checkpoint/resume, and durable-service capabilities were exercised or improved; no credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-10-27 (Session — durable reporting, alerting, calendar, and Fabric architecture)
+====================================================
+
+OPERATIONS AND ALERTING
+- Reworked the Housing abandonment runner to checkpoint local half-day windows, preserve completed results, and use a longer service restart delay to reduce pagination/rate-limit restart loops; scheduled a one-time aggregate status check.
+- Diagnosed the GHLA rejected-transfer alert feed returning an empty LegalServer report and changed the poller to fail closed with an error rather than silently reporting zero alerts; no incomplete or duplicate Zoom messages were posted.
+
+MICROSOFT 365 AND FABRIC ARCHITECTURE
+- Created three categorized calendar appointments from an approved time-off request, preserving full-day and partial-day timing.
+- Updated and verified the LegalServer/Microsoft Fabric concept plan as a versioned PDF, documenting near-live polling, Bronze/Silver/Gold layers, snapshot/delta detection, event watermarks, and the distinction from true CDC; the original document was preserved.
+
+CAPABILITY STATUS
+- Existing Zoom Contact Center, LegalServer, Microsoft 365, SharePoint, and document-generation capabilities were exercised or improved; no credentials, tokens, client data, or message contents were added to this README.
