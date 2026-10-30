@@ -4114,3 +4114,20 @@ MICROSOFT 365 AND FABRIC ARCHITECTURE
 
 CAPABILITY STATUS
 - Existing Zoom Contact Center, LegalServer, Microsoft 365, SharePoint, and document-generation capabilities were exercised or improved; no credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-10-29 (Session — Housing Cleanup, Abandoned-Call Analysis, Fabric Planning)
+====================================================
+
+HOUSING ABANDONMENT PROJECT CLEANUP
+- Stopped and disabled the failing local Housing-abandonment service, removed its unit, and confirmed no related process, cron job, or timer remained.
+- Moved only the identified project scripts, checkpoint, reports, and logs to system trash; unrelated Housing data was left untouched.
+
+ABANDONED-CALL ANALYSIS
+- Read-only analysis of the shared Abandoned Calls monthly files produced overall and separate SLS Hotline/RTC Hotline abandonment percentages for January–October 2026; October was correctly treated as month-to-date through October 29.
+- Confirmed the monthly Funnel Stage 3 report is aggregated by hotline rather than queue and does not separately report abandonment.
+
+LEGALSERVER MCP / MICROSOFT FABRIC
+- Created and uploaded a versioned Microsoft Fabric implementation runbook based on the LegalServer MCP concept architecture, covering setup, ingestion, normalization, change detection, quality, reporting, security, testing, monitoring, rollout, and rollback.
+- Added near-live polling, Bronze/Silver/Gold layers, hashing, watermarks, overlap windows, deletion safeguards, and CDC limitations to the versioned architecture document; the original remained unchanged.
+- Confirmed a DEV Fabric workspace can later be promoted or recreated for production, with separate data, connections, permissions, and secrets; a future Zoom workspace can be connected through Fabric cross-workspace patterns. No production pipelines or LegalServer settings were changed.
