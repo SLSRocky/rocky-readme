@@ -4131,3 +4131,13 @@ LEGALSERVER MCP / MICROSOFT FABRIC
 - Created and uploaded a versioned Microsoft Fabric implementation runbook based on the LegalServer MCP concept architecture, covering setup, ingestion, normalization, change detection, quality, reporting, security, testing, monitoring, rollout, and rollback.
 - Added near-live polling, Bronze/Silver/Gold layers, hashing, watermarks, overlap windows, deletion safeguards, and CDC limitations to the versioned architecture document; the original remained unchanged.
 - Confirmed a DEV Fabric workspace can later be promoted or recreated for production, with separate data, connections, permissions, and secrets; a future Zoom workspace can be connected through Fabric cross-workspace patterns. No production pipelines or LegalServer settings were changed.
+
+====================================================
+2026-10-30 (Session — LegalServer docket URL corrections)
+====================================================
+
+LEGALSERVER CASE DATA CORRECTIONS COMPLETED
+- Processed the approved workbook of 64 proposed docket URL replacements through the live LegalServer API, reading each record before writing and verifying each result afterward.
+- Updated and verified 47 docket URL values; 17 were already correct, with 0 errors.
+- Left the three manual-review rows and the separate review case untouched because they had no proposed replacement value.
+- No credentials, tokens, client data, or message contents were added to this README.
