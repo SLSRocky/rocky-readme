@@ -4141,3 +4141,11 @@ LEGALSERVER CASE DATA CORRECTIONS COMPLETED
 - Updated and verified 47 docket URL values; 17 were already correct, with 0 errors.
 - Left the three manual-review rows and the separate review case untouched because they had no proposed replacement value.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-10-31 (Session — background operations status)
+====================================================
+
+BACKGROUND OPERATION STATUS
+- A monitored background reporting command ended unsuccessfully during two attempts after SIGTERM; the failure was relayed for follow-up, and no successful completion or new report data was recorded.
+- No credentials, tokens, client data, or message contents were added to this README.
