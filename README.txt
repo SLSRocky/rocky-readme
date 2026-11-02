@@ -4149,3 +4149,12 @@ LEGALSERVER CASE DATA CORRECTIONS COMPLETED
 BACKGROUND OPERATION STATUS
 - A monitored background reporting command ended unsuccessfully during two attempts after SIGTERM; the failure was relayed for follow-up, and no successful completion or new report data was recorded.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-11-01 (Session — RTC monthly reporting and Staff ISP report)
+====================================================
+
+REPORTING OPERATIONS COMPLETED
+- Completed the October 1–31 RTC monthly reporting pipeline and created the unsent Microsoft 365 draft for review.
+- Completed and uploaded the October Staff ISP report to the approved SharePoint folder.
+- No credentials, tokens, client data, or message contents were added to this README.
