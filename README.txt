@@ -4158,3 +4158,15 @@ REPORTING OPERATIONS COMPLETED
 - Completed the October 1–31 RTC monthly reporting pipeline and created the unsent Microsoft 365 draft for review.
 - Completed and uploaded the October Staff ISP report to the approved SharePoint folder.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-11-02 (Session — RTC distribution update, report forwarding, and YULAA run status)
+====================================================
+
+RTC REPORT DISTRIBUTION UPDATED
+- Added the approved Moses recipient to the maintained weekly and monthly RTC report recipient lists.
+- Forwarded 59 March–October RTC reports and 14 January–March RTC reports from Sent Items to Moses; all 73 forwards were accepted successfully and mailbox verification found no missing requested subjects.
+
+YULAA EXTRACTION STATUS
+- A fresh read-only YULAA extraction was started from 1,243 LegalServer rows, including 164 without docket URLs, but stopped before completion; no LegalServer, Monday.com, SharePoint log, or email write was completed.
+- No credentials, tokens, client data, or message contents were added to this README.
