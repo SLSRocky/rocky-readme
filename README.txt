@@ -4170,3 +4170,14 @@ RTC REPORT DISTRIBUTION UPDATED
 YULAA EXTRACTION STATUS
 - A fresh read-only YULAA extraction was started from 1,243 LegalServer rows, including 164 without docket URLs, but stopped before completion; no LegalServer, Monday.com, SharePoint log, or email write was completed.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-11-03 (Session — LegalServer Fabric MCP transition and cleanup)
+====================================================
+
+LEGALSERVER MCP / MICROSOFT FABRIC
+- Switched the active LegalServer integration to the Fabric-backed MCP and verified its DEV smoke-test permissions without displaying rows.
+- Retired the old report-backed and V2 MCP projects/configuration from active use, moving the identified obsolete files to recoverable host trash while preserving shared material.
+- Verified that no separate LegalServer MCP installation or configuration was present for Grace or Dexter.
+- Added mandatory dataset-freshness timestamp metadata to every Fabric MCP response; the code build passed and the active MCP reload/protocol verification was initiated.
+- No credentials, tokens, client data, or message contents were added to this README.
