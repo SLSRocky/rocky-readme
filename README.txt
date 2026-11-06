@@ -4181,3 +4181,21 @@ LEGALSERVER MCP / MICROSOFT FABRIC
 - Verified that no separate LegalServer MCP installation or configuration was present for Grace or Dexter.
 - Added mandatory dataset-freshness timestamp metadata to every Fabric MCP response; the code build passed and the active MCP reload/protocol verification was initiated.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-11-05 (Session — LegalServer Fabric governance, retention, and connector updates)
+====================================================
+
+LEGALSERVER FABRIC MCP
+- Implemented the reviewed client-tool specification sections 0–6 and then applied only the approved 0.2.1 changes 1–6; TypeScript builds and ten-tool local smoke tests passed, with no reload performed.
+- Added governed fixed-column queries, allowlisted filters, sensitive-field protections, freshness metadata, bounded results, coded error logging, and sanitized audit behavior; preserved rollback copies for review.
+
+PRIVACY AND RETENTION OPERATIONS
+- Disabled automatic session-memory note writes and documented the prohibition on client-identifying data in durable memory and notes.
+- Verified the active 30-day lossless-claw/session retention job, daily cleanup schedule, initial purge, and database integrity check; documented that cleanup is age-based only after a later review identified the long-running-session limitation.
+- Recorded the privacy/retention decision in the approved SharePoint decision log; no existing notes were scrubbed automatically.
+
+OTHER OPERATIONAL NOTES
+- Confirmed the available Microsoft 365 mail connector could create a draft but not send mail; no outbound message was sent.
+- Discussed requirements for a future new-Outlook ribbon add-in; no implementation or deployment was started.
+- No credentials, tokens, client data, or message contents were added to this README.
