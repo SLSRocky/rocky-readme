@@ -4199,3 +4199,13 @@ OTHER OPERATIONAL NOTES
 - Confirmed the available Microsoft 365 mail connector could create a draft but not send mail; no outbound message was sent.
 - Discussed requirements for a future new-Outlook ribbon add-in; no implementation or deployment was started.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-11-06 (Session — LegalServer homepage-alert assignment research)
+====================================================
+
+LEGALSERVER API RESEARCH
+- Reviewed the available LegalServer API and MCP definitions to determine whether users assigned to receive homepage alerts can be changed programmatically.
+- Found no documented API endpoint for changing Case/Client Alert homepage recipients; the documented User Update, Matter Assignment, and Reports APIs do not provide that operation.
+- Determined that recipient assignment likely requires the LegalServer UI or a configured dynamic process; no undocumented write endpoint was attempted.
+- No credentials, tokens, client data, or message contents were added to this README.
