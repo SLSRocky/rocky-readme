@@ -4209,3 +4209,12 @@ LEGALSERVER API RESEARCH
 - Found no documented API endpoint for changing Case/Client Alert homepage recipients; the documented User Update, Matter Assignment, and Reports APIs do not provide that operation.
 - Determined that recipient assignment likely requires the LegalServer UI or a configured dynamic process; no undocumented write endpoint was attempted.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-11-09 (Session — RTC reporting and YULAA extraction status)
+====================================================
+
+REPORTING OPERATIONS
+- Completed the November 2–8 RTC weekly reporting pipeline, producing four verified PDFs and an unsent Microsoft 365 draft; no cap-splitting days were needed and temporary files were cleaned up.
+- A read-only YULAA weekly extraction fetched 1,317 report rows, then stalled on CT Judicial transient errors after 68 cases and was stopped; no LegalServer, SharePoint, or email write occurred.
+- No credentials, tokens, client data, or message contents were added to this README.
