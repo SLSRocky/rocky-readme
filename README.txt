@@ -4218,3 +4218,16 @@ REPORTING OPERATIONS
 - Completed the November 2–8 RTC weekly reporting pipeline, producing four verified PDFs and an unsent Microsoft 365 draft; no cap-splitting days were needed and temporary files were cleaned up.
 - A read-only YULAA weekly extraction fetched 1,317 report rows, then stalled on CT Judicial transient errors after 68 cases and was stopped; no LegalServer, SharePoint, or email write occurred.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-11-10 (Session — RTC reporting completion and connector verification)
+====================================================
+
+REPORTING OPERATIONS
+- Recreated and verified the November 2–8 RTC weekly report set, uploaded four PDFs to the approved SharePoint folder, and created an unsent Microsoft 365 draft; the run recorded 675 external inbound calls, 267 eligible calls, 55 non-eligible calls, and no cap-splitting days.
+- Reran the LegalServer Referrals & Demographics PDF and replaced the matching SharePoint and draft copies after verifying 23 unique referrals; the earlier 21-count discrepancy was traced to an older draft attachment.
+
+CONNECTOR AND PRIVACY STATUS
+- Confirmed the LegalServer Fabric connector 0.2.1 reload and all ten post-reload smoke tests passed.
+- Preserved the 30-day lossless-claw/session retention configuration and daily cleanup; session-memory note writes remain disabled and durable-memory rules prohibit client-identifying data.
+- No credentials, tokens, client data, or message contents were added to this README.
