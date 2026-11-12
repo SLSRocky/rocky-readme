@@ -4231,3 +4231,15 @@ CONNECTOR AND PRIVACY STATUS
 - Confirmed the LegalServer Fabric connector 0.2.1 reload and all ten post-reload smoke tests passed.
 - Preserved the 30-day lossless-claw/session retention configuration and daily cleanup; session-memory note writes remain disabled and durable-memory rules prohibit client-identifying data.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-11-11 (Session — Zoom routing visuals and LegalServer governance updates)
+====================================================
+
+ZOOM ROUTING MATERIALS
+- Created, refined, and verified current Advocate queue-routing and single-Advocate-queue visuals in HTML and presentation-ready 3200×1800 JPG formats, then uploaded the four approved files to the Matt&Rocky SharePoint training folder.
+
+LEGALSERVER FABRIC AND GOVERNANCE
+- Added the approved LegalServer client-data and channel-governance rules to AGENTS.md, preserving minimum-necessary disclosure and durable-memory restrictions.
+- Implemented and reloaded the governed Fabric transfer tools and referral-status support; the post-reload 17-tool smoke tests passed, with transfer/referral freshness and status-group guidance recorded in the standing rules.
+- No credentials, tokens, client data, or message contents were added to this README.
