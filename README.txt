@@ -4243,3 +4243,19 @@ LEGALSERVER FABRIC AND GOVERNANCE
 - Added the approved LegalServer client-data and channel-governance rules to AGENTS.md, preserving minimum-necessary disclosure and durable-memory restrictions.
 - Implemented and reloaded the governed Fabric transfer tools and referral-status support; the post-reload 17-tool smoke tests passed, with transfer/referral freshness and status-group guidance recorded in the standing rules.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-11-12 (Session — LegalServer Fabric v0.6.0 and RTC queue analysis)
+====================================================
+
+LEGALSERVER FABRIC
+- Implemented and reloaded the approved v0.6.0 Fabric changes for transfer/referral status support; the required post-reload smoke test passed all 17 tools.
+- Added and verified the standing reload governance rule and updated Case transfers guidance covering freshness, referral status groups, and unmapped agencies.
+- Confirmed the exposed LegalServer connector remains read-only; no write-capable API operation was configured or used.
+- Drafted a portability plan for packaging the MCP and its usage rules for a future AI instance, with privacy controls and reload gates preserved.
+
+RTC OPERATIONS
+- Completed a Jan. 1–Nov. 12 queue-level RTC review using supported monthly periods after Zoom’s one-month report limit was encountered.
+- Found a material abandonment-rate disparity concentrated in the Operator queue; the review completed without missing periods and distinguished pre-answer abandonment from post-answer handling.
+
+- No credentials, tokens, client data, or message contents were added to this README.
