@@ -4259,3 +4259,18 @@ RTC OPERATIONS
 - Found a material abandonment-rate disparity concentrated in the Operator queue; the review completed without missing periods and distinguished pre-answer abandonment from post-answer handling.
 
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-11-13 (Session — LegalServer Fabric v0.7.1, time reporting, and callback app fix)
+====================================================
+
+LEGALSERVER FABRIC AND GOVERNANCE
+- Applied and reloaded the approved LegalServer Fabric v0.7.1 source changes, including the clarified time-activity category and transfer-date filtering; the full post-reload smoke test passed all 19 tools.
+- Updated AGENTS.md staff-time and LegalServer data-gap guidance, while preserving the read-only connector and privacy controls.
+- Completed read-only staff-time aggregates and a workbook reconciliation; future-dated entries remained excluded and no client-identifying data was retained.
+
+OLI CALLBACK APP
+- Restored clickable callback case-number links in the production app, verified the production deployment, and resolved the report-authentication configuration issue through the approved protected/manual configuration path.
+- The separate live-lookup credential path still requires verification before case IDs can render as links; no client or case data was added to durable notes.
+
+- No credentials, tokens, client data, or message contents were added to this README.
