@@ -4274,3 +4274,16 @@ OLI CALLBACK APP
 - The separate live-lookup credential path still requires verification before case IDs can render as links; no client or case data was added to durable notes.
 
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-11-16 (Session — protected report credential recovery and reporting retries)
+====================================================
+
+REPORTING OPERATIONS
+- Recovered the protected live report credentials after the RTC and YULAA workflows encountered authorization failures; credential values were not exposed.
+- Retried the RTC weekly run for November 9–15. Zoom retrieval completed with 39,271 calls, but the LegalServer demographics endpoint continued returning HTTP 502; no PDFs or Microsoft 365 draft were created, and temporary files were cleaned up.
+- Retried the read-only YULAA extraction and the demographics endpoint separately; the same upstream 502 persisted before processing, so no Judicial, SharePoint, email, LegalServer, or Monday.com write occurred.
+
+CAPABILITY STATUS
+- Confirmed the protected credential path is distinct from the LegalServer Fabric MCP credentials and kept all sensitive values out of logs and this README.
+- No credentials, tokens, client data, or message contents were added to this README.
