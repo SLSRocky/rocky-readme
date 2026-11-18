@@ -4287,3 +4287,17 @@ REPORTING OPERATIONS
 CAPABILITY STATUS
 - Confirmed the protected credential path is distinct from the LegalServer Fabric MCP credentials and kept all sensitive values out of logs and this README.
 - No credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-11-17 (Session — RTC reliability, report verification, and Fabric updates)
+====================================================
+
+REPORTING OPERATIONS
+- Verified the protected LegalServer report test with the updated date window after an initial authorization failure; the retest returned valid XML and parsed successfully without exposing report contents or credentials.
+- Completed the November 9–15 RTC weekly workflow after adding bounded transport/proxy retries with backoff and keeping execution in the live Gateway context; the verified run produced the four approved PDFs, uploaded them to SharePoint, created an unsent Microsoft 365 draft, and cleaned up temporary files.
+- The YULAA retry remained unsuccessful because Judicial requests produced widespread upstream errors; no final output or downstream write was produced.
+
+LEGALSERVER FABRIC AND GOVERNANCE
+- Applied and verified the approved Fabric v0.8.0 and v1.10 changes, including rejected-applicant handling and household/finance filter corrections; builds, bounded validation, and the full 24-tool post-reload smoke test passed.
+- Completed governed aggregate checks with freshness metadata and preserved the private-channel guard for client-level details.
+- Committed the RTC retry hardening as `b53f294`; no credentials, tokens, client data, or message contents were added to this README.
