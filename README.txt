@@ -4301,3 +4301,13 @@ LEGALSERVER FABRIC AND GOVERNANCE
 - Applied and verified the approved Fabric v0.8.0 and v1.10 changes, including rejected-applicant handling and household/finance filter corrections; builds, bounded validation, and the full 24-tool post-reload smoke test passed.
 - Completed governed aggregate checks with freshness metadata and preserved the private-channel guard for client-level details.
 - Committed the RTC retry hardening as `b53f294`; no credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-11-18 (Session — LegalServer Fabric v1.11 review and reload)
+====================================================
+
+LEGALSERVER FABRIC AND GOVERNANCE
+- Applied and reviewed the approved v1.11 Fabric changes, adding the required aggregate and private single-case capabilities; the build passed and the bounded nine-call validation completed successfully.
+- Corrected grouped living-situation results, measured RTC/housing audit durations, and replaced both TypeScript suppression directives with explicit typing.
+- Reloaded the governed connector as version 0.9.0; the managed probe advertised 28 tools and the full post-reload smoke test passed all 28 tools.
+- Added the approved RTC and housing guidance to AGENTS.md while preserving privacy controls and read-only operation; no credentials, tokens, client data, or message contents were added to this README.
