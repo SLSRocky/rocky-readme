@@ -4311,3 +4311,13 @@ LEGALSERVER FABRIC AND GOVERNANCE
 - Corrected grouped living-situation results, measured RTC/housing audit durations, and replaced both TypeScript suppression directives with explicit typing.
 - Reloaded the governed connector as version 0.9.0; the managed probe advertised 28 tools and the full post-reload smoke test passed all 28 tools.
 - Added the approved RTC and housing guidance to AGENTS.md while preserving privacy controls and read-only operation; no credentials, tokens, client data, or message contents were added to this README.
+
+====================================================
+2026-11-19 (Session — LegalServer Fabric v1.11 verification and reporting retries)
+====================================================
+
+LEGALSERVER FABRIC AND REPORTING OPERATIONS
+- Completed the approved LegalServer Fabric v1.11 review/reload work: corrected grouped living-situation output, added measured audit durations, removed TypeScript suppression directives, and verified the managed 28-tool smoke test.
+- Added the approved RTC and housing guidance to AGENTS.md while preserving privacy and read-only controls.
+- Retried RTC and YULAA reporting workflows; RTC data retrieval completed, but the LegalServer demographics endpoint continued returning HTTP 502 and YULAA remained unsuccessful because of widespread Judicial upstream errors. No downstream client-data or outbound-message writes were produced.
+- Preserved protected credentials and excluded credentials, tokens, client data, and message contents from this README.
