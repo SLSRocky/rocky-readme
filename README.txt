@@ -4321,3 +4321,15 @@ LEGALSERVER FABRIC AND REPORTING OPERATIONS
 - Added the approved RTC and housing guidance to AGENTS.md while preserving privacy and read-only controls.
 - Retried RTC and YULAA reporting workflows; RTC data retrieval completed, but the LegalServer demographics endpoint continued returning HTTP 502 and YULAA remained unsuccessful because of widespread Judicial upstream errors. No downstream client-data or outbound-message writes were produced.
 - Preserved protected credentials and excluded credentials, tokens, client data, and message contents from this README.
+
+====================================================
+2026-11-20 (Session — LegalServer Fabric governance and time-off capability)
+====================================================
+
+LEGALSERVER FABRIC AND GOVERNANCE
+- Applied and verified the approved Fabric v1.12 rule updates, including RTC funding-code handling; the build, reload, and full 28-tool smoke test passed.
+- Applied the approved v1.14 documentation refresh-time changes to AGENTS.md, preserving a pre-change backup and verifying the requested wording.
+- Added and verified governed staff time-off tools and guidance; the live connector reload advertised 32 tools, included CALENDAR_INFO freshness, and passed the full 32-tool smoke test.
+
+CAPABILITY STATUS
+- Existing LegalServer Fabric, staff-calendar, and privacy-governance capabilities were improved and verified; no credentials, tokens, client data, or message contents were added to this README.
